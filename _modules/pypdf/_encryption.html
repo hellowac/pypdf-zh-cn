@@ -1,0 +1,1540 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN" data-content_root="../../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="索引" href="../../genindex.html" /><link rel="search" title="搜索" href="../../search.html" />
+
+    <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
+        <title>pypdf._encryption - pypdf 5.1.0 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=302659d7" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">pypdf 5.1.0 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../../_static/logo.png" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">pypdf 5.1.0 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">用户指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user/installation.html">安装指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/migration-1-to-2.html">迁移指南：从 1.x 到 2.x</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/migration-1-to-2.html#id1">导入和模块</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/migration-1-to-2.html#id2">命名调整</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/robustness.html">稳健性与 <code class="docutils literal notranslate"><span class="pre">strict=False</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/suppress-warnings.html">异常、警告和日志消息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/metadata.html">元数据（Metadata）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/extract-text.html">从 PDF 中提取文本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/post-processing-in-text-extraction.html">文本提取的后处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/extract-images.html">提取图像</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/extract-images.html#id2">其他图像</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/extract-attachments.html">提取附件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/encryption-decryption.html">PDF 的加密与解密</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/merging-pdfs.html">合并 PDF 文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/cropping-and-transforming.html">裁剪和转换 PDF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/cropping-and-transforming.html#id7">转换同一页面的多个副本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/reading-pdf-annotations.html">读取 PDF 注释</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/adding-pdf-annotations.html">添加 PDF 注释</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/add-watermark.html">向 PDF 添加印章或水印</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/add-javascript.html">向 PDF 添加 JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/viewer-preferences.html">添加查看器首选项</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/forms.html">与 PDF 表单的交互</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/streaming-data.html">使用 pypdf 流式传输数据</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/file-size.html">减小 PDF 文件大小</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/pdf-version-support.html">PDF 版本支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/pdfa-compliance.html">PDF/A 合规性</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API 参考</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/PdfReader.html">PdfReader 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/PdfWriter.html">PdfWriter 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/Destination.html">Destination 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/DocumentInformation.html">DocumentInformation 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/Field.html">Field类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/Fit.html">Fit 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/PageObject.html">PageObject 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/PageRange.html">PageRange 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/PaperSize.html">PaperSize 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/RectangleObject.html">RectangleObject 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/Transformation.html">Transformation 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/XmpInformation.html">XmpInformation 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/annotations.html">annotations 模块</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/constants.html">常量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/errors.html">异常和错误</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/generic.html">PDF 范型对象</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/PdfDocCommon.html">PdfDocCommon 类</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">开发者指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/intro.html">开发者指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/intro.html#id2">安装依赖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/intro.html#id3">运行测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/intro.html#sample-files-git">sample-files Git 子模块</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/intro.html#git-pre-commit">工具：Git 和 pre-commit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/intro.html#id4">提交消息规范</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/intro.html#pull-request">Pull Request 大小</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/intro.html#id7">基准测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/pdf-format.html">PDF 格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/pypdf-parsing.html">pypdf 如何解析 PDF 文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/pypdf-writing.html">pypdf 如何写入 PDF 文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/cmaps.html">CMaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/deprecations.html">弃用流程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/documentation.html">文档编写</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/testing.html">测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/releasing.html">发布</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">关于 pypdf</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../meta/CHANGELOG.html">更新日志</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../meta/changelog-v1.html">Changelog of PyPDF2 1.X</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../meta/project-governance.html">项目治理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../meta/taking-ownership.html">接管 pypdf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../meta/history.html">pypdf 历史</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../meta/CONTRIBUTORS.html">贡献者</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../meta/scope-of-pypdf.html">pypdf 的范围</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../meta/comparisons.html">pypdf 与 X 的对比</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../meta/faq.html">常见问题解答</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <h1>pypdf._encryption 源代码</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright (c) 2022, exiledkingcc</span>
+<span class="c1"># All rights reserved.</span>
+<span class="c1">#</span>
+<span class="c1"># Redistribution and use in source and binary forms, with or without</span>
+<span class="c1"># modification, are permitted provided that the following conditions are</span>
+<span class="c1"># met:</span>
+<span class="c1">#</span>
+<span class="c1"># * Redistributions of source code must retain the above copyright notice,</span>
+<span class="c1"># this list of conditions and the following disclaimer.</span>
+<span class="c1"># * Redistributions in binary form must reproduce the above copyright notice,</span>
+<span class="c1"># this list of conditions and the following disclaimer in the documentation</span>
+<span class="c1"># and/or other materials provided with the distribution.</span>
+<span class="c1"># * The name of the author may not be used to endorse or promote products</span>
+<span class="c1"># derived from this software without specific prior written permission.</span>
+<span class="c1">#</span>
+<span class="c1"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;</span>
+<span class="c1"># AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE</span>
+<span class="c1"># IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE</span>
+<span class="c1"># ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE</span>
+<span class="c1"># LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR</span>
+<span class="c1"># CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF</span>
+<span class="c1"># SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS</span>
+<span class="c1"># INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN</span>
+<span class="c1"># CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)</span>
+<span class="c1"># ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE</span>
+<span class="c1"># POSSIBILITY OF SUCH DAMAGE.</span>
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">secrets</span>
+<span class="kn">import</span> <span class="nn">struct</span>
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span><span class="p">,</span> <span class="n">IntEnum</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">cast</span>
+
+<span class="kn">from</span> <span class="nn">pypdf._crypt_providers</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">CryptAES</span><span class="p">,</span>
+    <span class="n">CryptBase</span><span class="p">,</span>
+    <span class="n">CryptIdentity</span><span class="p">,</span>
+    <span class="n">CryptRC4</span><span class="p">,</span>
+    <span class="n">aes_cbc_decrypt</span><span class="p">,</span>
+    <span class="n">aes_cbc_encrypt</span><span class="p">,</span>
+    <span class="n">aes_ecb_decrypt</span><span class="p">,</span>
+    <span class="n">aes_ecb_encrypt</span><span class="p">,</span>
+    <span class="n">rc4_decrypt</span><span class="p">,</span>
+    <span class="n">rc4_encrypt</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">._utils</span> <span class="kn">import</span> <span class="n">logger_warning</span>
+<span class="kn">from</span> <span class="nn">.generic</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ArrayObject</span><span class="p">,</span>
+    <span class="n">ByteStringObject</span><span class="p">,</span>
+    <span class="n">DictionaryObject</span><span class="p">,</span>
+    <span class="n">NameObject</span><span class="p">,</span>
+    <span class="n">NumberObject</span><span class="p">,</span>
+    <span class="n">PdfObject</span><span class="p">,</span>
+    <span class="n">StreamObject</span><span class="p">,</span>
+    <span class="n">TextStringObject</span><span class="p">,</span>
+    <span class="n">create_string_object</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">CryptFilter</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">stm_crypt</span><span class="p">:</span> <span class="n">CryptBase</span><span class="p">,</span>
+        <span class="n">str_crypt</span><span class="p">:</span> <span class="n">CryptBase</span><span class="p">,</span>
+        <span class="n">ef_crypt</span><span class="p">:</span> <span class="n">CryptBase</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stm_crypt</span> <span class="o">=</span> <span class="n">stm_crypt</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">str_crypt</span> <span class="o">=</span> <span class="n">str_crypt</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ef_crypt</span> <span class="o">=</span> <span class="n">ef_crypt</span>
+
+    <span class="k">def</span> <span class="nf">encrypt_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">:</span> <span class="n">PdfObject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PdfObject</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">ByteStringObject</span><span class="p">):</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">str_crypt</span><span class="o">.</span><span class="n">encrypt</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">original_bytes</span><span class="p">)</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="n">ByteStringObject</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">TextStringObject</span><span class="p">):</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">str_crypt</span><span class="o">.</span><span class="n">encrypt</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">get_encoded_bytes</span><span class="p">())</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="n">ByteStringObject</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">StreamObject</span><span class="p">):</span>
+            <span class="n">obj2</span> <span class="o">=</span> <span class="n">StreamObject</span><span class="p">()</span>
+            <span class="n">obj2</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+            <span class="n">obj2</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stm_crypt</span><span class="o">.</span><span class="n">encrypt</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">_data</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>  <span class="c1"># Dont forget the Stream dict.</span>
+                <span class="n">obj2</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encrypt_object</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="n">obj2</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">DictionaryObject</span><span class="p">):</span>
+            <span class="n">obj2</span> <span class="o">=</span> <span class="n">DictionaryObject</span><span class="p">()</span>  <span class="c1"># type: ignore</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">obj2</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encrypt_object</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="n">obj2</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">ArrayObject</span><span class="p">):</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="n">ArrayObject</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">encrypt_object</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">obj</span>
+
+    <span class="k">def</span> <span class="nf">decrypt_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">:</span> <span class="n">PdfObject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PdfObject</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="p">(</span><span class="n">ByteStringObject</span><span class="p">,</span> <span class="n">TextStringObject</span><span class="p">)):</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">str_crypt</span><span class="o">.</span><span class="n">decrypt</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">original_bytes</span><span class="p">)</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="n">create_string_object</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">StreamObject</span><span class="p">):</span>
+            <span class="n">obj</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stm_crypt</span><span class="o">.</span><span class="n">decrypt</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">_data</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>  <span class="c1"># Dont forget the Stream dict.</span>
+                <span class="n">obj</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decrypt_object</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">DictionaryObject</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">obj</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decrypt_object</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">ArrayObject</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">obj</span><span class="p">)):</span>
+                <span class="n">obj</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decrypt_object</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">obj</span>
+
+
+<span class="n">_PADDING</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x28\xbf\x4e\x5e\x4e\x75\x8a\x41\x64\x00\x4e\x56\xff\xfa\x01\x08</span><span class="s2">&quot;</span>
+    <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x2e\x2e\x00\xb6\xd0\x68\x3e\x80\x2f\x0c\xa9\xfe\x64\x53\x69\x7a</span><span class="s2">&quot;</span>
+<span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_padding</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">data</span> <span class="o">+</span> <span class="n">_PADDING</span><span class="p">)[:</span><span class="mi">32</span><span class="p">]</span>
+
+
+<span class="k">class</span> <span class="nc">AlgV4</span><span class="p">:</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">compute_key</span><span class="p">(</span>
+        <span class="n">password</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
+        <span class="n">rev</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">key_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">o_entry</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
+        <span class="n">P</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">id1_entry</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
+        <span class="n">metadata_encrypted</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Algorithm 2: Computing an encryption key.</span>
+
+<span class="sd">        a) Pad or truncate the password string to exactly 32 bytes. If the</span>
+<span class="sd">           password string is more than 32 bytes long,</span>
+<span class="sd">           use only its first 32 bytes; if it is less than 32 bytes long, pad it</span>
+<span class="sd">           by appending the required number of</span>
+<span class="sd">           additional bytes from the beginning of the following padding string:</span>
+<span class="sd">                &lt; 28 BF 4E 5E 4E 75 8A 41 64 00 4E 56 FF FA 01 08</span>
+<span class="sd">                2E 2E 00 B6 D0 68 3E 80 2F 0C A9 FE 64 53 69 7A &gt;</span>
+<span class="sd">           That is, if the password string is n bytes long, append</span>
+<span class="sd">           the first 32 - n bytes of the padding string to the end</span>
+<span class="sd">           of the password string. If the password string is empty</span>
+<span class="sd">           (zero-length), meaning there is no user password,</span>
+<span class="sd">           substitute the entire padding string in its place.</span>
+
+<span class="sd">        b) Initialize the MD5 hash function and pass the result of step (a)</span>
+<span class="sd">           as input to this function.</span>
+<span class="sd">        c) Pass the value of the encryption dictionary’s O entry to the</span>
+<span class="sd">           MD5 hash function. (&quot;Algorithm 3: Computing</span>
+<span class="sd">           the encryption dictionary’s O (owner password) value&quot; shows how the</span>
+<span class="sd">           O value is computed.)</span>
+<span class="sd">        d) Convert the integer value of the P entry to a 32-bit unsigned binary</span>
+<span class="sd">           number and pass these bytes to the</span>
+<span class="sd">           MD5 hash function, low-order byte first.</span>
+<span class="sd">        e) Pass the first element of the file’s file identifier array (the value</span>
+<span class="sd">           of the ID entry in the document’s trailer</span>
+<span class="sd">           dictionary; see Table 15) to the MD5 hash function.</span>
+<span class="sd">        f) (Security handlers of revision 4 or greater) If document metadata is</span>
+<span class="sd">           not being encrypted, pass 4 bytes with</span>
+<span class="sd">           the value 0xFFFFFFFF to the MD5 hash function.</span>
+<span class="sd">        g) Finish the hash.</span>
+<span class="sd">        h) (Security handlers of revision 3 or greater) Do the following</span>
+<span class="sd">           50 times: Take the output from the previous</span>
+<span class="sd">           MD5 hash and pass the first n bytes of the output as input into a new</span>
+<span class="sd">           MD5 hash, where n is the number of</span>
+<span class="sd">           bytes of the encryption key as defined by the value of the encryption</span>
+<span class="sd">           dictionary’s Length entry.</span>
+<span class="sd">        i) Set the encryption key to the first n bytes of the output from the</span>
+<span class="sd">           final MD5 hash, where n shall always be 5</span>
+<span class="sd">           for security handlers of revision 2 but, for security handlers of</span>
+<span class="sd">           revision 3 or greater, shall depend on the</span>
+<span class="sd">           value of the encryption dictionary’s Length entry.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            password: The encryption secret as a bytes-string</span>
+<span class="sd">            rev: The encryption revision (see PDF standard)</span>
+<span class="sd">            key_size: The size of the key in bytes</span>
+<span class="sd">            o_entry: The owner entry</span>
+<span class="sd">            P: A set of flags specifying which operations shall be permitted</span>
+<span class="sd">                when the document is opened with user access. If bit 2 is set to 1,</span>
+<span class="sd">                all other bits are ignored and all operations are permitted.</span>
+<span class="sd">                If bit 2 is set to 0, permission for operations are based on the</span>
+<span class="sd">                values of the remaining flags defined in Table 24.</span>
+<span class="sd">            id1_entry:</span>
+<span class="sd">            metadata_encrypted: A boolean indicating if the metadata is encrypted.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The u_hash digest of length key_size</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">_padding</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
+        <span class="n">u_hash</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+        <span class="n">u_hash</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">o_entry</span><span class="p">)</span>
+        <span class="n">u_hash</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&quot;&lt;I&quot;</span><span class="p">,</span> <span class="n">P</span><span class="p">))</span>
+        <span class="n">u_hash</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">id1_entry</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">rev</span> <span class="o">&gt;=</span> <span class="mi">4</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">metadata_encrypted</span><span class="p">:</span>
+            <span class="n">u_hash</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;</span><span class="se">\xff\xff\xff\xff</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">u_hash_digest</span> <span class="o">=</span> <span class="n">u_hash</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="n">key_size</span> <span class="o">//</span> <span class="mi">8</span>
+        <span class="k">if</span> <span class="n">rev</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
+                <span class="n">u_hash_digest</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">u_hash_digest</span><span class="p">[:</span><span class="n">length</span><span class="p">])</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">u_hash_digest</span><span class="p">[:</span><span class="n">length</span><span class="p">]</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">compute_O_value_key</span><span class="p">(</span><span class="n">owner_password</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">rev</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">key_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Algorithm 3: Computing the encryption dictionary’s O (owner password) value.</span>
+
+<span class="sd">        a) Pad or truncate the owner password string as described in step (a)</span>
+<span class="sd">           of &quot;Algorithm 2: Computing an encryption key&quot;.</span>
+<span class="sd">           If there is no owner password, use the user password instead.</span>
+<span class="sd">        b) Initialize the MD5 hash function and pass the result of step (a) as</span>
+<span class="sd">           input to this function.</span>
+<span class="sd">        c) (Security handlers of revision 3 or greater) Do the following 50 times:</span>
+<span class="sd">           Take the output from the previous</span>
+<span class="sd">           MD5 hash and pass it as input into a new MD5 hash.</span>
+<span class="sd">        d) Create an RC4 encryption key using the first n bytes of the output</span>
+<span class="sd">           from the final MD5 hash, where n shall</span>
+<span class="sd">           always be 5 for security handlers of revision 2 but, for security</span>
+<span class="sd">           handlers of revision 3 or greater, shall</span>
+<span class="sd">           depend on the value of the encryption dictionary’s Length entry.</span>
+<span class="sd">        e) Pad or truncate the user password string as described in step (a) of</span>
+<span class="sd">           &quot;Algorithm 2: Computing an encryption key&quot;.</span>
+<span class="sd">        f) Encrypt the result of step (e), using an RC4 encryption function with</span>
+<span class="sd">           the encryption key obtained in step (d).</span>
+<span class="sd">        g) (Security handlers of revision 3 or greater) Do the following 19 times:</span>
+<span class="sd">           Take the output from the previous</span>
+<span class="sd">           invocation of the RC4 function and pass it as input to a new</span>
+<span class="sd">           invocation of the function; use an encryption</span>
+<span class="sd">           key generated by taking each byte of the encryption key obtained in</span>
+<span class="sd">           step (d) and performing an XOR</span>
+<span class="sd">           (exclusive or) operation between that byte and the single-byte value</span>
+<span class="sd">           of the iteration counter (from 1 to 19).</span>
+<span class="sd">        h) Store the output from the final invocation of the RC4 function as</span>
+<span class="sd">           the value of the O entry in the encryption dictionary.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            owner_password:</span>
+<span class="sd">            rev: The encryption revision (see PDF standard)</span>
+<span class="sd">            key_size: The size of the key in bytes</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The RC4 key</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">_padding</span><span class="p">(</span><span class="n">owner_password</span><span class="p">)</span>
+        <span class="n">o_hash_digest</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">rev</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
+                <span class="n">o_hash_digest</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">o_hash_digest</span><span class="p">)</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
+
+        <span class="n">rc4_key</span> <span class="o">=</span> <span class="n">o_hash_digest</span><span class="p">[:</span> <span class="n">key_size</span> <span class="o">//</span> <span class="mi">8</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">rc4_key</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">compute_O_value</span><span class="p">(</span><span class="n">rc4_key</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">user_password</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">rev</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        See :func:`compute_O_value_key`.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            rc4_key:</span>
+<span class="sd">            user_password:</span>
+<span class="sd">            rev: The encryption revision (see PDF standard)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The RC4 encrypted</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">_padding</span><span class="p">(</span><span class="n">user_password</span><span class="p">)</span>
+        <span class="n">rc4_enc</span> <span class="o">=</span> <span class="n">rc4_encrypt</span><span class="p">(</span><span class="n">rc4_key</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">rev</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="nb">bytearray</span><span class="p">(</span><span class="n">x</span> <span class="o">^</span> <span class="n">i</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">rc4_key</span><span class="p">))</span>
+                <span class="n">rc4_enc</span> <span class="o">=</span> <span class="n">rc4_encrypt</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">rc4_enc</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">rc4_enc</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">compute_U_value</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">rev</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">id1_entry</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Algorithm 4: Computing the encryption dictionary’s U (user password) value.</span>
+
+<span class="sd">        (Security handlers of revision 2)</span>
+
+<span class="sd">        a) Create an encryption key based on the user password string, as</span>
+<span class="sd">           described in &quot;Algorithm 2: Computing an encryption key&quot;.</span>
+<span class="sd">        b) Encrypt the 32-byte padding string shown in step (a) of</span>
+<span class="sd">           &quot;Algorithm 2: Computing an encryption key&quot;, using an RC4 encryption</span>
+<span class="sd">           function with the encryption key from the preceding step.</span>
+<span class="sd">        c) Store the result of step (b) as the value of the U entry in the</span>
+<span class="sd">           encryption dictionary.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            key:</span>
+<span class="sd">            rev: The encryption revision (see PDF standard)</span>
+<span class="sd">            id1_entry:</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The value</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">rev</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">rc4_encrypt</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">_PADDING</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">value</span>
+
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Algorithm 5: Computing the encryption dictionary’s U (user password) value.</span>
+
+<span class="sd">        (Security handlers of revision 3 or greater)</span>
+
+<span class="sd">        a) Create an encryption key based on the user password string, as</span>
+<span class="sd">           described in &quot;Algorithm 2: Computing an encryption key&quot;.</span>
+<span class="sd">        b) Initialize the MD5 hash function and pass the 32-byte padding string</span>
+<span class="sd">           shown in step (a) of &quot;Algorithm 2:</span>
+<span class="sd">           Computing an encryption key&quot; as input to this function.</span>
+<span class="sd">        c) Pass the first element of the file’s file identifier array (the value</span>
+<span class="sd">           of the ID entry in the document’s trailer</span>
+<span class="sd">           dictionary; see Table 15) to the hash function and finish the hash.</span>
+<span class="sd">        d) Encrypt the 16-byte result of the hash, using an RC4 encryption</span>
+<span class="sd">           function with the encryption key from step (a).</span>
+<span class="sd">        e) Do the following 19 times: Take the output from the previous</span>
+<span class="sd">           invocation of the RC4 function and pass it as input to a new</span>
+<span class="sd">           invocation of the function; use an encryption key generated by</span>
+<span class="sd">           taking each byte of the original encryption key obtained in</span>
+<span class="sd">           step (a) and performing an XOR (exclusive or) operation between that</span>
+<span class="sd">           byte and the single-byte value of the iteration counter (from 1 to 19).</span>
+<span class="sd">        f) Append 16 bytes of arbitrary padding to the output from the final</span>
+<span class="sd">           invocation of the RC4 function and store the 32-byte result as the</span>
+<span class="sd">           value of the U entry in the encryption dictionary.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">u_hash</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">_PADDING</span><span class="p">)</span>
+        <span class="n">u_hash</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">id1_entry</span><span class="p">)</span>
+        <span class="n">rc4_enc</span> <span class="o">=</span> <span class="n">rc4_encrypt</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">u_hash</span><span class="o">.</span><span class="n">digest</span><span class="p">())</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span>
+            <span class="n">rc4_key</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="nb">bytearray</span><span class="p">(</span><span class="n">x</span> <span class="o">^</span> <span class="n">i</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">key</span><span class="p">))</span>
+            <span class="n">rc4_enc</span> <span class="o">=</span> <span class="n">rc4_encrypt</span><span class="p">(</span><span class="n">rc4_key</span><span class="p">,</span> <span class="n">rc4_enc</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">_padding</span><span class="p">(</span><span class="n">rc4_enc</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">verify_user_password</span><span class="p">(</span>
+        <span class="n">user_password</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
+        <span class="n">rev</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">key_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">o_entry</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
+        <span class="n">u_entry</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
+        <span class="n">P</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">id1_entry</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
+        <span class="n">metadata_encrypted</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Algorithm 6: Authenticating the user password.</span>
+
+<span class="sd">        a) Perform all but the last step of &quot;Algorithm 4: Computing the</span>
+<span class="sd">           encryption dictionary’s U (user password) value (Security handlers of</span>
+<span class="sd">           revision 2)&quot; or &quot;Algorithm 5: Computing the encryption dictionary’s U</span>
+<span class="sd">           (user password) value (Security handlers of revision 3 or greater)&quot;</span>
+<span class="sd">           using the supplied password string.</span>
+<span class="sd">        b) If the result of step (a) is equal to the value of the encryption</span>
+<span class="sd">           dictionary’s U entry (comparing on the first 16 bytes in the case of</span>
+<span class="sd">           security handlers of revision 3 or greater), the password supplied is</span>
+<span class="sd">           the correct user password. The key obtained in step (a) (that is, in</span>
+<span class="sd">           the first step of &quot;Algorithm 4: Computing the encryption</span>
+<span class="sd">           dictionary’s U (user password) value</span>
+<span class="sd">           (Security handlers of revision 2)&quot; or</span>
+<span class="sd">           &quot;Algorithm 5: Computing the encryption dictionary’s U (user password)</span>
+<span class="sd">           value (Security handlers of revision 3 or greater)&quot;) shall be used</span>
+<span class="sd">           to decrypt the document.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            user_password: The user password as a bytes stream</span>
+<span class="sd">            rev: The encryption revision (see PDF standard)</span>
+<span class="sd">            key_size: The size of the key in bytes</span>
+<span class="sd">            o_entry: The owner entry</span>
+<span class="sd">            u_entry: The user entry</span>
+<span class="sd">            P: A set of flags specifying which operations shall be permitted</span>
+<span class="sd">                when the document is opened with user access. If bit 2 is set to 1,</span>
+<span class="sd">                all other bits are ignored and all operations are permitted.</span>
+<span class="sd">                If bit 2 is set to 0, permission for operations are based on the</span>
+<span class="sd">                values of the remaining flags defined in Table 24.</span>
+<span class="sd">            id1_entry:</span>
+<span class="sd">            metadata_encrypted: A boolean indicating if the metadata is encrypted.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The key</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">AlgV4</span><span class="o">.</span><span class="n">compute_key</span><span class="p">(</span>
+            <span class="n">user_password</span><span class="p">,</span> <span class="n">rev</span><span class="p">,</span> <span class="n">key_size</span><span class="p">,</span> <span class="n">o_entry</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">id1_entry</span><span class="p">,</span> <span class="n">metadata_encrypted</span>
+        <span class="p">)</span>
+        <span class="n">u_value</span> <span class="o">=</span> <span class="n">AlgV4</span><span class="o">.</span><span class="n">compute_U_value</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">rev</span><span class="p">,</span> <span class="n">id1_entry</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">rev</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">u_value</span> <span class="o">=</span> <span class="n">u_value</span><span class="p">[:</span><span class="mi">16</span><span class="p">]</span>
+            <span class="n">u_entry</span> <span class="o">=</span> <span class="n">u_entry</span><span class="p">[:</span><span class="mi">16</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">u_value</span> <span class="o">!=</span> <span class="n">u_entry</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">key</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">verify_owner_password</span><span class="p">(</span>
+        <span class="n">owner_password</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
+        <span class="n">rev</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">key_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">o_entry</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
+        <span class="n">u_entry</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
+        <span class="n">P</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">id1_entry</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
+        <span class="n">metadata_encrypted</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Algorithm 7: Authenticating the owner password.</span>
+
+<span class="sd">        a) Compute an encryption key from the supplied password string, as</span>
+<span class="sd">           described in steps (a) to (d) of</span>
+<span class="sd">           &quot;Algorithm 3: Computing the encryption dictionary’s O (owner password)</span>
+<span class="sd">           value&quot;.</span>
+<span class="sd">        b) (Security handlers of revision 2 only) Decrypt the value of the</span>
+<span class="sd">           encryption dictionary’s O entry, using an RC4</span>
+<span class="sd">           encryption function with the encryption key computed in step (a).</span>
+<span class="sd">           (Security handlers of revision 3 or greater) Do the following 20 times:</span>
+<span class="sd">           Decrypt the value of the encryption dictionary’s O entry (first iteration)</span>
+<span class="sd">           or the output from the previous iteration (all subsequent iterations),</span>
+<span class="sd">           using an RC4 encryption function with a different encryption key at</span>
+<span class="sd">           each iteration. The key shall be generated by taking the original key</span>
+<span class="sd">           (obtained in step (a)) and performing an XOR (exclusive or) operation</span>
+<span class="sd">           between each byte of the key and the single-byte value of the</span>
+<span class="sd">           iteration counter (from 19 to 0).</span>
+<span class="sd">        c) The result of step (b) purports to be the user password.</span>
+<span class="sd">           Authenticate this user password using</span>
+<span class="sd">           &quot;Algorithm 6: Authenticating the user password&quot;.</span>
+<span class="sd">           If it is correct, the password supplied is the correct owner password.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            owner_password:</span>
+<span class="sd">            rev: The encryption revision (see PDF standard)</span>
+<span class="sd">            key_size: The size of the key in bytes</span>
+<span class="sd">            o_entry: The owner entry</span>
+<span class="sd">            u_entry: The user entry</span>
+<span class="sd">            P: A set of flags specifying which operations shall be permitted</span>
+<span class="sd">                when the document is opened with user access. If bit 2 is set to 1,</span>
+<span class="sd">                all other bits are ignored and all operations are permitted.</span>
+<span class="sd">                If bit 2 is set to 0, permission for operations are based on the</span>
+<span class="sd">                values of the remaining flags defined in Table 24.</span>
+<span class="sd">            id1_entry:</span>
+<span class="sd">            metadata_encrypted: A boolean indicating if the metadata is encrypted.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bytes</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rc4_key</span> <span class="o">=</span> <span class="n">AlgV4</span><span class="o">.</span><span class="n">compute_O_value_key</span><span class="p">(</span><span class="n">owner_password</span><span class="p">,</span> <span class="n">rev</span><span class="p">,</span> <span class="n">key_size</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">rev</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">user_password</span> <span class="o">=</span> <span class="n">rc4_decrypt</span><span class="p">(</span><span class="n">rc4_key</span><span class="p">,</span> <span class="n">o_entry</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">user_password</span> <span class="o">=</span> <span class="n">o_entry</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">19</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="nb">bytearray</span><span class="p">(</span><span class="n">x</span> <span class="o">^</span> <span class="n">i</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">rc4_key</span><span class="p">))</span>
+                <span class="n">user_password</span> <span class="o">=</span> <span class="n">rc4_decrypt</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">user_password</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">AlgV4</span><span class="o">.</span><span class="n">verify_user_password</span><span class="p">(</span>
+            <span class="n">user_password</span><span class="p">,</span>
+            <span class="n">rev</span><span class="p">,</span>
+            <span class="n">key_size</span><span class="p">,</span>
+            <span class="n">o_entry</span><span class="p">,</span>
+            <span class="n">u_entry</span><span class="p">,</span>
+            <span class="n">P</span><span class="p">,</span>
+            <span class="n">id1_entry</span><span class="p">,</span>
+            <span class="n">metadata_encrypted</span><span class="p">,</span>
+        <span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">AlgV5</span><span class="p">:</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">verify_owner_password</span><span class="p">(</span>
+        <span class="n">R</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">o_value</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">oe_value</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">u_value</span><span class="p">:</span> <span class="nb">bytes</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Algorithm 3.2a Computing an encryption key.</span>
+
+<span class="sd">        To understand the algorithm below, it is necessary to treat the O and U</span>
+<span class="sd">        strings in the Encrypt dictionary as made up of three sections.</span>
+<span class="sd">        The first 32 bytes are a hash value (explained below). The next 8 bytes</span>
+<span class="sd">        are called the Validation Salt. The final 8 bytes are called the Key Salt.</span>
+
+<span class="sd">        1. The password string is generated from Unicode input by processing the</span>
+<span class="sd">           input string with the SASLprep (IETF RFC 4013) profile of</span>
+<span class="sd">           stringprep (IETF RFC 3454), and then converting to a UTF-8</span>
+<span class="sd">           representation.</span>
+<span class="sd">        2. Truncate the UTF-8 representation to 127 bytes if it is longer than</span>
+<span class="sd">           127 bytes.</span>
+<span class="sd">        3. Test the password against the owner key by computing the SHA-256 hash</span>
+<span class="sd">           of the UTF-8 password concatenated with the 8 bytes of owner</span>
+<span class="sd">           Validation Salt, concatenated with the 48-byte U string. If the</span>
+<span class="sd">           32-byte result matches the first 32 bytes of the O string, this is</span>
+<span class="sd">           the owner password.</span>
+<span class="sd">           Compute an intermediate owner key by computing the SHA-256 hash of</span>
+<span class="sd">           the UTF-8 password concatenated with the 8 bytes of owner Key Salt,</span>
+<span class="sd">           concatenated with the 48-byte U string. The 32-byte result is the</span>
+<span class="sd">           key used to decrypt the 32-byte OE string using AES-256 in CBC mode</span>
+<span class="sd">           with no padding and an initialization vector of zero.</span>
+<span class="sd">           The 32-byte result is the file encryption key.</span>
+<span class="sd">        4. Test the password against the user key by computing the SHA-256 hash</span>
+<span class="sd">           of the UTF-8 password concatenated with the 8 bytes of user</span>
+<span class="sd">           Validation Salt. If the 32 byte result matches the first 32 bytes of</span>
+<span class="sd">           the U string, this is the user password.</span>
+<span class="sd">           Compute an intermediate user key by computing the SHA-256 hash of the</span>
+<span class="sd">           UTF-8 password concatenated with the 8 bytes of user Key Salt.</span>
+<span class="sd">           The 32-byte result is the key used to decrypt the 32-byte</span>
+<span class="sd">           UE string using AES-256 in CBC mode with no padding and an</span>
+<span class="sd">           initialization vector of zero. The 32-byte result is the file</span>
+<span class="sd">           encryption key.</span>
+<span class="sd">        5. Decrypt the 16-byte Perms string using AES-256 in ECB mode with an</span>
+<span class="sd">           initialization vector of zero and the file encryption key as the key.</span>
+<span class="sd">           Verify that bytes 9-11 of the result are the characters ‘a’, ‘d’, ‘b’.</span>
+<span class="sd">           Bytes 0-3 of the decrypted Perms entry, treated as a little-endian</span>
+<span class="sd">           integer, are the user permissions.</span>
+<span class="sd">           They should match the value in the P key.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            R: A number specifying which revision of the standard security</span>
+<span class="sd">                handler shall be used to interpret this dictionary</span>
+<span class="sd">            password: The owner password</span>
+<span class="sd">            o_value: A 32-byte string, based on both the owner and user passwords,</span>
+<span class="sd">                that shall be used in computing the encryption key and in</span>
+<span class="sd">                determining whether a valid owner password was entered</span>
+<span class="sd">            oe_value:</span>
+<span class="sd">            u_value: A 32-byte string, based on the user password, that shall be</span>
+<span class="sd">                used in determining whether to prompt the user for a password and,</span>
+<span class="sd">                if so, whether a valid user or owner password was entered.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The key</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="n">password</span><span class="p">[:</span><span class="mi">127</span><span class="p">]</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">AlgV5</span><span class="o">.</span><span class="n">calculate_hash</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">o_value</span><span class="p">[</span><span class="mi">32</span><span class="p">:</span><span class="mi">40</span><span class="p">],</span> <span class="n">u_value</span><span class="p">[:</span><span class="mi">48</span><span class="p">])</span>
+            <span class="o">!=</span> <span class="n">o_value</span><span class="p">[:</span><span class="mi">32</span><span class="p">]</span>
+        <span class="p">):</span>
+            <span class="k">return</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span>
+        <span class="n">iv</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="mi">0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">16</span><span class="p">))</span>
+        <span class="n">tmp_key</span> <span class="o">=</span> <span class="n">AlgV5</span><span class="o">.</span><span class="n">calculate_hash</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">o_value</span><span class="p">[</span><span class="mi">40</span><span class="p">:</span><span class="mi">48</span><span class="p">],</span> <span class="n">u_value</span><span class="p">[:</span><span class="mi">48</span><span class="p">])</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">aes_cbc_decrypt</span><span class="p">(</span><span class="n">tmp_key</span><span class="p">,</span> <span class="n">iv</span><span class="p">,</span> <span class="n">oe_value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">key</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">verify_user_password</span><span class="p">(</span>
+        <span class="n">R</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">u_value</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">ue_value</span><span class="p">:</span> <span class="nb">bytes</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        See :func:`verify_owner_password`.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            R: A number specifying which revision of the standard security</span>
+<span class="sd">                handler shall be used to interpret this dictionary</span>
+<span class="sd">            password: The user password</span>
+<span class="sd">            u_value: A 32-byte string, based on the user password, that shall be</span>
+<span class="sd">                used in determining whether to prompt the user for a password</span>
+<span class="sd">                and, if so, whether a valid user or owner password was entered.</span>
+<span class="sd">            ue_value:</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bytes</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="n">password</span><span class="p">[:</span><span class="mi">127</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">AlgV5</span><span class="o">.</span><span class="n">calculate_hash</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">u_value</span><span class="p">[</span><span class="mi">32</span><span class="p">:</span><span class="mi">40</span><span class="p">],</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="n">u_value</span><span class="p">[:</span><span class="mi">32</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span>
+        <span class="n">iv</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="mi">0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">16</span><span class="p">))</span>
+        <span class="n">tmp_key</span> <span class="o">=</span> <span class="n">AlgV5</span><span class="o">.</span><span class="n">calculate_hash</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">u_value</span><span class="p">[</span><span class="mi">40</span><span class="p">:</span><span class="mi">48</span><span class="p">],</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">aes_cbc_decrypt</span><span class="p">(</span><span class="n">tmp_key</span><span class="p">,</span> <span class="n">iv</span><span class="p">,</span> <span class="n">ue_value</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">calculate_hash</span><span class="p">(</span><span class="n">R</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">salt</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">udata</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+        <span class="c1"># https://github.com/qpdf/qpdf/blob/main/libqpdf/QPDF_encryption.cc</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">password</span> <span class="o">+</span> <span class="n">salt</span> <span class="o">+</span> <span class="n">udata</span><span class="p">)</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">R</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">k</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">k1</span> <span class="o">=</span> <span class="n">password</span> <span class="o">+</span> <span class="n">k</span> <span class="o">+</span> <span class="n">udata</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="n">aes_cbc_encrypt</span><span class="p">(</span><span class="n">k</span><span class="p">[:</span><span class="mi">16</span><span class="p">],</span> <span class="n">k</span><span class="p">[</span><span class="mi">16</span><span class="p">:</span><span class="mi">32</span><span class="p">],</span> <span class="n">k1</span> <span class="o">*</span> <span class="mi">64</span><span class="p">)</span>
+            <span class="n">hash_fn</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">,</span>
+                <span class="n">hashlib</span><span class="o">.</span><span class="n">sha384</span><span class="p">,</span>
+                <span class="n">hashlib</span><span class="o">.</span><span class="n">sha512</span><span class="p">,</span>
+            <span class="p">)[</span><span class="nb">sum</span><span class="p">(</span><span class="n">e</span><span class="p">[:</span><span class="mi">16</span><span class="p">])</span> <span class="o">%</span> <span class="mi">3</span><span class="p">]</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="n">hash_fn</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;=</span> <span class="mi">64</span> <span class="ow">and</span> <span class="n">e</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">count</span> <span class="o">-</span> <span class="mi">32</span><span class="p">:</span>
+                <span class="k">break</span>
+        <span class="k">return</span> <span class="n">k</span><span class="p">[:</span><span class="mi">32</span><span class="p">]</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">verify_perms</span><span class="p">(</span>
+        <span class="n">key</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">perms</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">metadata_encrypted</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        See :func:`verify_owner_password` and :func:`compute_perms_value`.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            key: The owner password</span>
+<span class="sd">            perms:</span>
+<span class="sd">            p: A set of flags specifying which operations shall be permitted</span>
+<span class="sd">                when the document is opened with user access.</span>
+<span class="sd">                If bit 2 is set to 1, all other bits are ignored and all</span>
+<span class="sd">                operations are permitted.</span>
+<span class="sd">                If bit 2 is set to 0, permission for operations are based on</span>
+<span class="sd">                the values of the remaining flags defined in Table 24.</span>
+<span class="sd">            metadata_encrypted:</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A boolean</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">b8</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;T&quot;</span> <span class="k">if</span> <span class="n">metadata_encrypted</span> <span class="k">else</span> <span class="sa">b</span><span class="s2">&quot;F&quot;</span>
+        <span class="n">p1</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&quot;&lt;I&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="o">+</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\xff\xff\xff\xff</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">b8</span> <span class="o">+</span> <span class="sa">b</span><span class="s2">&quot;adb&quot;</span>
+        <span class="n">p2</span> <span class="o">=</span> <span class="n">aes_ecb_decrypt</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">perms</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">p1</span> <span class="o">==</span> <span class="n">p2</span><span class="p">[:</span><span class="mi">12</span><span class="p">]</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">generate_values</span><span class="p">(</span>
+        <span class="n">R</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">user_password</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
+        <span class="n">owner_password</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
+        <span class="n">key</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
+        <span class="n">p</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">metadata_encrypted</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="n">user_password</span> <span class="o">=</span> <span class="n">user_password</span><span class="p">[:</span><span class="mi">127</span><span class="p">]</span>
+        <span class="n">owner_password</span> <span class="o">=</span> <span class="n">owner_password</span><span class="p">[:</span><span class="mi">127</span><span class="p">]</span>
+        <span class="n">u_value</span><span class="p">,</span> <span class="n">ue_value</span> <span class="o">=</span> <span class="n">AlgV5</span><span class="o">.</span><span class="n">compute_U_value</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">user_password</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+        <span class="n">o_value</span><span class="p">,</span> <span class="n">oe_value</span> <span class="o">=</span> <span class="n">AlgV5</span><span class="o">.</span><span class="n">compute_O_value</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">owner_password</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">u_value</span><span class="p">)</span>
+        <span class="n">perms</span> <span class="o">=</span> <span class="n">AlgV5</span><span class="o">.</span><span class="n">compute_Perms_value</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">metadata_encrypted</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;/U&quot;</span><span class="p">:</span> <span class="n">u_value</span><span class="p">,</span>
+            <span class="s2">&quot;/UE&quot;</span><span class="p">:</span> <span class="n">ue_value</span><span class="p">,</span>
+            <span class="s2">&quot;/O&quot;</span><span class="p">:</span> <span class="n">o_value</span><span class="p">,</span>
+            <span class="s2">&quot;/OE&quot;</span><span class="p">:</span> <span class="n">oe_value</span><span class="p">,</span>
+            <span class="s2">&quot;/Perms&quot;</span><span class="p">:</span> <span class="n">perms</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">compute_U_value</span><span class="p">(</span><span class="n">R</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Algorithm 3.8 Computing the encryption dictionary’s U (user password)</span>
+<span class="sd">        and UE (user encryption key) values.</span>
+
+<span class="sd">        1. Generate 16 random bytes of data using a strong random number generator.</span>
+<span class="sd">           The first 8 bytes are the User Validation Salt. The second 8 bytes</span>
+<span class="sd">           are the User Key Salt. Compute the 32-byte SHA-256 hash of the</span>
+<span class="sd">           password concatenated with the User Validation Salt. The 48-byte</span>
+<span class="sd">           string consisting of the 32-byte hash followed by the User</span>
+<span class="sd">           Validation Salt followed by the User Key Salt is stored as the U key.</span>
+<span class="sd">        2. Compute the 32-byte SHA-256 hash of the password concatenated with</span>
+<span class="sd">           the User Key Salt. Using this hash as the key, encrypt the file</span>
+<span class="sd">           encryption key using AES-256 in CBC mode with no padding and an</span>
+<span class="sd">           initialization vector of zero. The resulting 32-byte string is stored</span>
+<span class="sd">           as the UE key.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            R:</span>
+<span class="sd">            password:</span>
+<span class="sd">            key:</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A tuple (u-value, ue value)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">random_bytes</span> <span class="o">=</span> <span class="n">secrets</span><span class="o">.</span><span class="n">token_bytes</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+        <span class="n">val_salt</span> <span class="o">=</span> <span class="n">random_bytes</span><span class="p">[:</span><span class="mi">8</span><span class="p">]</span>
+        <span class="n">key_salt</span> <span class="o">=</span> <span class="n">random_bytes</span><span class="p">[</span><span class="mi">8</span><span class="p">:]</span>
+        <span class="n">u_value</span> <span class="o">=</span> <span class="n">AlgV5</span><span class="o">.</span><span class="n">calculate_hash</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">val_salt</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">val_salt</span> <span class="o">+</span> <span class="n">key_salt</span>
+
+        <span class="n">tmp_key</span> <span class="o">=</span> <span class="n">AlgV5</span><span class="o">.</span><span class="n">calculate_hash</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">key_salt</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">iv</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="mi">0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">16</span><span class="p">))</span>
+        <span class="n">ue_value</span> <span class="o">=</span> <span class="n">aes_cbc_encrypt</span><span class="p">(</span><span class="n">tmp_key</span><span class="p">,</span> <span class="n">iv</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">u_value</span><span class="p">,</span> <span class="n">ue_value</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">compute_O_value</span><span class="p">(</span>
+        <span class="n">R</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">u_value</span><span class="p">:</span> <span class="nb">bytes</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Algorithm 3.9 Computing the encryption dictionary’s O (owner password)</span>
+<span class="sd">        and OE (owner encryption key) values.</span>
+
+<span class="sd">        1. Generate 16 random bytes of data using a strong random number</span>
+<span class="sd">           generator. The first 8 bytes are the Owner Validation Salt. The</span>
+<span class="sd">           second 8 bytes are the Owner Key Salt. Compute the 32-byte SHA-256</span>
+<span class="sd">           hash of the password concatenated with the Owner Validation Salt and</span>
+<span class="sd">           then concatenated with the 48-byte U string as generated in</span>
+<span class="sd">           Algorithm 3.8. The 48-byte string consisting of the 32-byte hash</span>
+<span class="sd">           followed by the Owner Validation Salt followed by the Owner Key Salt</span>
+<span class="sd">           is stored as the O key.</span>
+<span class="sd">        2. Compute the 32-byte SHA-256 hash of the password concatenated with</span>
+<span class="sd">           the Owner Key Salt and then concatenated with the 48-byte U string as</span>
+<span class="sd">           generated in Algorithm 3.8. Using this hash as the key,</span>
+<span class="sd">           encrypt the file encryption key using AES-256 in CBC mode with</span>
+<span class="sd">           no padding and an initialization vector of zero.</span>
+<span class="sd">           The resulting 32-byte string is stored as the OE key.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            R:</span>
+<span class="sd">            password:</span>
+<span class="sd">            key:</span>
+<span class="sd">            u_value: A 32-byte string, based on the user password, that shall be</span>
+<span class="sd">                used in determining whether to prompt the user for a password</span>
+<span class="sd">                and, if so, whether a valid user or owner password was entered.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A tuple (O value, OE value)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">random_bytes</span> <span class="o">=</span> <span class="n">secrets</span><span class="o">.</span><span class="n">token_bytes</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+        <span class="n">val_salt</span> <span class="o">=</span> <span class="n">random_bytes</span><span class="p">[:</span><span class="mi">8</span><span class="p">]</span>
+        <span class="n">key_salt</span> <span class="o">=</span> <span class="n">random_bytes</span><span class="p">[</span><span class="mi">8</span><span class="p">:]</span>
+        <span class="n">o_value</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">AlgV5</span><span class="o">.</span><span class="n">calculate_hash</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">val_salt</span><span class="p">,</span> <span class="n">u_value</span><span class="p">)</span> <span class="o">+</span> <span class="n">val_salt</span> <span class="o">+</span> <span class="n">key_salt</span>
+        <span class="p">)</span>
+        <span class="n">tmp_key</span> <span class="o">=</span> <span class="n">AlgV5</span><span class="o">.</span><span class="n">calculate_hash</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">key_salt</span><span class="p">,</span> <span class="n">u_value</span><span class="p">[:</span><span class="mi">48</span><span class="p">])</span>
+        <span class="n">iv</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="mi">0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">16</span><span class="p">))</span>
+        <span class="n">oe_value</span> <span class="o">=</span> <span class="n">aes_cbc_encrypt</span><span class="p">(</span><span class="n">tmp_key</span><span class="p">,</span> <span class="n">iv</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">o_value</span><span class="p">,</span> <span class="n">oe_value</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">compute_Perms_value</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">metadata_encrypted</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Algorithm 3.10 Computing the encryption dictionary’s Perms</span>
+<span class="sd">        (permissions) value.</span>
+
+<span class="sd">        1. Extend the permissions (contents of the P integer) to 64 bits by</span>
+<span class="sd">           setting the upper 32 bits to all 1’s.</span>
+<span class="sd">           (This allows for future extension without changing the format.)</span>
+<span class="sd">        2. Record the 8 bytes of permission in the bytes 0-7 of the block,</span>
+<span class="sd">           low order byte first.</span>
+<span class="sd">        3. Set byte 8 to the ASCII value &#39; T &#39; or &#39; F &#39; according to the</span>
+<span class="sd">           EncryptMetadata Boolean.</span>
+<span class="sd">        4. Set bytes 9-11 to the ASCII characters &#39; a &#39;, &#39; d &#39;, &#39; b &#39;.</span>
+<span class="sd">        5. Set bytes 12-15 to 4 bytes of random data, which will be ignored.</span>
+<span class="sd">        6. Encrypt the 16-byte block using AES-256 in ECB mode with an</span>
+<span class="sd">           initialization vector of zero, using the file encryption key as the</span>
+<span class="sd">           key. The result (16 bytes) is stored as the Perms string, and checked</span>
+<span class="sd">           for validity when the file is opened.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            key:</span>
+<span class="sd">            p: A set of flags specifying which operations shall be permitted</span>
+<span class="sd">                when the document is opened with user access. If bit 2 is set to 1,</span>
+<span class="sd">                all other bits are ignored and all operations are permitted.</span>
+<span class="sd">                If bit 2 is set to 0, permission for operations are based on the</span>
+<span class="sd">                values of the remaining flags defined in Table 24.</span>
+<span class="sd">            metadata_encrypted: A boolean indicating if the metadata is encrypted.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The perms value</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">b8</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;T&quot;</span> <span class="k">if</span> <span class="n">metadata_encrypted</span> <span class="k">else</span> <span class="sa">b</span><span class="s2">&quot;F&quot;</span>
+        <span class="n">rr</span> <span class="o">=</span> <span class="n">secrets</span><span class="o">.</span><span class="n">token_bytes</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&quot;&lt;I&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="o">+</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\xff\xff\xff\xff</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">b8</span> <span class="o">+</span> <span class="sa">b</span><span class="s2">&quot;adb&quot;</span> <span class="o">+</span> <span class="n">rr</span>
+        <span class="n">perms</span> <span class="o">=</span> <span class="n">aes_ecb_encrypt</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">perms</span>
+
+
+<div class="viewcode-block" id="PasswordType">
+<a class="viewcode-back" href="../../modules/PdfReader.html#pypdf.PasswordType">[文档]</a>
+<span class="k">class</span> <span class="nc">PasswordType</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="n">NOT_DECRYPTED</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">USER_PASSWORD</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">OWNER_PASSWORD</span> <span class="o">=</span> <span class="mi">2</span></div>
+
+
+
+<span class="k">class</span> <span class="nc">EncryptAlgorithm</span><span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>  <span class="c1"># type: ignore # noqa: SLOT001</span>
+    <span class="c1"># V, R, Length</span>
+    <span class="n">RC4_40</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+    <span class="n">RC4_128</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>
+    <span class="n">AES_128</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>
+    <span class="n">AES_256_R5</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span>
+    <span class="n">AES_256</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">EncryptionValues</span><span class="p">:</span>
+    <span class="n">O</span><span class="p">:</span> <span class="nb">bytes</span>  <span class="c1"># noqa</span>
+    <span class="n">U</span><span class="p">:</span> <span class="nb">bytes</span>
+    <span class="n">OE</span><span class="p">:</span> <span class="nb">bytes</span>
+    <span class="n">UE</span><span class="p">:</span> <span class="nb">bytes</span>
+    <span class="n">Perms</span><span class="p">:</span> <span class="nb">bytes</span>
+
+
+<span class="k">class</span> <span class="nc">Encryption</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Collects and manages parameters for PDF document encryption and decryption.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        V: A code specifying the algorithm to be used in encrypting and</span>
+<span class="sd">           decrypting the document.</span>
+<span class="sd">        R: The revision of the standard security handler.</span>
+<span class="sd">        Length: The length of the encryption key in bits.</span>
+<span class="sd">        P: A set of flags specifying which operations shall be permitted</span>
+<span class="sd">           when the document is opened with user access</span>
+<span class="sd">        entry: The encryption dictionary object.</span>
+<span class="sd">        EncryptMetadata: Whether to encrypt metadata in the document.</span>
+<span class="sd">        first_id_entry: The first 16 bytes of the file&#39;s original ID.</span>
+<span class="sd">        StmF: The name of the crypt filter that shall be used by default</span>
+<span class="sd">              when decrypting streams.</span>
+<span class="sd">        StrF: The name of the crypt filter that shall be used when decrypting</span>
+<span class="sd">              all strings in the document.</span>
+<span class="sd">        EFF: The name of the crypt filter that shall be used when</span>
+<span class="sd">             encrypting embedded file streams that do not have their own</span>
+<span class="sd">             crypt filter specifier.</span>
+<span class="sd">        values: Additional encryption parameters.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">V</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">R</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">Length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">P</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">entry</span><span class="p">:</span> <span class="n">DictionaryObject</span><span class="p">,</span>
+        <span class="n">EncryptMetadata</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+        <span class="n">first_id_entry</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
+        <span class="n">StmF</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">StrF</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">EFF</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">values</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">EncryptionValues</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># §7.6.2, entries common to all encryption dictionaries</span>
+        <span class="c1"># use same name as keys of encryption dictionaries entries</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">V</span> <span class="o">=</span> <span class="n">V</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">R</span> <span class="o">=</span> <span class="n">R</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Length</span> <span class="o">=</span> <span class="n">Length</span>  <span class="c1"># key_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">P</span> <span class="o">=</span> <span class="p">(</span><span class="n">P</span> <span class="o">+</span> <span class="mh">0x100000000</span><span class="p">)</span> <span class="o">%</span> <span class="mh">0x100000000</span>  <span class="c1"># maybe P &lt; 0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">EncryptMetadata</span> <span class="o">=</span> <span class="n">EncryptMetadata</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id1_entry</span> <span class="o">=</span> <span class="n">first_id_entry</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">StmF</span> <span class="o">=</span> <span class="n">StmF</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">StrF</span> <span class="o">=</span> <span class="n">StrF</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">EFF</span> <span class="o">=</span> <span class="n">EFF</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">:</span> <span class="n">EncryptionValues</span> <span class="o">=</span> <span class="n">values</span> <span class="k">if</span> <span class="n">values</span> <span class="k">else</span> <span class="n">EncryptionValues</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_password_type</span> <span class="o">=</span> <span class="n">PasswordType</span><span class="o">.</span><span class="n">NOT_DECRYPTED</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">is_decrypted</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_password_type</span> <span class="o">!=</span> <span class="n">PasswordType</span><span class="o">.</span><span class="n">NOT_DECRYPTED</span>
+
+    <span class="k">def</span> <span class="nf">encrypt_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">:</span> <span class="n">PdfObject</span><span class="p">,</span> <span class="n">idnum</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">generation</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PdfObject</span><span class="p">:</span>
+        <span class="c1"># skip calculate key</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_encryption_object</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">obj</span>
+
+        <span class="n">cf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_crypt_filter</span><span class="p">(</span><span class="n">idnum</span><span class="p">,</span> <span class="n">generation</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cf</span><span class="o">.</span><span class="n">encrypt_object</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">decrypt_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">:</span> <span class="n">PdfObject</span><span class="p">,</span> <span class="n">idnum</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">generation</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PdfObject</span><span class="p">:</span>
+        <span class="c1"># skip calculate key</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_encryption_object</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">obj</span>
+
+        <span class="n">cf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_crypt_filter</span><span class="p">(</span><span class="n">idnum</span><span class="p">,</span> <span class="n">generation</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cf</span><span class="o">.</span><span class="n">decrypt_object</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_is_encryption_object</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">PdfObject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span>
+            <span class="n">obj</span><span class="p">,</span>
+            <span class="p">(</span>
+                <span class="n">ByteStringObject</span><span class="p">,</span>
+                <span class="n">TextStringObject</span><span class="p">,</span>
+                <span class="n">StreamObject</span><span class="p">,</span>
+                <span class="n">ArrayObject</span><span class="p">,</span>
+                <span class="n">DictionaryObject</span><span class="p">,</span>
+            <span class="p">),</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_make_crypt_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idnum</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">generation</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CryptFilter</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Algorithm 1: Encryption of data using the RC4 or AES algorithms.</span>
+
+<span class="sd">        a) Obtain the object number and generation number from the object</span>
+<span class="sd">           identifier of the string or stream to be encrypted</span>
+<span class="sd">           (see 7.3.10, &quot;Indirect Objects&quot;). If the string is a direct object,</span>
+<span class="sd">           use the identifier of the indirect object containing it.</span>
+<span class="sd">        b) For all strings and streams without crypt filter specifier; treating</span>
+<span class="sd">           the object number and generation number as binary integers, extend</span>
+<span class="sd">           the original n-byte encryption key to n + 5 bytes by appending the</span>
+<span class="sd">           low-order 3 bytes of the object number and the low-order 2 bytes of</span>
+<span class="sd">           the generation number in that order, low-order byte first.</span>
+<span class="sd">           (n is 5 unless the value of V in the encryption dictionary is greater</span>
+<span class="sd">           than 1, in which case n is the value of Length divided by 8.)</span>
+<span class="sd">           If using the AES algorithm, extend the encryption key an additional</span>
+<span class="sd">           4 bytes by adding the value “sAlT”, which corresponds to the</span>
+<span class="sd">           hexadecimal values 0x73, 0x41, 0x6C, 0x54. (This addition is done for</span>
+<span class="sd">           backward compatibility and is not intended to provide additional</span>
+<span class="sd">           security.)</span>
+<span class="sd">        c) Initialize the MD5 hash function and pass the result of step (b) as</span>
+<span class="sd">           input to this function.</span>
+<span class="sd">        d) Use the first (n + 5) bytes, up to a maximum of 16, of the output</span>
+<span class="sd">           from the MD5 hash as the key for the RC4 or AES symmetric key</span>
+<span class="sd">           algorithms, along with the string or stream data to be encrypted.</span>
+<span class="sd">           If using the AES algorithm, the Cipher Block Chaining (CBC) mode,</span>
+<span class="sd">           which requires an initialization vector, is used. The block size</span>
+<span class="sd">           parameter is set to 16 bytes, and the initialization vector is a</span>
+<span class="sd">           16-byte random number that is stored as the first 16 bytes of the</span>
+<span class="sd">           encrypted stream or string.</span>
+
+<span class="sd">        Algorithm 3.1a Encryption of data using the AES algorithm</span>
+<span class="sd">        1. Use the 32-byte file encryption key for the AES-256 symmetric key</span>
+<span class="sd">           algorithm, along with the string or stream data to be encrypted.</span>
+<span class="sd">           Use the AES algorithm in Cipher Block Chaining (CBC) mode, which</span>
+<span class="sd">           requires an initialization vector. The block size parameter is set to</span>
+<span class="sd">           16 bytes, and the initialization vector is a 16-byte random number</span>
+<span class="sd">           that is stored as the first 16 bytes of the encrypted stream or string.</span>
+<span class="sd">           The output is the encrypted data to be stored in the PDF file.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pack1</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&quot;&lt;i&quot;</span><span class="p">,</span> <span class="n">idnum</span><span class="p">)[:</span><span class="mi">3</span><span class="p">]</span>
+        <span class="n">pack2</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&quot;&lt;i&quot;</span><span class="p">,</span> <span class="n">generation</span><span class="p">)[:</span><span class="mi">2</span><span class="p">]</span>
+
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">_key</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_key</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="mi">5</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">V</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">Length</span> <span class="o">//</span> <span class="mi">8</span>
+        <span class="n">key_data</span> <span class="o">=</span> <span class="n">key</span><span class="p">[:</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">pack1</span> <span class="o">+</span> <span class="n">pack2</span>
+        <span class="n">key_hash</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">key_data</span><span class="p">)</span>
+        <span class="n">rc4_key</span> <span class="o">=</span> <span class="n">key_hash</span><span class="o">.</span><span class="n">digest</span><span class="p">()[:</span> <span class="nb">min</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">16</span><span class="p">)]</span>
+
+        <span class="c1"># for AES-128</span>
+        <span class="n">key_hash</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;sAlT&quot;</span><span class="p">)</span>
+        <span class="n">aes128_key</span> <span class="o">=</span> <span class="n">key_hash</span><span class="o">.</span><span class="n">digest</span><span class="p">()[:</span> <span class="nb">min</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">16</span><span class="p">)]</span>
+
+        <span class="c1"># for AES-256</span>
+        <span class="n">aes256_key</span> <span class="o">=</span> <span class="n">key</span>
+
+        <span class="n">stm_crypt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_crypt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">StmF</span><span class="p">,</span> <span class="n">rc4_key</span><span class="p">,</span> <span class="n">aes128_key</span><span class="p">,</span> <span class="n">aes256_key</span><span class="p">)</span>
+        <span class="n">str_crypt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_crypt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">StrF</span><span class="p">,</span> <span class="n">rc4_key</span><span class="p">,</span> <span class="n">aes128_key</span><span class="p">,</span> <span class="n">aes256_key</span><span class="p">)</span>
+        <span class="n">ef_crypt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_crypt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">EFF</span><span class="p">,</span> <span class="n">rc4_key</span><span class="p">,</span> <span class="n">aes128_key</span><span class="p">,</span> <span class="n">aes256_key</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">CryptFilter</span><span class="p">(</span><span class="n">stm_crypt</span><span class="p">,</span> <span class="n">str_crypt</span><span class="p">,</span> <span class="n">ef_crypt</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_get_crypt</span><span class="p">(</span>
+        <span class="n">method</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">rc4_key</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">aes128_key</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">aes256_key</span><span class="p">:</span> <span class="nb">bytes</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CryptBase</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;/AESV2&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">CryptAES</span><span class="p">(</span><span class="n">aes128_key</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;/AESV3&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">CryptAES</span><span class="p">(</span><span class="n">aes256_key</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;/Identity&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">CryptIdentity</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">CryptRC4</span><span class="p">(</span><span class="n">rc4_key</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_encode_password</span><span class="p">(</span><span class="n">password</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">password</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">pwd</span> <span class="o">=</span> <span class="n">password</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;latin-1&quot;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="n">pwd</span> <span class="o">=</span> <span class="n">password</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">pwd</span> <span class="o">=</span> <span class="n">password</span>
+        <span class="k">return</span> <span class="n">pwd</span>
+
+    <span class="k">def</span> <span class="nf">verify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">PasswordType</span><span class="p">:</span>
+        <span class="n">pwd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_encode_password</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
+        <span class="n">key</span><span class="p">,</span> <span class="n">rc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">verify_v4</span><span class="p">(</span><span class="n">pwd</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">V</span> <span class="o">&lt;=</span> <span class="mi">4</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">verify_v5</span><span class="p">(</span><span class="n">pwd</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">rc</span> <span class="o">!=</span> <span class="n">PasswordType</span><span class="o">.</span><span class="n">NOT_DECRYPTED</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_password_type</span> <span class="o">=</span> <span class="n">rc</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_key</span> <span class="o">=</span> <span class="n">key</span>
+        <span class="k">return</span> <span class="n">rc</span>
+
+    <span class="k">def</span> <span class="nf">verify_v4</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="n">PasswordType</span><span class="p">]:</span>
+        <span class="c1"># verify owner password first</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">AlgV4</span><span class="o">.</span><span class="n">verify_owner_password</span><span class="p">(</span>
+            <span class="n">password</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Length</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">O</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">U</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">P</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">id1_entry</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">EncryptMetadata</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">key</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">key</span><span class="p">,</span> <span class="n">PasswordType</span><span class="o">.</span><span class="n">OWNER_PASSWORD</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">AlgV4</span><span class="o">.</span><span class="n">verify_user_password</span><span class="p">(</span>
+            <span class="n">password</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Length</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">O</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">U</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">P</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">id1_entry</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">EncryptMetadata</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">key</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">key</span><span class="p">,</span> <span class="n">PasswordType</span><span class="o">.</span><span class="n">USER_PASSWORD</span>
+        <span class="k">return</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">PasswordType</span><span class="o">.</span><span class="n">NOT_DECRYPTED</span>
+
+    <span class="k">def</span> <span class="nf">verify_v5</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="n">PasswordType</span><span class="p">]:</span>
+        <span class="c1"># TODO: use SASLprep process</span>
+        <span class="c1"># verify owner password first</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">AlgV5</span><span class="o">.</span><span class="n">verify_owner_password</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">O</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">OE</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">U</span>
+        <span class="p">)</span>
+        <span class="n">rc</span> <span class="o">=</span> <span class="n">PasswordType</span><span class="o">.</span><span class="n">OWNER_PASSWORD</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">key</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">AlgV5</span><span class="o">.</span><span class="n">verify_user_password</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">U</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">UE</span>
+            <span class="p">)</span>
+            <span class="n">rc</span> <span class="o">=</span> <span class="n">PasswordType</span><span class="o">.</span><span class="n">USER_PASSWORD</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">key</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">PasswordType</span><span class="o">.</span><span class="n">NOT_DECRYPTED</span>
+
+        <span class="c1"># verify Perms</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">AlgV5</span><span class="o">.</span><span class="n">verify_perms</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">Perms</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">P</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">EncryptMetadata</span><span class="p">):</span>
+            <span class="n">logger_warning</span><span class="p">(</span><span class="s2">&quot;ignore &#39;/Perms&#39; verify failed&quot;</span><span class="p">,</span> <span class="vm">__name__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">key</span><span class="p">,</span> <span class="n">rc</span>
+
+    <span class="k">def</span> <span class="nf">write_entry</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">user_password</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">owner_password</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DictionaryObject</span><span class="p">:</span>
+        <span class="n">user_pwd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_encode_password</span><span class="p">(</span><span class="n">user_password</span><span class="p">)</span>
+        <span class="n">owner_pwd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_encode_password</span><span class="p">(</span><span class="n">owner_password</span><span class="p">)</span> <span class="k">if</span> <span class="n">owner_password</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">owner_pwd</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">owner_pwd</span> <span class="o">=</span> <span class="n">user_pwd</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">V</span> <span class="o">&lt;=</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">compute_values_v4</span><span class="p">(</span><span class="n">user_pwd</span><span class="p">,</span> <span class="n">owner_pwd</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_key</span> <span class="o">=</span> <span class="n">secrets</span><span class="o">.</span><span class="n">token_bytes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Length</span> <span class="o">//</span> <span class="mi">8</span><span class="p">)</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="n">AlgV5</span><span class="o">.</span><span class="n">generate_values</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">,</span> <span class="n">user_pwd</span><span class="p">,</span> <span class="n">owner_pwd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">P</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">EncryptMetadata</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">O</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;/O&quot;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">U</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;/U&quot;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">OE</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;/OE&quot;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">UE</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;/UE&quot;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">Perms</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;/Perms&quot;</span><span class="p">]</span>
+
+        <span class="n">dict_obj</span> <span class="o">=</span> <span class="n">DictionaryObject</span><span class="p">()</span>
+        <span class="n">dict_obj</span><span class="p">[</span><span class="n">NameObject</span><span class="p">(</span><span class="s2">&quot;/V&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">NumberObject</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">V</span><span class="p">)</span>
+        <span class="n">dict_obj</span><span class="p">[</span><span class="n">NameObject</span><span class="p">(</span><span class="s2">&quot;/R&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">NumberObject</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">)</span>
+        <span class="n">dict_obj</span><span class="p">[</span><span class="n">NameObject</span><span class="p">(</span><span class="s2">&quot;/Length&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">NumberObject</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Length</span><span class="p">)</span>
+        <span class="n">dict_obj</span><span class="p">[</span><span class="n">NameObject</span><span class="p">(</span><span class="s2">&quot;/P&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">NumberObject</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">P</span><span class="p">)</span>
+        <span class="n">dict_obj</span><span class="p">[</span><span class="n">NameObject</span><span class="p">(</span><span class="s2">&quot;/Filter&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">NameObject</span><span class="p">(</span><span class="s2">&quot;/Standard&quot;</span><span class="p">)</span>
+        <span class="c1"># ignore /EncryptMetadata</span>
+
+        <span class="n">dict_obj</span><span class="p">[</span><span class="n">NameObject</span><span class="p">(</span><span class="s2">&quot;/O&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">ByteStringObject</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">O</span><span class="p">)</span>
+        <span class="n">dict_obj</span><span class="p">[</span><span class="n">NameObject</span><span class="p">(</span><span class="s2">&quot;/U&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">ByteStringObject</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">U</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">V</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="c1"># TODO: allow different method</span>
+            <span class="n">std_cf</span> <span class="o">=</span> <span class="n">DictionaryObject</span><span class="p">()</span>
+            <span class="n">std_cf</span><span class="p">[</span><span class="n">NameObject</span><span class="p">(</span><span class="s2">&quot;/AuthEvent&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">NameObject</span><span class="p">(</span><span class="s2">&quot;/DocOpen&quot;</span><span class="p">)</span>
+            <span class="n">std_cf</span><span class="p">[</span><span class="n">NameObject</span><span class="p">(</span><span class="s2">&quot;/CFM&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">NameObject</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">StmF</span><span class="p">)</span>
+            <span class="n">std_cf</span><span class="p">[</span><span class="n">NameObject</span><span class="p">(</span><span class="s2">&quot;/Length&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">NumberObject</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Length</span> <span class="o">//</span> <span class="mi">8</span><span class="p">)</span>
+            <span class="n">cf</span> <span class="o">=</span> <span class="n">DictionaryObject</span><span class="p">()</span>
+            <span class="n">cf</span><span class="p">[</span><span class="n">NameObject</span><span class="p">(</span><span class="s2">&quot;/StdCF&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">std_cf</span>
+            <span class="n">dict_obj</span><span class="p">[</span><span class="n">NameObject</span><span class="p">(</span><span class="s2">&quot;/CF&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">cf</span>
+            <span class="n">dict_obj</span><span class="p">[</span><span class="n">NameObject</span><span class="p">(</span><span class="s2">&quot;/StmF&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">NameObject</span><span class="p">(</span><span class="s2">&quot;/StdCF&quot;</span><span class="p">)</span>
+            <span class="n">dict_obj</span><span class="p">[</span><span class="n">NameObject</span><span class="p">(</span><span class="s2">&quot;/StrF&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">NameObject</span><span class="p">(</span><span class="s2">&quot;/StdCF&quot;</span><span class="p">)</span>
+            <span class="c1"># ignore EFF</span>
+            <span class="c1"># dict_obj[NameObject(&quot;/EFF&quot;)] = NameObject(&quot;/StdCF&quot;)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">V</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">:</span>
+            <span class="n">dict_obj</span><span class="p">[</span><span class="n">NameObject</span><span class="p">(</span><span class="s2">&quot;/OE&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">ByteStringObject</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">OE</span><span class="p">)</span>
+            <span class="n">dict_obj</span><span class="p">[</span><span class="n">NameObject</span><span class="p">(</span><span class="s2">&quot;/UE&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">ByteStringObject</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">UE</span><span class="p">)</span>
+            <span class="n">dict_obj</span><span class="p">[</span><span class="n">NameObject</span><span class="p">(</span><span class="s2">&quot;/Perms&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">ByteStringObject</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">Perms</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">dict_obj</span>
+
+    <span class="k">def</span> <span class="nf">compute_values_v4</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_password</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">owner_password</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">rc4_key</span> <span class="o">=</span> <span class="n">AlgV4</span><span class="o">.</span><span class="n">compute_O_value_key</span><span class="p">(</span><span class="n">owner_password</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Length</span><span class="p">)</span>
+        <span class="n">o_value</span> <span class="o">=</span> <span class="n">AlgV4</span><span class="o">.</span><span class="n">compute_O_value</span><span class="p">(</span><span class="n">rc4_key</span><span class="p">,</span> <span class="n">user_password</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">)</span>
+
+        <span class="n">key</span> <span class="o">=</span> <span class="n">AlgV4</span><span class="o">.</span><span class="n">compute_key</span><span class="p">(</span>
+            <span class="n">user_password</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Length</span><span class="p">,</span>
+            <span class="n">o_value</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">P</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">id1_entry</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">EncryptMetadata</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">u_value</span> <span class="o">=</span> <span class="n">AlgV4</span><span class="o">.</span><span class="n">compute_U_value</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id1_entry</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_key</span> <span class="o">=</span> <span class="n">key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">O</span> <span class="o">=</span> <span class="n">o_value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">U</span> <span class="o">=</span> <span class="n">u_value</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="n">encryption_entry</span><span class="p">:</span> <span class="n">DictionaryObject</span><span class="p">,</span> <span class="n">first_id_entry</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Encryption&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">encryption_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/Filter&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="s2">&quot;/Standard&quot;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+                <span class="s2">&quot;only Standard PDF encryption handler is available&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;/SubFilter&quot;</span> <span class="ow">in</span> <span class="n">encryption_entry</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;/SubFilter NOT supported&quot;</span><span class="p">)</span>
+
+        <span class="n">stm_filter</span> <span class="o">=</span> <span class="s2">&quot;/V2&quot;</span>
+        <span class="n">str_filter</span> <span class="o">=</span> <span class="s2">&quot;/V2&quot;</span>
+        <span class="n">ef_filter</span> <span class="o">=</span> <span class="s2">&quot;/V2&quot;</span>
+
+        <span class="n">alg_ver</span> <span class="o">=</span> <span class="n">encryption_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/V&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">alg_ver</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Encryption V=</span><span class="si">{</span><span class="n">alg_ver</span><span class="si">}</span><span class="s2"> NOT supported&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">alg_ver</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="n">filters</span> <span class="o">=</span> <span class="n">encryption_entry</span><span class="p">[</span><span class="s2">&quot;/CF&quot;</span><span class="p">]</span>
+
+            <span class="n">stm_filter</span> <span class="o">=</span> <span class="n">encryption_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/StmF&quot;</span><span class="p">,</span> <span class="s2">&quot;/Identity&quot;</span><span class="p">)</span>
+            <span class="n">str_filter</span> <span class="o">=</span> <span class="n">encryption_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/StrF&quot;</span><span class="p">,</span> <span class="s2">&quot;/Identity&quot;</span><span class="p">)</span>
+            <span class="n">ef_filter</span> <span class="o">=</span> <span class="n">encryption_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/EFF&quot;</span><span class="p">,</span> <span class="n">stm_filter</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">stm_filter</span> <span class="o">!=</span> <span class="s2">&quot;/Identity&quot;</span><span class="p">:</span>
+                <span class="n">stm_filter</span> <span class="o">=</span> <span class="n">filters</span><span class="p">[</span><span class="n">stm_filter</span><span class="p">][</span><span class="s2">&quot;/CFM&quot;</span><span class="p">]</span>  <span class="c1"># type: ignore</span>
+            <span class="k">if</span> <span class="n">str_filter</span> <span class="o">!=</span> <span class="s2">&quot;/Identity&quot;</span><span class="p">:</span>
+                <span class="n">str_filter</span> <span class="o">=</span> <span class="n">filters</span><span class="p">[</span><span class="n">str_filter</span><span class="p">][</span><span class="s2">&quot;/CFM&quot;</span><span class="p">]</span>  <span class="c1"># type: ignore</span>
+            <span class="k">if</span> <span class="n">ef_filter</span> <span class="o">!=</span> <span class="s2">&quot;/Identity&quot;</span><span class="p">:</span>
+                <span class="n">ef_filter</span> <span class="o">=</span> <span class="n">filters</span><span class="p">[</span><span class="n">ef_filter</span><span class="p">][</span><span class="s2">&quot;/CFM&quot;</span><span class="p">]</span>  <span class="c1"># type: ignore</span>
+
+            <span class="n">allowed_methods</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;/Identity&quot;</span><span class="p">,</span> <span class="s2">&quot;/V2&quot;</span><span class="p">,</span> <span class="s2">&quot;/AESV2&quot;</span><span class="p">,</span> <span class="s2">&quot;/AESV3&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">stm_filter</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">allowed_methods</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;StmF Method </span><span class="si">{</span><span class="n">stm_filter</span><span class="si">}</span><span class="s2"> NOT supported!&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">str_filter</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">allowed_methods</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;StrF Method </span><span class="si">{</span><span class="n">str_filter</span><span class="si">}</span><span class="s2"> NOT supported!&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">ef_filter</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">allowed_methods</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;EFF Method </span><span class="si">{</span><span class="n">ef_filter</span><span class="si">}</span><span class="s2"> NOT supported!&quot;</span><span class="p">)</span>
+
+        <span class="n">alg_rev</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">encryption_entry</span><span class="p">[</span><span class="s2">&quot;/R&quot;</span><span class="p">])</span>
+        <span class="n">perm_flags</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">encryption_entry</span><span class="p">[</span><span class="s2">&quot;/P&quot;</span><span class="p">])</span>
+        <span class="n">key_bits</span> <span class="o">=</span> <span class="n">encryption_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/Length&quot;</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+        <span class="n">encrypt_metadata</span> <span class="o">=</span> <span class="n">encryption_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/EncryptMetadata&quot;</span><span class="p">)</span>
+        <span class="n">encrypt_metadata</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">encrypt_metadata</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="n">encrypt_metadata</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">True</span>
+        <span class="p">)</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="n">EncryptionValues</span><span class="p">()</span>
+        <span class="n">values</span><span class="o">.</span><span class="n">O</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">ByteStringObject</span><span class="p">,</span> <span class="n">encryption_entry</span><span class="p">[</span><span class="s2">&quot;/O&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">original_bytes</span>
+        <span class="n">values</span><span class="o">.</span><span class="n">U</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">ByteStringObject</span><span class="p">,</span> <span class="n">encryption_entry</span><span class="p">[</span><span class="s2">&quot;/U&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">original_bytes</span>
+        <span class="n">values</span><span class="o">.</span><span class="n">OE</span> <span class="o">=</span> <span class="n">encryption_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/OE&quot;</span><span class="p">,</span> <span class="n">ByteStringObject</span><span class="p">())</span><span class="o">.</span><span class="n">original_bytes</span>
+        <span class="n">values</span><span class="o">.</span><span class="n">UE</span> <span class="o">=</span> <span class="n">encryption_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/UE&quot;</span><span class="p">,</span> <span class="n">ByteStringObject</span><span class="p">())</span><span class="o">.</span><span class="n">original_bytes</span>
+        <span class="n">values</span><span class="o">.</span><span class="n">Perms</span> <span class="o">=</span> <span class="n">encryption_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/Perms&quot;</span><span class="p">,</span> <span class="n">ByteStringObject</span><span class="p">())</span><span class="o">.</span><span class="n">original_bytes</span>
+        <span class="k">return</span> <span class="n">Encryption</span><span class="p">(</span>
+            <span class="n">V</span><span class="o">=</span><span class="n">alg_ver</span><span class="p">,</span>
+            <span class="n">R</span><span class="o">=</span><span class="n">alg_rev</span><span class="p">,</span>
+            <span class="n">Length</span><span class="o">=</span><span class="n">key_bits</span><span class="p">,</span>
+            <span class="n">P</span><span class="o">=</span><span class="n">perm_flags</span><span class="p">,</span>
+            <span class="n">EncryptMetadata</span><span class="o">=</span><span class="n">encrypt_metadata</span><span class="p">,</span>
+            <span class="n">first_id_entry</span><span class="o">=</span><span class="n">first_id_entry</span><span class="p">,</span>
+            <span class="n">values</span><span class="o">=</span><span class="n">values</span><span class="p">,</span>
+            <span class="n">StrF</span><span class="o">=</span><span class="n">str_filter</span><span class="p">,</span>
+            <span class="n">StmF</span><span class="o">=</span><span class="n">stm_filter</span><span class="p">,</span>
+            <span class="n">EFF</span><span class="o">=</span><span class="n">ef_filter</span><span class="p">,</span>
+            <span class="n">entry</span><span class="o">=</span><span class="n">encryption_entry</span><span class="p">,</span>  <span class="c1"># Dummy entry for the moment; will get removed</span>
+        <span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">make</span><span class="p">(</span>
+        <span class="n">alg</span><span class="p">:</span> <span class="n">EncryptAlgorithm</span><span class="p">,</span> <span class="n">permissions</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">first_id_entry</span><span class="p">:</span> <span class="nb">bytes</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Encryption&quot;</span><span class="p">:</span>
+        <span class="n">alg_ver</span><span class="p">,</span> <span class="n">alg_rev</span><span class="p">,</span> <span class="n">key_bits</span> <span class="o">=</span> <span class="n">alg</span>
+
+        <span class="n">stm_filter</span><span class="p">,</span> <span class="n">str_filter</span><span class="p">,</span> <span class="n">ef_filter</span> <span class="o">=</span> <span class="s2">&quot;/V2&quot;</span><span class="p">,</span> <span class="s2">&quot;/V2&quot;</span><span class="p">,</span> <span class="s2">&quot;/V2&quot;</span>
+
+        <span class="k">if</span> <span class="n">alg</span> <span class="o">==</span> <span class="n">EncryptAlgorithm</span><span class="o">.</span><span class="n">AES_128</span><span class="p">:</span>
+            <span class="n">stm_filter</span><span class="p">,</span> <span class="n">str_filter</span><span class="p">,</span> <span class="n">ef_filter</span> <span class="o">=</span> <span class="s2">&quot;/AESV2&quot;</span><span class="p">,</span> <span class="s2">&quot;/AESV2&quot;</span><span class="p">,</span> <span class="s2">&quot;/AESV2&quot;</span>
+        <span class="k">elif</span> <span class="n">alg</span> <span class="ow">in</span> <span class="p">(</span><span class="n">EncryptAlgorithm</span><span class="o">.</span><span class="n">AES_256_R5</span><span class="p">,</span> <span class="n">EncryptAlgorithm</span><span class="o">.</span><span class="n">AES_256</span><span class="p">):</span>
+            <span class="n">stm_filter</span><span class="p">,</span> <span class="n">str_filter</span><span class="p">,</span> <span class="n">ef_filter</span> <span class="o">=</span> <span class="s2">&quot;/AESV3&quot;</span><span class="p">,</span> <span class="s2">&quot;/AESV3&quot;</span><span class="p">,</span> <span class="s2">&quot;/AESV3&quot;</span>
+
+        <span class="k">return</span> <span class="n">Encryption</span><span class="p">(</span>
+            <span class="n">V</span><span class="o">=</span><span class="n">alg_ver</span><span class="p">,</span>
+            <span class="n">R</span><span class="o">=</span><span class="n">alg_rev</span><span class="p">,</span>
+            <span class="n">Length</span><span class="o">=</span><span class="n">key_bits</span><span class="p">,</span>
+            <span class="n">P</span><span class="o">=</span><span class="n">permissions</span><span class="p">,</span>
+            <span class="n">EncryptMetadata</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">first_id_entry</span><span class="o">=</span><span class="n">first_id_entry</span><span class="p">,</span>
+            <span class="n">values</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">StrF</span><span class="o">=</span><span class="n">str_filter</span><span class="p">,</span>
+            <span class="n">StmF</span><span class="o">=</span><span class="n">stm_filter</span><span class="p">,</span>
+            <span class="n">EFF</span><span class="o">=</span><span class="n">ef_filter</span><span class="p">,</span>
+            <span class="n">entry</span><span class="o">=</span><span class="n">DictionaryObject</span><span class="p">(),</span>  <span class="c1"># Dummy entry for the moment; will get removed</span>
+        <span class="p">)</span>
+</pre></div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2006 - 2024, Mathieu Fenniak and pypdf contributors
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script src="../../_static/documentation_options.js?v=8309bdae"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="../../_static/translations.js?v=beaddf03"></script>
+    </body>
+</html>

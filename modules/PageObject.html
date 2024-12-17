@@ -1,0 +1,1024 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN" data-content_root="../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" /><link rel="next" title="PageRange 类" href="PageRange.html" /><link rel="prev" title="Fit 类" href="Fit.html" />
+
+    <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
+        <title>PageObject 类 - pypdf 5.1.0 文档</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">pypdf 5.1.0 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../_static/logo.png" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">pypdf 5.1.0 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">用户指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user/installation.html">安装指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/migration-1-to-2.html">迁移指南：从 1.x 到 2.x</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/migration-1-to-2.html#id1">导入和模块</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/migration-1-to-2.html#id2">命名调整</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/robustness.html">稳健性与 <code class="docutils literal notranslate"><span class="pre">strict=False</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/suppress-warnings.html">异常、警告和日志消息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/metadata.html">元数据（Metadata）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/extract-text.html">从 PDF 中提取文本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/post-processing-in-text-extraction.html">文本提取的后处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/extract-images.html">提取图像</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/extract-images.html#id2">其他图像</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/extract-attachments.html">提取附件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/encryption-decryption.html">PDF 的加密与解密</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/merging-pdfs.html">合并 PDF 文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/cropping-and-transforming.html">裁剪和转换 PDF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/cropping-and-transforming.html#id7">转换同一页面的多个副本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/reading-pdf-annotations.html">读取 PDF 注释</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/adding-pdf-annotations.html">添加 PDF 注释</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/add-watermark.html">向 PDF 添加印章或水印</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/add-javascript.html">向 PDF 添加 JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/viewer-preferences.html">添加查看器首选项</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/forms.html">与 PDF 表单的交互</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/streaming-data.html">使用 pypdf 流式传输数据</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/file-size.html">减小 PDF 文件大小</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/pdf-version-support.html">PDF 版本支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/pdfa-compliance.html">PDF/A 合规性</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API 参考</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="PdfReader.html">PdfReader 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PdfWriter.html">PdfWriter 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Destination.html">Destination 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DocumentInformation.html">DocumentInformation 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Field.html">Field类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fit.html">Fit 类</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">PageObject 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PageRange.html">PageRange 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PaperSize.html">PaperSize 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RectangleObject.html">RectangleObject 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Transformation.html">Transformation 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="XmpInformation.html">XmpInformation 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="annotations.html">annotations 模块</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constants.html">常量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="errors.html">异常和错误</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generic.html">PDF 范型对象</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PdfDocCommon.html">PdfDocCommon 类</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">开发者指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dev/intro.html">开发者指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/intro.html#id2">安装依赖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/intro.html#id3">运行测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/intro.html#sample-files-git">sample-files Git 子模块</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/intro.html#git-pre-commit">工具：Git 和 pre-commit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/intro.html#id4">提交消息规范</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/intro.html#pull-request">Pull Request 大小</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/intro.html#id7">基准测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/pdf-format.html">PDF 格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/pypdf-parsing.html">pypdf 如何解析 PDF 文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/pypdf-writing.html">pypdf 如何写入 PDF 文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/cmaps.html">CMaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/deprecations.html">弃用流程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/documentation.html">文档编写</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/testing.html">测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/releasing.html">发布</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">关于 pypdf</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../meta/CHANGELOG.html">更新日志</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../meta/changelog-v1.html">Changelog of PyPDF2 1.X</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../meta/project-governance.html">项目治理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../meta/taking-ownership.html">接管 pypdf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../meta/history.html">pypdf 历史</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../meta/CONTRIBUTORS.html">贡献者</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../meta/scope-of-pypdf.html">pypdf 的范围</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../meta/comparisons.html">pypdf 与 X 的对比</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../meta/faq.html">常见问题解答</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../_sources/modules/PageObject.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="pageobject">
+<h1>PageObject 类<a class="headerlink" href="#pageobject" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pypdf._page.PageObject">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pypdf._page.</span></span><span class="sig-name descname"><span class="pre">PageObject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pdf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="generic.html#pypdf._protocols.PdfCommonDocProtocol" title="pypdf._protocols.PdfCommonDocProtocol"><span class="pre">PdfCommonDocProtocol</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indirect_reference</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="generic.html#pypdf.generic.IndirectObject" title="pypdf.generic._base.IndirectObject"><span class="pre">IndirectObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pypdf/_page.html#PageObject"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#pypdf._page.PageObject" title="Link to this definition">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="generic.html#pypdf.generic.DictionaryObject" title="pypdf.generic._data_structures.DictionaryObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">DictionaryObject</span></code></a></p>
+<p>PageObject represents a single page within a PDF file.</p>
+<p>Typically these objects will be created by accessing the
+<a class="reference internal" href="PdfReader.html#pypdf.PdfReader.pages" title="pypdf.PdfReader.pages"><code class="xref py py-attr docutils literal notranslate"><span class="pre">pages</span></code></a> property of the
+<a class="reference internal" href="PdfReader.html#pypdf.PdfReader" title="pypdf.PdfReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">PdfReader</span></code></a> class, but it is
+also possible to create an empty page with the
+<a class="reference internal" href="#pypdf._page.PageObject.create_blank_page" title="pypdf._page.PageObject.create_blank_page"><code class="xref py py-meth docutils literal notranslate"><span class="pre">create_blank_page()</span></code></a> static method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pdf</strong> -- PDF file the page belongs to.</p></li>
+<li><p><strong>indirect_reference</strong> -- Stores the original indirect reference to
+this object in its source PDF</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypdf._page.PageObject.original_page">
+<span class="sig-name descname"><span class="pre">original_page</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pypdf._page.PageObject" title="pypdf._page.PageObject"><span class="pre">PageObject</span></a></em><a class="headerlink" href="#pypdf._page.PageObject.original_page" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypdf._page.PageObject.hash_bin">
+<span class="sig-name descname"><span class="pre">hash_bin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#int" title="（在 Python v3.12）"><span class="pre">int</span></a></span></span><a class="reference internal" href="../_modules/pypdf/_page.html#PageObject.hash_bin"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#pypdf._page.PageObject.hash_bin" title="Link to this definition">¶</a></dt>
+<dd><p>Used to detect modified object.</p>
+<p>Note: this function is overloaded to return the same results
+as a DictionaryObject.</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Hash considering type and value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypdf._page.PageObject.hash_value_data">
+<span class="sig-name descname"><span class="pre">hash_value_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#bytes" title="（在 Python v3.12）"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../_modules/pypdf/_page.html#PageObject.hash_value_data"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#pypdf._page.PageObject.hash_value_data" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pypdf._page.PageObject.user_unit">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">user_unit</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#float" title="（在 Python v3.12）"><span class="pre">float</span></a></em><a class="headerlink" href="#pypdf._page.PageObject.user_unit" title="Link to this definition">¶</a></dt>
+<dd><p>A read-only positive number giving the size of user space units.</p>
+<p>It is in multiples of 1/72 inch. Hence a value of 1 means a user
+space unit is 1/72 inch, and a value of 3 means that a user
+space unit is 3/72 inch.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypdf._page.PageObject.create_blank_page">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_blank_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pdf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="generic.html#pypdf._protocols.PdfCommonDocProtocol" title="pypdf._protocols.PdfCommonDocProtocol"><span class="pre">PdfCommonDocProtocol</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#float" title="（在 Python v3.12）"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/decimal.html#decimal.Decimal" title="（在 Python v3.12）"><span class="pre">Decimal</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#float" title="（在 Python v3.12）"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/decimal.html#decimal.Decimal" title="（在 Python v3.12）"><span class="pre">Decimal</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pypdf._page.PageObject" title="pypdf._page.PageObject"><span class="pre">PageObject</span></a></span></span><a class="reference internal" href="../_modules/pypdf/_page.html#PageObject.create_blank_page"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#pypdf._page.PageObject.create_blank_page" title="Link to this definition">¶</a></dt>
+<dd><p>Return a new blank page.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">width</span></code> or <code class="docutils literal notranslate"><span class="pre">height</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>, try to get the page size
+from the last page of <em>pdf</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pdf</strong> -- PDF file the page is within.</p></li>
+<li><p><strong>width</strong> -- The width of the new page expressed in default user
+space units.</p></li>
+<li><p><strong>height</strong> -- The height of the new page expressed in default user
+space units.</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>The new blank page</p>
+</dd>
+<dt class="field-odd">抛出<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#pypdf.errors.PageSizeNotDefinedError" title="pypdf.errors.PageSizeNotDefinedError"><strong>PageSizeNotDefinedError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">pdf</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code> or contains
+    no page</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pypdf._page.PageObject.images">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">images</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pypdf._page.VirtualListImages" title="pypdf._page.VirtualListImages"><span class="pre">VirtualListImages</span></a></em><a class="headerlink" href="#pypdf._page.PageObject.images" title="Link to this definition">¶</a></dt>
+<dd><p>Read-only property emulating a list of images on a page.</p>
+<p>Get a list of all images on the page. The key can be:
+- A string (for the top object)
+- A tuple (for images within XObject forms)
+- An integer</p>
+<p class="rubric">示例</p>
+<ul class="simple">
+<li><p><cite>reader.pages[0].images[0]</cite>        # return first image</p></li>
+<li><p><cite>reader.pages[0].images['/I0']</cite>    # return image '/I0'</p></li>
+<li><p><cite>reader.pages[0].images['/TP1','/Image1']</cite> # return image '/Image1' within '/TP1' Xobject/Form</p></li>
+<li><p><cite>for img in reader.pages[0].images:</cite> # loops through all objects</p></li>
+</ul>
+<p>images.keys() and images.items() can be used.</p>
+<p>The ImageFile has the following properties:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><cite>.name</cite> : name of the object</p></li>
+<li><p><cite>.data</cite> : bytes of the object</p></li>
+<li><p><cite>.image</cite>  : PIL Image Object</p></li>
+<li><p><cite>.indirect_reference</cite> : object reference</p></li>
+</ul>
+</div></blockquote>
+<dl class="simple">
+<dt>and the following methods:</dt><dd><dl class="simple">
+<dt><cite>.replace(new_image: PIL.Image.Image, **kwargs)</cite> :</dt><dd><p>replace the image in the pdf with the new image
+applying the saving parameters indicated (such as quality)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>Example usage:</p>
+<blockquote>
+<div><p>reader.pages[0].images[0]=replace(Image.open(&quot;new_image.jpg&quot;, quality = 20)</p>
+</div></blockquote>
+<p>Inline images are extracted and named ~0~, ~1~, ..., with the
+indirect_reference set to None.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pypdf._page.PageObject.rotation">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rotation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#int" title="（在 Python v3.12）"><span class="pre">int</span></a></em><a class="headerlink" href="#pypdf._page.PageObject.rotation" title="Link to this definition">¶</a></dt>
+<dd><p>The visual rotation of the page.</p>
+<p>This number has to be a multiple of 90 degrees: 0, 90, 180, or 270 are
+valid values. This property does not affect <code class="docutils literal notranslate"><span class="pre">/Contents</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypdf._page.PageObject.transfer_rotation_to_content">
+<span class="sig-name descname"><span class="pre">transfer_rotation_to_content</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/pypdf/_page.html#PageObject.transfer_rotation_to_content"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#pypdf._page.PageObject.transfer_rotation_to_content" title="Link to this definition">¶</a></dt>
+<dd><p>Apply the rotation of the page to the content and the media/crop/...
+boxes.</p>
+<p>It is recommended to apply this function before page merging.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypdf._page.PageObject.rotate">
+<span class="sig-name descname"><span class="pre">rotate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#int" title="（在 Python v3.12）"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pypdf._page.PageObject" title="pypdf._page.PageObject"><span class="pre">PageObject</span></a></span></span><a class="reference internal" href="../_modules/pypdf/_page.html#PageObject.rotate"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#pypdf._page.PageObject.rotate" title="Link to this definition">¶</a></dt>
+<dd><p>Rotate a page clockwise by increments of 90 degrees.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>angle</strong> -- Angle to rotate the page. Must be an increment of 90 deg.</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>The rotated PageObject</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypdf._page.PageObject.get_contents">
+<span class="sig-name descname"><span class="pre">get_contents</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="generic.html#pypdf.generic.ContentStream" title="pypdf.generic._data_structures.ContentStream"><span class="pre">ContentStream</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/pypdf/_page.html#PageObject.get_contents"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#pypdf._page.PageObject.get_contents" title="Link to this definition">¶</a></dt>
+<dd><p>Access the page contents.</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The <code class="docutils literal notranslate"><span class="pre">/Contents</span></code> object, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if it does not exist.
+<code class="docutils literal notranslate"><span class="pre">/Contents</span></code> is optional, as described in §7.7.3.3 of the PDF Reference.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypdf._page.PageObject.replace_contents">
+<span class="sig-name descname"><span class="pre">replace_contents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="generic.html#pypdf.generic.ContentStream" title="pypdf.generic._data_structures.ContentStream"><span class="pre">ContentStream</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="generic.html#pypdf.generic.EncodedStreamObject" title="pypdf.generic._data_structures.EncodedStreamObject"><span class="pre">EncodedStreamObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="generic.html#pypdf.generic.ArrayObject" title="pypdf.generic._data_structures.ArrayObject"><span class="pre">ArrayObject</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/pypdf/_page.html#PageObject.replace_contents"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#pypdf._page.PageObject.replace_contents" title="Link to this definition">¶</a></dt>
+<dd><p>Replace the page contents with the new content and nullify old objects
+:param content: new content; if None delete the content field.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypdf._page.PageObject.merge_page">
+<span class="sig-name descname"><span class="pre">merge_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">page2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pypdf._page.PageObject" title="pypdf._page.PageObject"><span class="pre">PageObject</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">expand</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#bool" title="（在 Python v3.12）"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">over</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#bool" title="（在 Python v3.12）"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/pypdf/_page.html#PageObject.merge_page"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#pypdf._page.PageObject.merge_page" title="Link to this definition">¶</a></dt>
+<dd><p>Merge the content streams of two pages into one.</p>
+<p>Resource references
+(i.e. fonts) are maintained from both pages. The mediabox/cropbox/etc
+of this page are not altered. The parameter page's content stream will
+be added to the end of this page's content stream, meaning that it will
+be drawn after, or &quot;on top&quot; of this page.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>page2</strong> -- The page to be merged into this one. Should be
+an instance of <a class="reference internal" href="#pypdf._page.PageObject" title="pypdf._page.PageObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">PageObject</span></code></a>.</p></li>
+<li><p><strong>over</strong> -- set the page2 content over page1 if True (default) else under</p></li>
+<li><p><strong>expand</strong> -- If True, the current page dimensions will be
+expanded to accommodate the dimensions of the page to be merged.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypdf._page.PageObject.merge_transformed_page">
+<span class="sig-name descname"><span class="pre">merge_transformed_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">page2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pypdf._page.PageObject" title="pypdf._page.PageObject"><span class="pre">PageObject</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Tuple" title="（在 Python v3.12）"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#float" title="（在 Python v3.12）"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#float" title="（在 Python v3.12）"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#float" title="（在 Python v3.12）"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#float" title="（在 Python v3.12）"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#float" title="（在 Python v3.12）"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#float" title="（在 Python v3.12）"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="Transformation.html#pypdf.Transformation" title="pypdf._page.Transformation"><span class="pre">Transformation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">over</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#bool" title="（在 Python v3.12）"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expand</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#bool" title="（在 Python v3.12）"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/pypdf/_page.html#PageObject.merge_transformed_page"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#pypdf._page.PageObject.merge_transformed_page" title="Link to this definition">¶</a></dt>
+<dd><p>merge_transformed_page is similar to merge_page, but a transformation
+matrix is applied to the merged stream.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>page2</strong> -- The page to be merged into this one.</p></li>
+<li><p><strong>ctm</strong> -- a 6-element tuple containing the operands of the
+transformation matrix</p></li>
+<li><p><strong>over</strong> -- set the page2 content over page1 if True (default) else under</p></li>
+<li><p><strong>expand</strong> -- Whether the page should be expanded to fit the dimensions
+of the page to be merged.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypdf._page.PageObject.merge_scaled_page">
+<span class="sig-name descname"><span class="pre">merge_scaled_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">page2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pypdf._page.PageObject" title="pypdf._page.PageObject"><span class="pre">PageObject</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#float" title="（在 Python v3.12）"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">over</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#bool" title="（在 Python v3.12）"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expand</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#bool" title="（在 Python v3.12）"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/pypdf/_page.html#PageObject.merge_scaled_page"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#pypdf._page.PageObject.merge_scaled_page" title="Link to this definition">¶</a></dt>
+<dd><p>merge_scaled_page is similar to merge_page, but the stream to be merged
+is scaled by applying a transformation matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>page2</strong> -- The page to be merged into this one.</p></li>
+<li><p><strong>scale</strong> -- The scaling factor</p></li>
+<li><p><strong>over</strong> -- set the page2 content over page1 if True (default) else under</p></li>
+<li><p><strong>expand</strong> -- Whether the page should be expanded to fit the
+dimensions of the page to be merged.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypdf._page.PageObject.merge_rotated_page">
+<span class="sig-name descname"><span class="pre">merge_rotated_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">page2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pypdf._page.PageObject" title="pypdf._page.PageObject"><span class="pre">PageObject</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#float" title="（在 Python v3.12）"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">over</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#bool" title="（在 Python v3.12）"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expand</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#bool" title="（在 Python v3.12）"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/pypdf/_page.html#PageObject.merge_rotated_page"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#pypdf._page.PageObject.merge_rotated_page" title="Link to this definition">¶</a></dt>
+<dd><p>merge_rotated_page is similar to merge_page, but the stream to be merged
+is rotated by applying a transformation matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>page2</strong> -- The page to be merged into this one.</p></li>
+<li><p><strong>rotation</strong> -- The angle of the rotation, in degrees</p></li>
+<li><p><strong>over</strong> -- set the page2 content over page1 if True (default) else under</p></li>
+<li><p><strong>expand</strong> -- Whether the page should be expanded to fit the
+dimensions of the page to be merged.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypdf._page.PageObject.merge_translated_page">
+<span class="sig-name descname"><span class="pre">merge_translated_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">page2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pypdf._page.PageObject" title="pypdf._page.PageObject"><span class="pre">PageObject</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#float" title="（在 Python v3.12）"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ty</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#float" title="（在 Python v3.12）"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">over</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#bool" title="（在 Python v3.12）"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expand</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#bool" title="（在 Python v3.12）"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/pypdf/_page.html#PageObject.merge_translated_page"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#pypdf._page.PageObject.merge_translated_page" title="Link to this definition">¶</a></dt>
+<dd><p>mergeTranslatedPage is similar to merge_page, but the stream to be
+merged is translated by applying a transformation matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>page2</strong> -- the page to be merged into this one.</p></li>
+<li><p><strong>tx</strong> -- The translation on X axis</p></li>
+<li><p><strong>ty</strong> -- The translation on Y axis</p></li>
+<li><p><strong>over</strong> -- set the page2 content over page1 if True (default) else under</p></li>
+<li><p><strong>expand</strong> -- Whether the page should be expanded to fit the
+dimensions of the page to be merged.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypdf._page.PageObject.add_transformation">
+<span class="sig-name descname"><span class="pre">add_transformation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="Transformation.html#pypdf.Transformation" title="pypdf._page.Transformation"><span class="pre">Transformation</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Tuple" title="（在 Python v3.12）"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#float" title="（在 Python v3.12）"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#float" title="（在 Python v3.12）"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#float" title="（在 Python v3.12）"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#float" title="（在 Python v3.12）"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#float" title="（在 Python v3.12）"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#float" title="（在 Python v3.12）"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expand</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#bool" title="（在 Python v3.12）"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/pypdf/_page.html#PageObject.add_transformation"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#pypdf._page.PageObject.add_transformation" title="Link to this definition">¶</a></dt>
+<dd><p>Apply a transformation matrix to the page.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ctm</strong> -- A 6-element tuple containing the operands of the
+transformation matrix. Alternatively, a
+<a class="reference internal" href="Transformation.html#pypdf.Transformation" title="pypdf.Transformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transformation</span></code></a>
+object can be passed.</p>
+</dd>
+</dl>
+<p>See <a class="reference internal" href="../user/cropping-and-transforming.html"><span class="doc">裁剪和转换 PDF</span></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypdf._page.PageObject.scale">
+<span class="sig-name descname"><span class="pre">scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#float" title="（在 Python v3.12）"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#float" title="（在 Python v3.12）"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/pypdf/_page.html#PageObject.scale"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#pypdf._page.PageObject.scale" title="Link to this definition">¶</a></dt>
+<dd><p>Scale a page by the given factors by applying a transformation matrix
+to its content and updating the page size.</p>
+<p>This updates the mediabox, the cropbox, and the contents
+of the page.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sx</strong> -- The scaling factor on horizontal axis.</p></li>
+<li><p><strong>sy</strong> -- The scaling factor on vertical axis.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypdf._page.PageObject.scale_by">
+<span class="sig-name descname"><span class="pre">scale_by</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">factor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#float" title="（在 Python v3.12）"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/pypdf/_page.html#PageObject.scale_by"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#pypdf._page.PageObject.scale_by" title="Link to this definition">¶</a></dt>
+<dd><p>Scale a page by the given factor by applying a transformation matrix to
+its content and updating the page size.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>factor</strong> -- The scaling factor (for both X and Y axis).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypdf._page.PageObject.scale_to">
+<span class="sig-name descname"><span class="pre">scale_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#float" title="（在 Python v3.12）"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#float" title="（在 Python v3.12）"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/pypdf/_page.html#PageObject.scale_to"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#pypdf._page.PageObject.scale_to" title="Link to this definition">¶</a></dt>
+<dd><p>Scale a page to the specified dimensions by applying a transformation
+matrix to its content and updating the page size.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>width</strong> -- The new width.</p></li>
+<li><p><strong>height</strong> -- The new height.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypdf._page.PageObject.compress_content_streams">
+<span class="sig-name descname"><span class="pre">compress_content_streams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#int" title="（在 Python v3.12）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/pypdf/_page.html#PageObject.compress_content_streams"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#pypdf._page.PageObject.compress_content_streams" title="Link to this definition">¶</a></dt>
+<dd><p>Compress the size of this page by joining all content streams and
+applying a FlateDecode filter.</p>
+<p>However, it is possible that this function will perform no action if
+content stream compression becomes &quot;automatic&quot;.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pypdf._page.PageObject.page_number">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">page_number</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#int" title="（在 Python v3.12）"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a></em><a class="headerlink" href="#pypdf._page.PageObject.page_number" title="Link to this definition">¶</a></dt>
+<dd><p>Read-only property which returns the page number within the PDF file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>int</em> -- page number; None if the page is not attached to a PDF.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypdf._page.PageObject.extract_text">
+<span class="sig-name descname"><span class="pre">extract_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Any" title="（在 Python v3.12）"><span class="pre">Any</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#int" title="（在 Python v3.12）"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Tuple" title="（在 Python v3.12）"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#int" title="（在 Python v3.12）"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">(0,</span> <span class="pre">90,</span> <span class="pre">180,</span> <span class="pre">270)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">space_width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#float" title="（在 Python v3.12）"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">200.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visitor_operand_before</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Callable" title="（在 Python v3.12）"><span class="pre">Callable</span></a><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Any" title="（在 Python v3.12）"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Any" title="（在 Python v3.12）"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Any" title="（在 Python v3.12）"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Any" title="（在 Python v3.12）"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visitor_operand_after</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Callable" title="（在 Python v3.12）"><span class="pre">Callable</span></a><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Any" title="（在 Python v3.12）"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Any" title="（在 Python v3.12）"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Any" title="（在 Python v3.12）"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Any" title="（在 Python v3.12）"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visitor_text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Callable" title="（在 Python v3.12）"><span class="pre">Callable</span></a><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Any" title="（在 Python v3.12）"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Any" title="（在 Python v3.12）"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Any" title="（在 Python v3.12）"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Any" title="（在 Python v3.12）"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Any" title="（在 Python v3.12）"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extraction_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Literal" title="（在 Python v3.12）"><span class="pre">Literal</span></a><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'plain'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'layout'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'plain'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Any" title="（在 Python v3.12）"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="（在 Python v3.12）"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/pypdf/_page.html#PageObject.extract_text"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#pypdf._page.PageObject.extract_text" title="Link to this definition">¶</a></dt>
+<dd><p>Locate all text drawing commands, in the order they are provided in the
+content stream, and extract the text.</p>
+<p>This works well for some PDF files, but poorly for others, depending on
+the generator used. This will be refined in the future.</p>
+<p>Do not rely on the order of text coming out of this function, as it
+will change if this function is made more sophisticated.</p>
+<p>Arabic and Hebrew are extracted in the correct order.
+If required a custom RTL range of characters can be defined;
+see function set_custom_rtl.</p>
+<p>Additionally you can provide visitor methods to get informed on all
+operations and all text objects.
+For example in some PDF files this can be useful to parse tables.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>orientations</strong> -- list of orientations extract_text will look for
+default = (0, 90, 180, 270)
+note: currently only 0 (up),90 (turned left), 180 (upside down),
+270 (turned right)
+Silently ignored in &quot;layout&quot; mode.</p></li>
+<li><p><strong>space_width</strong> -- force default space width
+if not extracted from font (default: 200)
+Silently ignored in &quot;layout&quot; mode.</p></li>
+<li><p><strong>visitor_operand_before</strong> -- function to be called before processing an operation.
+It has four arguments: operator, operand-arguments,
+current transformation matrix and text matrix.
+Ignored with a warning in &quot;layout&quot; mode.</p></li>
+<li><p><strong>visitor_operand_after</strong> -- function to be called after processing an operation.
+It has four arguments: operator, operand-arguments,
+current transformation matrix and text matrix.
+Ignored with a warning in &quot;layout&quot; mode.</p></li>
+<li><p><strong>visitor_text</strong> -- function to be called when extracting some text at some position.
+It has five arguments: text, current transformation matrix,
+text matrix, font-dictionary and font-size.
+The font-dictionary may be None in case of unknown fonts.
+If not None it may e.g. contain key &quot;/BaseFont&quot; with value &quot;/Arial,Bold&quot;.
+Ignored with a warning in &quot;layout&quot; mode.</p></li>
+<li><p><strong>extraction_mode</strong> (<em>Literal</em><em>[</em><em>&quot;plain&quot;</em><em>, </em><em>&quot;layout&quot;</em><em>]</em>) -- &quot;plain&quot; for legacy functionality,
+&quot;layout&quot; for experimental layout mode functionality.
+NOTE: orientations, space_width, and visitor_* parameters are NOT respected
+in &quot;layout&quot; mode.</p></li>
+</ul>
+</dd>
+</dl>
+<dl>
+<dt>kwargs:</dt><dd><dl>
+<dt>layout_mode_space_vertically (bool): include blank lines inferred from</dt><dd><p>y distance + font height. Defaults to True.</p>
+</dd>
+<dt>layout_mode_scale_weight (float): multiplier for string length when calculating</dt><dd><p>weighted average character width. Defaults to 1.25.</p>
+</dd>
+<dt>layout_mode_strip_rotated (bool): layout mode does not support rotated text.</dt><dd><p>Set to False to include rotated text anyway. If rotated text is discovered,
+layout will be degraded and a warning will result. Defaults to True.</p>
+</dd>
+<dt>layout_mode_debug_path (Path | None): if supplied, must target a directory.</dt><dd><p>creates the following files with debug information for layout mode
+functions if supplied:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>fonts.json: output of self._layout_mode_fonts</p></li>
+<li><p>tjs.json: individual text render ops with corresponding transform matrices</p></li>
+<li><p>bts.json: text render ops left justified and grouped by BT/ET operators</p></li>
+<li><p>bt_groups.json: BT/ET operations grouped by rendered y-coord (aka lines)</p></li>
+</ul>
+</div></blockquote>
+</dd>
+<dt>layout_mode_font_height_weight (float): multiplier for font height when calculating</dt><dd><p>blank lines. Defaults to 1.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The extracted text</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypdf._page.PageObject.extract_xform_text">
+<span class="sig-name descname"><span class="pre">extract_xform_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xform</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="generic.html#pypdf.generic.EncodedStreamObject" title="pypdf.generic._data_structures.EncodedStreamObject"><span class="pre">EncodedStreamObject</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Tuple" title="（在 Python v3.12）"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#int" title="（在 Python v3.12）"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">(0,</span> <span class="pre">90,</span> <span class="pre">270,</span> <span class="pre">360)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">space_width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#float" title="（在 Python v3.12）"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">200.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visitor_operand_before</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Callable" title="（在 Python v3.12）"><span class="pre">Callable</span></a><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Any" title="（在 Python v3.12）"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Any" title="（在 Python v3.12）"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Any" title="（在 Python v3.12）"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Any" title="（在 Python v3.12）"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visitor_operand_after</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Callable" title="（在 Python v3.12）"><span class="pre">Callable</span></a><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Any" title="（在 Python v3.12）"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Any" title="（在 Python v3.12）"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Any" title="（在 Python v3.12）"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Any" title="（在 Python v3.12）"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visitor_text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Callable" title="（在 Python v3.12）"><span class="pre">Callable</span></a><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Any" title="（在 Python v3.12）"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Any" title="（在 Python v3.12）"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Any" title="（在 Python v3.12）"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Any" title="（在 Python v3.12）"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Any" title="（在 Python v3.12）"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="（在 Python v3.12）"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/pypdf/_page.html#PageObject.extract_xform_text"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#pypdf._page.PageObject.extract_xform_text" title="Link to this definition">¶</a></dt>
+<dd><p>Extract text from an XObject.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>xform</strong></p></li>
+<li><p><strong>orientations</strong></p></li>
+<li><p><strong>space_width</strong> -- force default space width (if not extracted from font (default 200)</p></li>
+<li><p><strong>visitor_operand_before</strong></p></li>
+<li><p><strong>visitor_operand_after</strong></p></li>
+<li><p><strong>visitor_text</strong></p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>The extracted text</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pypdf._page.PageObject.mediabox">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mediabox</span></span><a class="headerlink" href="#pypdf._page.PageObject.mediabox" title="Link to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="RectangleObject.html#pypdf.generic.RectangleObject" title="pypdf.generic.RectangleObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">RectangleObject</span></code></a>, expressed in
+default user space units, defining the boundaries of the physical medium on
+which the page is intended to be displayed or printed.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pypdf._page.PageObject.cropbox">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cropbox</span></span><a class="headerlink" href="#pypdf._page.PageObject.cropbox" title="Link to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="RectangleObject.html#pypdf.generic.RectangleObject" title="pypdf.generic.RectangleObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">RectangleObject</span></code></a>, expressed in
+default user space units, defining the visible region of default user
+space.</p>
+<p>When the page is displayed or printed, its contents are to be clipped
+(cropped) to this rectangle and then imposed on the output medium in some
+implementation-defined manner. Default value: same as
+<a class="reference internal" href="#pypdf._page.PageObject.mediabox" title="pypdf._page.PageObject.mediabox"><code class="xref py py-attr docutils literal notranslate"><span class="pre">mediabox</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pypdf._page.PageObject.bleedbox">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bleedbox</span></span><a class="headerlink" href="#pypdf._page.PageObject.bleedbox" title="Link to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="RectangleObject.html#pypdf.generic.RectangleObject" title="pypdf.generic.RectangleObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">RectangleObject</span></code></a>, expressed in
+default user space units, defining the region to which the contents of the
+page should be clipped when output in a production environment.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pypdf._page.PageObject.trimbox">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">trimbox</span></span><a class="headerlink" href="#pypdf._page.PageObject.trimbox" title="Link to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="RectangleObject.html#pypdf.generic.RectangleObject" title="pypdf.generic.RectangleObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">RectangleObject</span></code></a>, expressed in
+default user space units, defining the intended dimensions of the finished
+page after trimming.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pypdf._page.PageObject.artbox">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">artbox</span></span><a class="headerlink" href="#pypdf._page.PageObject.artbox" title="Link to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="RectangleObject.html#pypdf.generic.RectangleObject" title="pypdf.generic.RectangleObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">RectangleObject</span></code></a>, expressed in
+default user space units, defining the extent of the page's meaningful
+content as intended by the page's creator.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pypdf._page.PageObject.annotations">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">annotations</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="generic.html#pypdf.generic.ArrayObject" title="pypdf.generic._data_structures.ArrayObject"><span class="pre">ArrayObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a></em><a class="headerlink" href="#pypdf._page.PageObject.annotations" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pypdf._page.VirtualListImages">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pypdf._page.</span></span><span class="sig-name descname"><span class="pre">VirtualListImages</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ids_function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Callable" title="（在 Python v3.12）"><span class="pre">Callable</span></a><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.List" title="（在 Python v3.12）"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="（在 Python v3.12）"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.List" title="（在 Python v3.12）"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="（在 Python v3.12）"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Callable" title="（在 Python v3.12）"><span class="pre">Callable</span></a><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="（在 Python v3.12）"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.List" title="（在 Python v3.12）"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="（在 Python v3.12）"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Tuple" title="（在 Python v3.12）"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="（在 Python v3.12）"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#pypdf._page.ImageFile" title="pypdf._page.ImageFile"><span class="pre">ImageFile</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pypdf/_page.html#VirtualListImages"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#pypdf._page.VirtualListImages" title="Link to this definition">¶</a></dt>
+<dd><p>基类：<a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Sequence" title="（在 Python v3.12）"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference internal" href="#pypdf._page.ImageFile" title="pypdf._page.ImageFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageFile</span></code></a>]</p>
+<p>Provides access to images referenced within a page.
+Only one copy will be returned if the usage is used on the same page multiple times.
+See <a class="reference internal" href="#pypdf._page.PageObject.images" title="pypdf._page.PageObject.images"><code class="xref py py-func docutils literal notranslate"><span class="pre">PageObject.images()</span></code></a> for more details.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pypdf._page.VirtualListImages.keys">
+<span class="sig-name descname"><span class="pre">keys</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.List" title="（在 Python v3.12）"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="（在 Python v3.12）"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.List" title="（在 Python v3.12）"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="（在 Python v3.12）"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/pypdf/_page.html#VirtualListImages.keys"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#pypdf._page.VirtualListImages.keys" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypdf._page.VirtualListImages.items">
+<span class="sig-name descname"><span class="pre">items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.List" title="（在 Python v3.12）"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Tuple" title="（在 Python v3.12）"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="（在 Python v3.12）"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.List" title="（在 Python v3.12）"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="（在 Python v3.12）"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#pypdf._page.ImageFile" title="pypdf._page.ImageFile"><span class="pre">ImageFile</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/pypdf/_page.html#VirtualListImages.items"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#pypdf._page.VirtualListImages.items" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pypdf._page.ImageFile">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pypdf._page.</span></span><span class="sig-name descname"><span class="pre">ImageFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="（在 Python v3.12）"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#bytes" title="（在 Python v3.12）"><span class="pre">bytes</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">b''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#object" title="（在 Python v3.12）"><span class="pre">object</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indirect_reference</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="generic.html#pypdf.generic.IndirectObject" title="pypdf.generic._base.IndirectObject"><span class="pre">IndirectObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pypdf/_page.html#ImageFile"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#pypdf._page.ImageFile" title="Link to this definition">¶</a></dt>
+<dd><p>基类：<a class="reference external" href="https://docs.python.org/3.12/library/functions.html#object" title="（在 Python v3.12）"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Image within the PDF file. <em>This object is not designed to be built.</em></p>
+<p>This object should not be modified except using <a class="reference internal" href="#pypdf._page.ImageFile.replace" title="pypdf._page.ImageFile.replace"><code class="xref py py-func docutils literal notranslate"><span class="pre">ImageFile.replace()</span></code></a> to replace the image with a new one.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypdf._page.ImageFile.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="（在 Python v3.12）"><span class="pre">str</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#pypdf._page.ImageFile.name" title="Link to this definition">¶</a></dt>
+<dd><p>Filename as identified within the PDF file.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypdf._page.ImageFile.data">
+<span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#bytes" title="（在 Python v3.12）"><span class="pre">bytes</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">b''</span></em><a class="headerlink" href="#pypdf._page.ImageFile.data" title="Link to this definition">¶</a></dt>
+<dd><p>Data as bytes.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypdf._page.ImageFile.image">
+<span class="sig-name descname"><span class="pre">image</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#object" title="（在 Python v3.12）"><span class="pre">object</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pypdf._page.ImageFile.image" title="Link to this definition">¶</a></dt>
+<dd><p>Data as PIL image.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypdf._page.ImageFile.indirect_reference">
+<span class="sig-name descname"><span class="pre">indirect_reference</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="generic.html#pypdf.generic.IndirectObject" title="pypdf.generic._base.IndirectObject"><span class="pre">IndirectObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pypdf._page.ImageFile.indirect_reference" title="Link to this definition">¶</a></dt>
+<dd><p>Reference to the object storing the stream.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypdf._page.ImageFile.replace">
+<span class="sig-name descname"><span class="pre">replace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#object" title="（在 Python v3.12）"><span class="pre">object</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Any" title="（在 Python v3.12）"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="（在 Python v3.12）"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/pypdf/_page.html#ImageFile.replace"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#pypdf._page.ImageFile.replace" title="Link to this definition">¶</a></dt>
+<dd><p>Replace the image with a new PIL image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>new_image</strong> (<a class="reference external" href="https://pillow.readthedocs.io/en/latest/reference/Image.html#PIL.Image.Image" title="（在 Pillow (PIL Fork) v11.1.0.dev0）"><em>Image</em></a>) -- The new PIL image to replace the existing image.</p></li>
+<li><p><strong>**kwargs</strong> -- Additional keyword arguments to pass to <cite>Image.save()</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">抛出<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3.12/library/exceptions.html#TypeError" title="（在 Python v3.12）"><strong>TypeError</strong></a> -- If the image is inline or in a PdfReader.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3.12/library/exceptions.html#TypeError" title="（在 Python v3.12）"><strong>TypeError</strong></a> -- If the image does not belong to a PdfWriter.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3.12/library/exceptions.html#TypeError" title="（在 Python v3.12）"><strong>TypeError</strong></a> -- If <cite>new_image</cite> is not a PIL Image.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>This method replaces the existing image with a new image.
+It is not allowed for inline images or images within a PdfReader.
+The <cite>kwargs</cite> parameter allows passing additional parameters
+to <cite>Image.save()</cite>, such as quality.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pypdf.mult">
+<span class="sig-prename descclassname"><span class="pre">pypdf.</span></span><span class="sig-name descname"><span class="pre">mult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.List" title="（在 Python v3.12）"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#float" title="（在 Python v3.12）"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.List" title="（在 Python v3.12）"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#float" title="（在 Python v3.12）"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.List" title="（在 Python v3.12）"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#float" title="（在 Python v3.12）"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/pypdf/_text_extraction.html#mult"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#pypdf.mult" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="PageRange.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">PageRange 类</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="Fit.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Fit 类</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2006 - 2024, Mathieu Fenniak and pypdf contributors
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">PageObject 类</a><ul>
+<li><a class="reference internal" href="#pypdf._page.PageObject"><code class="docutils literal notranslate"><span class="pre">PageObject</span></code></a><ul>
+<li><a class="reference internal" href="#pypdf._page.PageObject.original_page"><code class="docutils literal notranslate"><span class="pre">PageObject.original_page</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.PageObject.hash_bin"><code class="docutils literal notranslate"><span class="pre">PageObject.hash_bin()</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.PageObject.hash_value_data"><code class="docutils literal notranslate"><span class="pre">PageObject.hash_value_data()</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.PageObject.user_unit"><code class="docutils literal notranslate"><span class="pre">PageObject.user_unit</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.PageObject.create_blank_page"><code class="docutils literal notranslate"><span class="pre">PageObject.create_blank_page()</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.PageObject.images"><code class="docutils literal notranslate"><span class="pre">PageObject.images</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.PageObject.rotation"><code class="docutils literal notranslate"><span class="pre">PageObject.rotation</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.PageObject.transfer_rotation_to_content"><code class="docutils literal notranslate"><span class="pre">PageObject.transfer_rotation_to_content()</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.PageObject.rotate"><code class="docutils literal notranslate"><span class="pre">PageObject.rotate()</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.PageObject.get_contents"><code class="docutils literal notranslate"><span class="pre">PageObject.get_contents()</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.PageObject.replace_contents"><code class="docutils literal notranslate"><span class="pre">PageObject.replace_contents()</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.PageObject.merge_page"><code class="docutils literal notranslate"><span class="pre">PageObject.merge_page()</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.PageObject.merge_transformed_page"><code class="docutils literal notranslate"><span class="pre">PageObject.merge_transformed_page()</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.PageObject.merge_scaled_page"><code class="docutils literal notranslate"><span class="pre">PageObject.merge_scaled_page()</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.PageObject.merge_rotated_page"><code class="docutils literal notranslate"><span class="pre">PageObject.merge_rotated_page()</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.PageObject.merge_translated_page"><code class="docutils literal notranslate"><span class="pre">PageObject.merge_translated_page()</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.PageObject.add_transformation"><code class="docutils literal notranslate"><span class="pre">PageObject.add_transformation()</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.PageObject.scale"><code class="docutils literal notranslate"><span class="pre">PageObject.scale()</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.PageObject.scale_by"><code class="docutils literal notranslate"><span class="pre">PageObject.scale_by()</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.PageObject.scale_to"><code class="docutils literal notranslate"><span class="pre">PageObject.scale_to()</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.PageObject.compress_content_streams"><code class="docutils literal notranslate"><span class="pre">PageObject.compress_content_streams()</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.PageObject.page_number"><code class="docutils literal notranslate"><span class="pre">PageObject.page_number</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.PageObject.extract_text"><code class="docutils literal notranslate"><span class="pre">PageObject.extract_text()</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.PageObject.extract_xform_text"><code class="docutils literal notranslate"><span class="pre">PageObject.extract_xform_text()</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.PageObject.mediabox"><code class="docutils literal notranslate"><span class="pre">PageObject.mediabox</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.PageObject.cropbox"><code class="docutils literal notranslate"><span class="pre">PageObject.cropbox</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.PageObject.bleedbox"><code class="docutils literal notranslate"><span class="pre">PageObject.bleedbox</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.PageObject.trimbox"><code class="docutils literal notranslate"><span class="pre">PageObject.trimbox</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.PageObject.artbox"><code class="docutils literal notranslate"><span class="pre">PageObject.artbox</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.PageObject.annotations"><code class="docutils literal notranslate"><span class="pre">PageObject.annotations</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pypdf._page.VirtualListImages"><code class="docutils literal notranslate"><span class="pre">VirtualListImages</span></code></a><ul>
+<li><a class="reference internal" href="#pypdf._page.VirtualListImages.keys"><code class="docutils literal notranslate"><span class="pre">VirtualListImages.keys()</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.VirtualListImages.items"><code class="docutils literal notranslate"><span class="pre">VirtualListImages.items()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pypdf._page.ImageFile"><code class="docutils literal notranslate"><span class="pre">ImageFile</span></code></a><ul>
+<li><a class="reference internal" href="#pypdf._page.ImageFile.name"><code class="docutils literal notranslate"><span class="pre">ImageFile.name</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.ImageFile.data"><code class="docutils literal notranslate"><span class="pre">ImageFile.data</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.ImageFile.image"><code class="docutils literal notranslate"><span class="pre">ImageFile.image</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.ImageFile.indirect_reference"><code class="docutils literal notranslate"><span class="pre">ImageFile.indirect_reference</span></code></a></li>
+<li><a class="reference internal" href="#pypdf._page.ImageFile.replace"><code class="docutils literal notranslate"><span class="pre">ImageFile.replace()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pypdf.mult"><code class="docutils literal notranslate"><span class="pre">mult()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=8309bdae"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="../_static/translations.js?v=beaddf03"></script>
+    </body>
+</html>

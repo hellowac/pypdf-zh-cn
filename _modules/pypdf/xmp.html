@@ -1,0 +1,761 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN" data-content_root="../../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="索引" href="../../genindex.html" /><link rel="search" title="搜索" href="../../search.html" />
+
+    <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
+        <title>pypdf.xmp - pypdf 5.1.0 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=302659d7" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">pypdf 5.1.0 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../../_static/logo.png" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">pypdf 5.1.0 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">用户指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user/installation.html">安装指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/migration-1-to-2.html">迁移指南：从 1.x 到 2.x</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/migration-1-to-2.html#id1">导入和模块</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/migration-1-to-2.html#id2">命名调整</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/robustness.html">稳健性与 <code class="docutils literal notranslate"><span class="pre">strict=False</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/suppress-warnings.html">异常、警告和日志消息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/metadata.html">元数据（Metadata）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/extract-text.html">从 PDF 中提取文本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/post-processing-in-text-extraction.html">文本提取的后处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/extract-images.html">提取图像</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/extract-images.html#id2">其他图像</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/extract-attachments.html">提取附件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/encryption-decryption.html">PDF 的加密与解密</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/merging-pdfs.html">合并 PDF 文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/cropping-and-transforming.html">裁剪和转换 PDF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/cropping-and-transforming.html#id7">转换同一页面的多个副本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/reading-pdf-annotations.html">读取 PDF 注释</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/adding-pdf-annotations.html">添加 PDF 注释</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/add-watermark.html">向 PDF 添加印章或水印</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/add-javascript.html">向 PDF 添加 JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/viewer-preferences.html">添加查看器首选项</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/forms.html">与 PDF 表单的交互</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/streaming-data.html">使用 pypdf 流式传输数据</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/file-size.html">减小 PDF 文件大小</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/pdf-version-support.html">PDF 版本支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/pdfa-compliance.html">PDF/A 合规性</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API 参考</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/PdfReader.html">PdfReader 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/PdfWriter.html">PdfWriter 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/Destination.html">Destination 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/DocumentInformation.html">DocumentInformation 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/Field.html">Field类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/Fit.html">Fit 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/PageObject.html">PageObject 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/PageRange.html">PageRange 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/PaperSize.html">PaperSize 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/RectangleObject.html">RectangleObject 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/Transformation.html">Transformation 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/XmpInformation.html">XmpInformation 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/annotations.html">annotations 模块</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/constants.html">常量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/errors.html">异常和错误</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/generic.html">PDF 范型对象</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/PdfDocCommon.html">PdfDocCommon 类</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">开发者指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/intro.html">开发者指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/intro.html#id2">安装依赖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/intro.html#id3">运行测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/intro.html#sample-files-git">sample-files Git 子模块</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/intro.html#git-pre-commit">工具：Git 和 pre-commit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/intro.html#id4">提交消息规范</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/intro.html#pull-request">Pull Request 大小</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/intro.html#id7">基准测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/pdf-format.html">PDF 格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/pypdf-parsing.html">pypdf 如何解析 PDF 文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/pypdf-writing.html">pypdf 如何写入 PDF 文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/cmaps.html">CMaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/deprecations.html">弃用流程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/documentation.html">文档编写</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/testing.html">测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/releasing.html">发布</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">关于 pypdf</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../meta/CHANGELOG.html">更新日志</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../meta/changelog-v1.html">Changelog of PyPDF2 1.X</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../meta/project-governance.html">项目治理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../meta/taking-ownership.html">接管 pypdf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../meta/history.html">pypdf 历史</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../meta/CONTRIBUTORS.html">贡献者</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../meta/scope-of-pypdf.html">pypdf 的范围</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../meta/comparisons.html">pypdf 与 X 的对比</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../meta/faq.html">常见问题解答</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <h1>pypdf.xmp 源代码</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Anything related to Extensible Metadata Platform (XMP) metadata.</span>
+
+<span class="sd">https://en.wikipedia.org/wiki/Extensible_Metadata_Platform</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">decimal</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Any</span><span class="p">,</span>
+    <span class="n">Callable</span><span class="p">,</span>
+    <span class="n">Dict</span><span class="p">,</span>
+    <span class="n">Iterator</span><span class="p">,</span>
+    <span class="n">List</span><span class="p">,</span>
+    <span class="n">Optional</span><span class="p">,</span>
+    <span class="n">TypeVar</span><span class="p">,</span>
+    <span class="n">Union</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">xml.dom.minidom</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">parseString</span>
+<span class="kn">from</span> <span class="nn">xml.dom.minidom</span> <span class="kn">import</span> <span class="n">Element</span> <span class="k">as</span> <span class="n">XmlElement</span>
+<span class="kn">from</span> <span class="nn">xml.parsers.expat</span> <span class="kn">import</span> <span class="n">ExpatError</span>
+
+<span class="kn">from</span> <span class="nn">._utils</span> <span class="kn">import</span> <span class="n">StreamType</span><span class="p">,</span> <span class="n">deprecate_no_replacement</span>
+<span class="kn">from</span> <span class="nn">.errors</span> <span class="kn">import</span> <span class="n">PdfReadError</span>
+<span class="kn">from</span> <span class="nn">.generic</span> <span class="kn">import</span> <span class="n">ContentStream</span><span class="p">,</span> <span class="n">PdfObject</span>
+
+<span class="n">RDF_NAMESPACE</span> <span class="o">=</span> <span class="s2">&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;</span>
+<span class="n">DC_NAMESPACE</span> <span class="o">=</span> <span class="s2">&quot;http://purl.org/dc/elements/1.1/&quot;</span>
+<span class="n">XMP_NAMESPACE</span> <span class="o">=</span> <span class="s2">&quot;http://ns.adobe.com/xap/1.0/&quot;</span>
+<span class="n">PDF_NAMESPACE</span> <span class="o">=</span> <span class="s2">&quot;http://ns.adobe.com/pdf/1.3/&quot;</span>
+<span class="n">XMPMM_NAMESPACE</span> <span class="o">=</span> <span class="s2">&quot;http://ns.adobe.com/xap/1.0/mm/&quot;</span>
+
+<span class="c1"># What is the PDFX namespace, you might ask?</span>
+<span class="c1"># It&#39;s documented here: https://github.com/adobe/xmp-docs/raw/master/XMPSpecifications/XMPSpecificationPart3.pdf</span>
+<span class="c1"># This namespace is used to place &quot;custom metadata&quot;</span>
+<span class="c1"># properties, which are arbitrary metadata properties with no semantic or</span>
+<span class="c1"># documented meaning.</span>
+<span class="c1">#</span>
+<span class="c1"># Elements in the namespace are key/value-style storage,</span>
+<span class="c1"># where the element name is the key and the content is the value. The keys</span>
+<span class="c1"># are transformed into valid XML identifiers by substituting an invalid</span>
+<span class="c1"># identifier character with \u2182 followed by the unicode hex ID of the</span>
+<span class="c1"># original character. A key like &quot;my car&quot; is therefore &quot;my\u21820020car&quot;.</span>
+<span class="c1">#</span>
+<span class="c1"># \u2182 is the unicode character \u{ROMAN NUMERAL TEN THOUSAND}</span>
+<span class="c1">#</span>
+<span class="c1"># The pdfx namespace should be avoided.</span>
+<span class="c1"># A custom data schema and sensical XML elements could be used instead, as is</span>
+<span class="c1"># suggested by Adobe&#39;s own documentation on XMP under &quot;Extensibility of</span>
+<span class="c1"># Schemas&quot;.</span>
+<span class="n">PDFX_NAMESPACE</span> <span class="o">=</span> <span class="s2">&quot;http://ns.adobe.com/pdfx/1.3/&quot;</span>
+
+<span class="n">iso8601</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        (?P&lt;year&gt;[0-9]{4})</span>
+<span class="sd">        (-</span>
+<span class="sd">            (?P&lt;month&gt;[0-9]{2})</span>
+<span class="sd">            (-</span>
+<span class="sd">                (?P&lt;day&gt;[0-9]+)</span>
+<span class="sd">                (T</span>
+<span class="sd">                    (?P&lt;hour&gt;[0-9]{2}):</span>
+<span class="sd">                    (?P&lt;minute&gt;[0-9]{2})</span>
+<span class="sd">                    (:(?P&lt;second&gt;[0-9]{2}(.[0-9]+)?))?</span>
+<span class="sd">                    (?P&lt;tzd&gt;Z|[-+][0-9]{2}:[0-9]{2})</span>
+<span class="sd">                )?</span>
+<span class="sd">            )?</span>
+<span class="sd">        )?</span>
+<span class="sd">        &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="n">re</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="n">K</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;K&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_identity</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">K</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">K</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">value</span>
+
+
+<span class="k">def</span> <span class="nf">_converter_date</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">:</span>
+    <span class="n">matches</span> <span class="o">=</span> <span class="n">iso8601</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">matches</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid date format: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">year</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">matches</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">))</span>
+    <span class="n">month</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">matches</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;month&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;1&quot;</span><span class="p">)</span>
+    <span class="n">day</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">matches</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;day&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;1&quot;</span><span class="p">)</span>
+    <span class="n">hour</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">matches</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;hour&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+    <span class="n">minute</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">matches</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;minute&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+    <span class="n">second</span> <span class="o">=</span> <span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="p">(</span><span class="n">matches</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;second&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+    <span class="n">seconds_dec</span> <span class="o">=</span> <span class="n">second</span><span class="o">.</span><span class="n">to_integral</span><span class="p">(</span><span class="n">decimal</span><span class="o">.</span><span class="n">ROUND_FLOOR</span><span class="p">)</span>
+    <span class="n">milliseconds_dec</span> <span class="o">=</span> <span class="p">(</span><span class="n">second</span> <span class="o">-</span> <span class="n">seconds_dec</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1_000_000</span>
+
+    <span class="n">seconds</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">seconds_dec</span><span class="p">)</span>
+    <span class="n">milliseconds</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">milliseconds_dec</span><span class="p">)</span>
+
+    <span class="n">tzd</span> <span class="o">=</span> <span class="n">matches</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;tzd&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;Z&quot;</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="p">,</span> <span class="n">hour</span><span class="p">,</span> <span class="n">minute</span><span class="p">,</span> <span class="n">seconds</span><span class="p">,</span> <span class="n">milliseconds</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">tzd</span> <span class="o">!=</span> <span class="s2">&quot;Z&quot;</span><span class="p">:</span>
+        <span class="n">tzd_hours</span><span class="p">,</span> <span class="n">tzd_minutes</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">tzd</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">))</span>
+        <span class="n">tzd_hours</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">if</span> <span class="n">tzd_hours</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">tzd_minutes</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">dt</span> <span class="o">=</span> <span class="n">dt</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="n">tzd_hours</span><span class="p">,</span> <span class="n">minutes</span><span class="o">=</span><span class="n">tzd_minutes</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dt</span>
+
+
+<span class="k">def</span> <span class="nf">_getter_bag</span><span class="p">(</span>
+    <span class="n">namespace</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="s2">&quot;XmpInformation&quot;</span><span class="p">],</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]:</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="s2">&quot;XmpInformation&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+        <span class="n">cached</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">namespace</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cached</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">cached</span>
+        <span class="n">retval</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_element</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">namespace</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+            <span class="n">bags</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">getElementsByTagNameNS</span><span class="p">(</span><span class="n">RDF_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;Bag&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">bags</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">bag</span> <span class="ow">in</span> <span class="n">bags</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">bag</span><span class="o">.</span><span class="n">getElementsByTagNameNS</span><span class="p">(</span><span class="n">RDF_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;li&quot;</span><span class="p">):</span>
+                        <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_text</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+                        <span class="n">retval</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="n">ns_cache</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">namespace</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="n">ns_cache</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">retval</span>
+        <span class="k">return</span> <span class="n">retval</span>
+
+    <span class="k">return</span> <span class="n">get</span>
+
+
+<span class="k">def</span> <span class="nf">_getter_seq</span><span class="p">(</span>
+    <span class="n">namespace</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">converter</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">_identity</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="s2">&quot;XmpInformation&quot;</span><span class="p">],</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]]]:</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="s2">&quot;XmpInformation&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]]:</span>
+        <span class="n">cached</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">namespace</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cached</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">cached</span>
+        <span class="n">retval</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_element</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">namespace</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+            <span class="n">seqs</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">getElementsByTagNameNS</span><span class="p">(</span><span class="n">RDF_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;Seq&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">seqs</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">seq</span><span class="o">.</span><span class="n">getElementsByTagNameNS</span><span class="p">(</span><span class="n">RDF_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;li&quot;</span><span class="p">):</span>
+                        <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_text</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+                        <span class="n">value</span> <span class="o">=</span> <span class="n">converter</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                        <span class="n">retval</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">converter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_text</span><span class="p">(</span><span class="n">element</span><span class="p">))</span>
+                <span class="n">retval</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="n">ns_cache</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">namespace</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="n">ns_cache</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">retval</span>
+        <span class="k">return</span> <span class="n">retval</span>
+
+    <span class="k">return</span> <span class="n">get</span>
+
+
+<span class="k">def</span> <span class="nf">_getter_langalt</span><span class="p">(</span>
+    <span class="n">namespace</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="s2">&quot;XmpInformation&quot;</span><span class="p">],</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]:</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="s2">&quot;XmpInformation&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+        <span class="n">cached</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">namespace</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cached</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">cached</span>
+        <span class="n">retval</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_element</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">namespace</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+            <span class="n">alts</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">getElementsByTagNameNS</span><span class="p">(</span><span class="n">RDF_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;Alt&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">alts</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">alt</span> <span class="ow">in</span> <span class="n">alts</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">alt</span><span class="o">.</span><span class="n">getElementsByTagNameNS</span><span class="p">(</span><span class="n">RDF_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;li&quot;</span><span class="p">):</span>
+                        <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_text</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+                        <span class="n">retval</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">getAttribute</span><span class="p">(</span><span class="s2">&quot;xml:lang&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">retval</span><span class="p">[</span><span class="s2">&quot;x-default&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_text</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+        <span class="n">ns_cache</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">namespace</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="n">ns_cache</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">retval</span>
+        <span class="k">return</span> <span class="n">retval</span>
+
+    <span class="k">return</span> <span class="n">get</span>
+
+
+<span class="k">def</span> <span class="nf">_getter_single</span><span class="p">(</span>
+    <span class="n">namespace</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">converter</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">_identity</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="s2">&quot;XmpInformation&quot;</span><span class="p">],</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]]:</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="s2">&quot;XmpInformation&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+        <span class="n">cached</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">namespace</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cached</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">cached</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_element</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">namespace</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">element</span><span class="o">.</span><span class="n">nodeType</span> <span class="o">==</span> <span class="n">element</span><span class="o">.</span><span class="n">ATTRIBUTE_NODE</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">nodeValue</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_text</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+            <span class="k">break</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">converter</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="n">ns_cache</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">namespace</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="n">ns_cache</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">return</span> <span class="n">value</span>
+
+    <span class="k">return</span> <span class="n">get</span>
+
+
+<div class="viewcode-block" id="XmpInformation">
+<a class="viewcode-back" href="../../modules/XmpInformation.html#pypdf.xmp.XmpInformation">[文档]</a>
+<span class="k">class</span> <span class="nc">XmpInformation</span><span class="p">(</span><span class="n">PdfObject</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An object that represents Extensible Metadata Platform (XMP) metadata.</span>
+<span class="sd">    Usually accessed by :py:attr:`xmp_metadata()&lt;pypdf.PdfReader.xmp_metadata&gt;`.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">      PdfReadError: if XML is invalid</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">ContentStream</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stream</span> <span class="o">=</span> <span class="n">stream</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stream</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
+            <span class="n">doc_root</span><span class="p">:</span> <span class="n">Document</span> <span class="o">=</span> <span class="n">parseString</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>  <span class="c1"># noqa: S318</span>
+        <span class="k">except</span> <span class="n">ExpatError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PdfReadError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;XML in XmpInformation was invalid: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rdf_root</span><span class="p">:</span> <span class="n">XmlElement</span> <span class="o">=</span> <span class="n">doc_root</span><span class="o">.</span><span class="n">getElementsByTagNameNS</span><span class="p">(</span>
+            <span class="n">RDF_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;RDF&quot;</span>
+        <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+<div class="viewcode-block" id="XmpInformation.write_to_stream">
+<a class="viewcode-back" href="../../modules/XmpInformation.html#pypdf.xmp.XmpInformation.write_to_stream">[文档]</a>
+    <span class="k">def</span> <span class="nf">write_to_stream</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">StreamType</span><span class="p">,</span> <span class="n">encryption_key</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">encryption_key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># deprecated</span>
+            <span class="n">deprecate_no_replacement</span><span class="p">(</span>
+                <span class="s2">&quot;the encryption_key parameter of write_to_stream&quot;</span><span class="p">,</span> <span class="s2">&quot;5.0.0&quot;</span>
+            <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stream</span><span class="o">.</span><span class="n">write_to_stream</span><span class="p">(</span><span class="n">stream</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="XmpInformation.get_element">
+<a class="viewcode-back" href="../../modules/XmpInformation.html#pypdf.xmp.XmpInformation.get_element">[文档]</a>
+    <span class="k">def</span> <span class="nf">get_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">about_uri</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">namespace</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">desc</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rdf_root</span><span class="o">.</span><span class="n">getElementsByTagNameNS</span><span class="p">(</span><span class="n">RDF_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;Description&quot;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">desc</span><span class="o">.</span><span class="n">getAttributeNS</span><span class="p">(</span><span class="n">RDF_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;about&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="n">about_uri</span><span class="p">:</span>
+                <span class="n">attr</span> <span class="o">=</span> <span class="n">desc</span><span class="o">.</span><span class="n">getAttributeNodeNS</span><span class="p">(</span><span class="n">namespace</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">attr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">yield</span> <span class="n">attr</span>
+                <span class="k">yield from</span> <span class="n">desc</span><span class="o">.</span><span class="n">getElementsByTagNameNS</span><span class="p">(</span><span class="n">namespace</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="XmpInformation.get_nodes_in_namespace">
+<a class="viewcode-back" href="../../modules/XmpInformation.html#pypdf.xmp.XmpInformation.get_nodes_in_namespace">[文档]</a>
+    <span class="k">def</span> <span class="nf">get_nodes_in_namespace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">about_uri</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">namespace</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">desc</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rdf_root</span><span class="o">.</span><span class="n">getElementsByTagNameNS</span><span class="p">(</span><span class="n">RDF_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;Description&quot;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">desc</span><span class="o">.</span><span class="n">getAttributeNS</span><span class="p">(</span><span class="n">RDF_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;about&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="n">about_uri</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">desc</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">length</span><span class="p">):</span>
+                    <span class="n">attr</span> <span class="o">=</span> <span class="n">desc</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">attr</span><span class="o">.</span><span class="n">namespaceURI</span> <span class="o">==</span> <span class="n">namespace</span><span class="p">:</span>
+                        <span class="k">yield</span> <span class="n">attr</span>
+                <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">desc</span><span class="o">.</span><span class="n">childNodes</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">child</span><span class="o">.</span><span class="n">namespaceURI</span> <span class="o">==</span> <span class="n">namespace</span><span class="p">:</span>
+                        <span class="k">yield</span> <span class="n">child</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_get_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">:</span> <span class="n">XmlElement</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">childNodes</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">child</span><span class="o">.</span><span class="n">nodeType</span> <span class="o">==</span> <span class="n">child</span><span class="o">.</span><span class="n">TEXT_NODE</span><span class="p">:</span>
+                <span class="n">text</span> <span class="o">+=</span> <span class="n">child</span><span class="o">.</span><span class="n">data</span>
+        <span class="k">return</span> <span class="n">text</span>
+
+    <span class="n">dc_contributor</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_getter_bag</span><span class="p">(</span><span class="n">DC_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;contributor&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Contributors to the resource (other than the authors).</span>
+
+<span class="sd">    An unsorted array of names.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">dc_coverage</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_getter_single</span><span class="p">(</span><span class="n">DC_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;coverage&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Text describing the extent or scope of the resource.&quot;&quot;&quot;</span>
+
+    <span class="n">dc_creator</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_getter_seq</span><span class="p">(</span><span class="n">DC_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;creator&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A sorted array of names of the authors of the resource, listed in order</span>
+<span class="sd">    of precedence.&quot;&quot;&quot;</span>
+
+    <span class="n">dc_date</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_getter_seq</span><span class="p">(</span><span class="n">DC_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="n">_converter_date</span><span class="p">))</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A sorted array of dates (datetime.datetime instances) of significance to</span>
+<span class="sd">    the resource.</span>
+
+<span class="sd">    The dates and times are in UTC.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">dc_description</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_getter_langalt</span><span class="p">(</span><span class="n">DC_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;description&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A language-keyed dictionary of textual descriptions of the content of the</span>
+<span class="sd">    resource.&quot;&quot;&quot;</span>
+
+    <span class="n">dc_format</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_getter_single</span><span class="p">(</span><span class="n">DC_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;format&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The mime-type of the resource.&quot;&quot;&quot;</span>
+
+    <span class="n">dc_identifier</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_getter_single</span><span class="p">(</span><span class="n">DC_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;identifier&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Unique identifier of the resource.&quot;&quot;&quot;</span>
+
+    <span class="n">dc_language</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_getter_bag</span><span class="p">(</span><span class="n">DC_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;language&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;An unordered array specifying the languages used in the resource.&quot;&quot;&quot;</span>
+
+    <span class="n">dc_publisher</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_getter_bag</span><span class="p">(</span><span class="n">DC_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;publisher&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;An unordered array of publisher names.&quot;&quot;&quot;</span>
+
+    <span class="n">dc_relation</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_getter_bag</span><span class="p">(</span><span class="n">DC_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;relation&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;An unordered array of text descriptions of relationships to other</span>
+<span class="sd">    documents.&quot;&quot;&quot;</span>
+
+    <span class="n">dc_rights</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_getter_langalt</span><span class="p">(</span><span class="n">DC_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;rights&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A language-keyed dictionary of textual descriptions of the rights the</span>
+<span class="sd">    user has to this resource.&quot;&quot;&quot;</span>
+
+    <span class="n">dc_source</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_getter_single</span><span class="p">(</span><span class="n">DC_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;source&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Unique identifier of the work from which this resource was derived.&quot;&quot;&quot;</span>
+
+    <span class="n">dc_subject</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_getter_bag</span><span class="p">(</span><span class="n">DC_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;subject&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;An unordered array of descriptive phrases or keywords that specify the</span>
+<span class="sd">    topic of the content of the resource.&quot;&quot;&quot;</span>
+
+    <span class="n">dc_title</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_getter_langalt</span><span class="p">(</span><span class="n">DC_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;title&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A language-keyed dictionary of the title of the resource.&quot;&quot;&quot;</span>
+
+    <span class="n">dc_type</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_getter_bag</span><span class="p">(</span><span class="n">DC_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;An unordered array of textual descriptions of the document type.&quot;&quot;&quot;</span>
+
+    <span class="n">pdf_keywords</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_getter_single</span><span class="p">(</span><span class="n">PDF_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;Keywords&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;An unformatted text string representing document keywords.&quot;&quot;&quot;</span>
+
+    <span class="n">pdf_pdfversion</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_getter_single</span><span class="p">(</span><span class="n">PDF_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;PDFVersion&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The PDF file version, for example 1.0 or 1.3.&quot;&quot;&quot;</span>
+
+    <span class="n">pdf_producer</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_getter_single</span><span class="p">(</span><span class="n">PDF_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;Producer&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The name of the tool that created the PDF document.&quot;&quot;&quot;</span>
+
+    <span class="n">xmp_create_date</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span>
+        <span class="n">_getter_single</span><span class="p">(</span><span class="n">XMP_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;CreateDate&quot;</span><span class="p">,</span> <span class="n">_converter_date</span><span class="p">)</span>
+    <span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The date and time the resource was originally created.</span>
+
+<span class="sd">    The date and time are returned as a UTC datetime.datetime object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">xmp_modify_date</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span>
+        <span class="n">_getter_single</span><span class="p">(</span><span class="n">XMP_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;ModifyDate&quot;</span><span class="p">,</span> <span class="n">_converter_date</span><span class="p">)</span>
+    <span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The date and time the resource was last modified.</span>
+
+<span class="sd">    The date and time are returned as a UTC datetime.datetime object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">xmp_metadata_date</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span>
+        <span class="n">_getter_single</span><span class="p">(</span><span class="n">XMP_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;MetadataDate&quot;</span><span class="p">,</span> <span class="n">_converter_date</span><span class="p">)</span>
+    <span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The date and time that any metadata for this resource was last changed.</span>
+
+<span class="sd">    The date and time are returned as a UTC datetime.datetime object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">xmp_creator_tool</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_getter_single</span><span class="p">(</span><span class="n">XMP_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;CreatorTool&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The name of the first known tool used to create the resource.&quot;&quot;&quot;</span>
+
+    <span class="n">xmpmm_document_id</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_getter_single</span><span class="p">(</span><span class="n">XMPMM_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;DocumentID&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The common identifier for all versions and renditions of this resource.&quot;&quot;&quot;</span>
+
+    <span class="n">xmpmm_instance_id</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_getter_single</span><span class="p">(</span><span class="n">XMPMM_NAMESPACE</span><span class="p">,</span> <span class="s2">&quot;InstanceID&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;An identifier for a specific incarnation of a document, updated each</span>
+<span class="sd">    time a file is saved.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">custom_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieve custom metadata properties defined in the undocumented pdfx</span>
+<span class="sd">        metadata schema.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A dictionary of key/value items for custom metadata properties.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_custom_properties&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_custom_properties</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_nodes_in_namespace</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">PDFX_NAMESPACE</span><span class="p">):</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">localName</span>
+                <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                    <span class="c1"># see documentation about PDFX_NAMESPACE earlier in file</span>
+                    <span class="n">idx</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\u2182</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">idx</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                        <span class="k">break</span>
+                    <span class="n">key</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="n">key</span><span class="p">[:</span><span class="n">idx</span><span class="p">]</span>
+                        <span class="o">+</span> <span class="nb">chr</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">key</span><span class="p">[</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">5</span><span class="p">],</span> <span class="n">base</span><span class="o">=</span><span class="mi">16</span><span class="p">))</span>
+                        <span class="o">+</span> <span class="n">key</span><span class="p">[</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">5</span> <span class="p">:]</span>
+                    <span class="p">)</span>
+                <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">nodeType</span> <span class="o">==</span> <span class="n">node</span><span class="o">.</span><span class="n">ATTRIBUTE_NODE</span><span class="p">:</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">nodeValue</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_text</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_custom_properties</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_custom_properties</span></div>
+
+</pre></div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2006 - 2024, Mathieu Fenniak and pypdf contributors
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script src="../../_static/documentation_options.js?v=8309bdae"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="../../_static/translations.js?v=beaddf03"></script>
+    </body>
+</html>

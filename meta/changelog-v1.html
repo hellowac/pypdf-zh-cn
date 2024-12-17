@@ -1,0 +1,1630 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN" data-content_root="../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" /><link rel="next" title="项目治理" href="project-governance.html" /><link rel="prev" title="更新日志" href="CHANGELOG.html" />
+
+    <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
+        <title>Changelog of PyPDF2 1.X - pypdf 5.1.0 文档</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">pypdf 5.1.0 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../_static/logo.png" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">pypdf 5.1.0 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">用户指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user/installation.html">安装指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/migration-1-to-2.html">迁移指南：从 1.x 到 2.x</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/migration-1-to-2.html#id1">导入和模块</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/migration-1-to-2.html#id2">命名调整</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/robustness.html">稳健性与 <code class="docutils literal notranslate"><span class="pre">strict=False</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/suppress-warnings.html">异常、警告和日志消息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/metadata.html">元数据（Metadata）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/extract-text.html">从 PDF 中提取文本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/post-processing-in-text-extraction.html">文本提取的后处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/extract-images.html">提取图像</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/extract-images.html#id2">其他图像</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/extract-attachments.html">提取附件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/encryption-decryption.html">PDF 的加密与解密</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/merging-pdfs.html">合并 PDF 文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/cropping-and-transforming.html">裁剪和转换 PDF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/cropping-and-transforming.html#id7">转换同一页面的多个副本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/reading-pdf-annotations.html">读取 PDF 注释</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/adding-pdf-annotations.html">添加 PDF 注释</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/add-watermark.html">向 PDF 添加印章或水印</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/add-javascript.html">向 PDF 添加 JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/viewer-preferences.html">添加查看器首选项</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/forms.html">与 PDF 表单的交互</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/streaming-data.html">使用 pypdf 流式传输数据</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/file-size.html">减小 PDF 文件大小</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/pdf-version-support.html">PDF 版本支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/pdfa-compliance.html">PDF/A 合规性</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API 参考</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/PdfReader.html">PdfReader 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/PdfWriter.html">PdfWriter 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Destination.html">Destination 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/DocumentInformation.html">DocumentInformation 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Field.html">Field类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Fit.html">Fit 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/PageObject.html">PageObject 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/PageRange.html">PageRange 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/PaperSize.html">PaperSize 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/RectangleObject.html">RectangleObject 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Transformation.html">Transformation 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/XmpInformation.html">XmpInformation 类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/annotations.html">annotations 模块</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/constants.html">常量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/errors.html">异常和错误</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/generic.html">PDF 范型对象</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/PdfDocCommon.html">PdfDocCommon 类</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">开发者指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dev/intro.html">开发者指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/intro.html#id2">安装依赖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/intro.html#id3">运行测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/intro.html#sample-files-git">sample-files Git 子模块</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/intro.html#git-pre-commit">工具：Git 和 pre-commit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/intro.html#id4">提交消息规范</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/intro.html#pull-request">Pull Request 大小</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/intro.html#id7">基准测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/pdf-format.html">PDF 格式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/pypdf-parsing.html">pypdf 如何解析 PDF 文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/pypdf-writing.html">pypdf 如何写入 PDF 文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/cmaps.html">CMaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/deprecations.html">弃用流程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/documentation.html">文档编写</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/testing.html">测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/releasing.html">发布</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">关于 pypdf</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="CHANGELOG.html">更新日志</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Changelog of PyPDF2 1.X</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project-governance.html">项目治理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="taking-ownership.html">接管 pypdf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="history.html">pypdf 历史</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTORS.html">贡献者</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scope-of-pypdf.html">pypdf 的范围</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comparisons.html">pypdf 与 X 的对比</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">常见问题解答</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../_sources/meta/changelog-v1.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="changelog-of-pypdf2-1-x">
+<h1>Changelog of PyPDF2 1.X<a class="headerlink" href="#changelog-of-pypdf2-1-x" title="Link to this heading">¶</a></h1>
+<section id="version-1-28-4-2022-05-29">
+<h2>Version 1.28.4, 2022-05-29<a class="headerlink" href="#version-1-28-4-2022-05-29" title="Link to this heading">¶</a></h2>
+<p>Bug Fixes (BUG):</p>
+<ul class="simple">
+<li><p>XmpInformation._converter_date was unusable (#921)</p></li>
+</ul>
+<p><a class="reference external" href="https://github.com/py-pdf/PyPDF2/compare/1.28.3...1.28.4">Full Changelog</a></p>
+</section>
+<section id="version-1-28-3-2022-05-28">
+<h2>Version 1.28.3, 2022-05-28<a class="headerlink" href="#version-1-28-3-2022-05-28" title="Link to this heading">¶</a></h2>
+<section id="deprecations-dep">
+<h3>Deprecations (DEP)<a class="headerlink" href="#deprecations-dep" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>PEP8 renaming (#905)</p></li>
+</ul>
+</section>
+<section id="bug-fixes-bug">
+<h3>Bug Fixes (BUG)<a class="headerlink" href="#bug-fixes-bug" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>XmpInformation missing method _getText (#917)</p></li>
+<li><p>Fix PendingDeprecationWarning on _merge_page (#904)</p></li>
+</ul>
+<p><a class="reference external" href="https://github.com/py-pdf/PyPDF2/compare/1.28.2...1.28.3">Full Changelog</a></p>
+</section>
+</section>
+<section id="version-1-28-2-2022-05-23">
+<h2>Version 1.28.2, 2022-05-23<a class="headerlink" href="#version-1-28-2-2022-05-23" title="Link to this heading">¶</a></h2>
+<section id="id1">
+<h3>Bug Fixes (BUG)<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>PendingDeprecationWarning for getContents (#893)</p></li>
+<li><p>PendingDeprecationWarning on using PdfMerger (#891)</p></li>
+</ul>
+<p><a class="reference external" href="https://github.com/py-pdf/PyPDF2/compare/1.28.1...1.28.2">Full Changelog</a></p>
+</section>
+</section>
+<section id="version-1-28-1-2022-05-22">
+<h2>Version 1.28.1, 2022-05-22<a class="headerlink" href="#version-1-28-1-2022-05-22" title="Link to this heading">¶</a></h2>
+<section id="id2">
+<h3>Bug Fixes (BUG)<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Incorrectly show deprecation warnings on internal usage (#887)</p></li>
+</ul>
+</section>
+<section id="maintenance-maint">
+<h3>Maintenance (MAINT)<a class="headerlink" href="#maintenance-maint" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add stacklevel=2 to deprecation warnings (#889)</p></li>
+<li><p>Remove duplicate warnings imports (#888)</p></li>
+</ul>
+<p><a class="reference external" href="https://github.com/py-pdf/PyPDF2/compare/1.28.0...1.28.1">Full Changelog</a></p>
+</section>
+</section>
+<section id="version-1-28-0-2022-05-22">
+<h2>Version 1.28.0, 2022-05-22<a class="headerlink" href="#version-1-28-0-2022-05-22" title="Link to this heading">¶</a></h2>
+<p>This release adds a lot of deprecation warnings in preparation of the
+PyPDF2 2.0.0 release. The changes are mostly using snake_case function-, method-,
+and variable-names as well as using properties instead of getter-methods.</p>
+<p>Maintenance (MAINT):</p>
+<ul class="simple">
+<li><p>Remove IronPython Fallback for zlib (#868)</p></li>
+</ul>
+<p><a class="reference external" href="https://github.com/py-pdf/PyPDF2/compare/1.27.12...1.27.13">Full Changelog</a></p>
+<section id="id3">
+<h3>Deprecations (DEP)<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Make the <code class="docutils literal notranslate"><span class="pre">PyPDF2.utils</span></code> module private</p></li>
+<li><p>Rename of core classes:</p>
+<ul>
+<li><p>PdfFileReader ➔ PdfReader</p></li>
+<li><p>PdfFileWriter ➔ PdfWriter</p></li>
+<li><p>PdfFileMerger ➔ PdfMerger</p></li>
+</ul>
+</li>
+<li><p>Use PEP8 conventions for function names and parameters</p></li>
+<li><p>If a property and a getter-method are both present, use the property</p></li>
+</ul>
+<section id="details">
+<h4>Details<a class="headerlink" href="#details" title="Link to this heading">¶</a></h4>
+<p>In many places:</p>
+<ul class="simple">
+<li><p>getObject ➔ get_object</p></li>
+<li><p>writeToStream ➔ write_to_stream</p></li>
+<li><p>readFromStream ➔ read_from_stream</p></li>
+</ul>
+<p>PyPDF2.generic</p>
+<ul class="simple">
+<li><p>readObject ➔ read_object</p></li>
+<li><p>convertToInt ➔ convert_to_int</p></li>
+<li><p>DocumentInformation.getText ➔ DocumentInformation._get_text :
+This method should typically not be used; please let me know if you need it.</p></li>
+</ul>
+<p>PdfReader class:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">reader.getPage(pageNumber)</span></code> ➔ <code class="docutils literal notranslate"><span class="pre">reader.pages[page_number]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reader.getNumPages()</span></code> / <code class="docutils literal notranslate"><span class="pre">reader.numPages</span></code> ➔ <code class="docutils literal notranslate"><span class="pre">len(reader.pages)</span></code></p></li>
+<li><p>getDocumentInfo ➔ metadata</p></li>
+<li><p>flattenedPages attribute ➔ flattened_pages</p></li>
+<li><p>resolvedObjects attribute ➔ resolved_objects</p></li>
+<li><p>xrefIndex attribute ➔ xref_index</p></li>
+<li><p>getNamedDestinations / namedDestinations attribute ➔ named_destinations</p></li>
+<li><p>getPageLayout / pageLayout ➔ page_layout attribute</p></li>
+<li><p>getPageMode / pageMode ➔ page_mode attribute</p></li>
+<li><p>getIsEncrypted / isEncrypted ➔ is_encrypted attribute</p></li>
+<li><p>getOutlines ➔ get_outlines</p></li>
+<li><p>readObjectHeader ➔ read_object_header</p></li>
+<li><p>cacheGetIndirectObject ➔ cache_get_indirect_object</p></li>
+<li><p>cacheIndirectObject ➔ cache_indirect_object</p></li>
+<li><p>getDestinationPageNumber ➔ get_destination_page_number</p></li>
+<li><p>readNextEndLine ➔ read_next_end_line</p></li>
+<li><p>_zeroXref ➔ _zero_xref</p></li>
+<li><p>_authenticateUserPassword ➔ _authenticate_user_password</p></li>
+<li><p>_pageId2Num attribute ➔ _page_id2num</p></li>
+<li><p>_buildDestination ➔ _build_destination</p></li>
+<li><p>_buildOutline ➔ _build_outline</p></li>
+<li><p>_getPageNumberByIndirect(indirectRef) ➔ _get_page_number_by_indirect(indirect_ref)</p></li>
+<li><p>_getObjectFromStream ➔ _get_object_from_stream</p></li>
+<li><p>_decryptObject ➔ _decrypt_object</p></li>
+<li><p>_flatten(..., indirectRef) ➔ _flatten(..., indirect_ref)</p></li>
+<li><p>_buildField ➔ _build_field</p></li>
+<li><p>_checkKids ➔ _check_kids</p></li>
+<li><p>_writeField ➔ _write_field</p></li>
+<li><p>_write_field(..., fieldAttributes) ➔ _write_field(..., field_attributes)</p></li>
+<li><p>_read_xref_subsections(..., getEntry, ...) ➔ _read_xref_subsections(..., get_entry, ...)</p></li>
+</ul>
+<p>PdfWriter class:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">writer.getPage(pageNumber)</span></code> ➔ <code class="docutils literal notranslate"><span class="pre">writer.pages[page_number]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">writer.getNumPages()</span></code> ➔ <code class="docutils literal notranslate"><span class="pre">len(writer.pages)</span></code></p></li>
+<li><p>addMetadata ➔ add_metadata</p></li>
+<li><p>addPage ➔ add_page</p></li>
+<li><p>addBlankPage ➔ add_blank_page</p></li>
+<li><p>addAttachment(fname, fdata) ➔ add_attachment(filename, data)</p></li>
+<li><p>insertPage ➔ insert_page</p></li>
+<li><p>insertBlankPage ➔ insert_blank_page</p></li>
+<li><p>appendPagesFromReader ➔ append_pages_from_reader</p></li>
+<li><p>updatePageFormFieldValues ➔ update_page_form_field_values</p></li>
+<li><p>cloneReaderDocumentRoot ➔ clone_reader_document_root</p></li>
+<li><p>cloneDocumentFromReader ➔ clone_document_from_reader</p></li>
+<li><p>getReference ➔ get_reference</p></li>
+<li><p>getOutlineRoot ➔ get_outline_root</p></li>
+<li><p>getNamedDestRoot ➔ get_named_dest_root</p></li>
+<li><p>addBookmarkDestination ➔ add_bookmark_destination</p></li>
+<li><p>addBookmarkDict ➔ add_bookmark_dict</p></li>
+<li><p>addBookmark ➔ add_bookmark</p></li>
+<li><p>addNamedDestinationObject ➔ add_named_destination_object</p></li>
+<li><p>addNamedDestination ➔ add_named_destination</p></li>
+<li><p>removeLinks ➔ remove_links</p></li>
+<li><p>removeImages(ignoreByteStringObject) ➔ remove_images(ignore_byte_string_object)</p></li>
+<li><p>removeText(ignoreByteStringObject) ➔ remove_text(ignore_byte_string_object)</p></li>
+<li><p>addURI ➔ add_uri</p></li>
+<li><p>addLink ➔ add_link</p></li>
+<li><p>getPage(pageNumber) ➔ get_page(page_number)</p></li>
+<li><p>getPageLayout / setPageLayout / pageLayout ➔ page_layout attribute</p></li>
+<li><p>getPageMode / setPageMode / pageMode ➔ page_mode attribute</p></li>
+<li><p>_addObject ➔ _add_object</p></li>
+<li><p>_addPage ➔ _add_page</p></li>
+<li><p>_sweepIndirectReferences ➔ _sweep_indirect_references</p></li>
+</ul>
+<p>PdfMerger class</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">__init__</span></code> parameter: strict=True ➔ strict=False (the PdfFileMerger still has the old default)</p></li>
+<li><p>addMetadata ➔ add_metadata</p></li>
+<li><p>addNamedDestination ➔ add_named_destination</p></li>
+<li><p>setPageLayout ➔ set_page_layout</p></li>
+<li><p>setPageMode ➔ set_page_mode</p></li>
+</ul>
+<p>Page class:</p>
+<ul class="simple">
+<li><p>artBox / bleedBox/ cropBox/ mediaBox / trimBox ➔ artbox / bleedbox/ cropbox/ mediabox / trimbox</p>
+<ul>
+<li><p>getWidth, getHeight  ➔ width / height</p></li>
+<li><p>getLowerLeft_x / getUpperLeft_x ➔ left</p></li>
+<li><p>getUpperRight_x / getLowerRight_x ➔ right</p></li>
+<li><p>getLowerLeft_y / getLowerRight_y ➔ bottom</p></li>
+<li><p>getUpperRight_y / getUpperLeft_y ➔ top</p></li>
+<li><p>getLowerLeft / setLowerLeft ➔ lower_left property</p></li>
+<li><p>upperRight ➔ upper_right</p></li>
+</ul>
+</li>
+<li><p>mergePage ➔ merge_page</p></li>
+<li><p>rotateClockwise / rotateCounterClockwise ➔ rotate_clockwise</p></li>
+<li><p>_mergeResources ➔ _merge_resources</p></li>
+<li><p>_contentStreamRename ➔ _content_stream_rename</p></li>
+<li><p>_pushPopGS ➔ _push_pop_gs</p></li>
+<li><p>_addTransformationMatrix ➔ _add_transformation_matrix</p></li>
+<li><p>_mergePage ➔ _merge_page</p></li>
+</ul>
+<p>XmpInformation class:</p>
+<ul class="simple">
+<li><p>getElement(..., aboutUri, ...) ➔ get_element(..., about_uri, ...)</p></li>
+<li><p>getNodesInNamespace(..., aboutUri, ...) ➔ get_nodes_in_namespace(..., aboutUri, ...)</p></li>
+<li><p>_getText ➔ _get_text</p></li>
+</ul>
+<p>utils.py:</p>
+<ul class="simple">
+<li><p>matrixMultiply ➔ matrix_multiply</p></li>
+<li><p>RC4_encrypt is moved to the security module</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="version-1-27-12-2022-05-02">
+<h2>Version 1.27.12, 2022-05-02<a class="headerlink" href="#version-1-27-12-2022-05-02" title="Link to this heading">¶</a></h2>
+<section id="id4">
+<h3>Bug Fixes (BUG)<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>_rebuild_xref_table expects trailer to be a dict (#857)</p></li>
+</ul>
+</section>
+<section id="documentation-doc">
+<h3>Documentation (DOC)<a class="headerlink" href="#documentation-doc" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Security Policy</p></li>
+</ul>
+<p><a class="reference external" href="https://github.com/py-pdf/PyPDF2/compare/1.27.11...1.27.12">Full Changelog</a></p>
+</section>
+</section>
+<section id="version-1-27-11-2022-05-02">
+<h2>Version 1.27.11, 2022-05-02<a class="headerlink" href="#version-1-27-11-2022-05-02" title="Link to this heading">¶</a></h2>
+<section id="id5">
+<h3>Bug Fixes (BUG)<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Incorrectly issued xref warning/exception (#855)</p></li>
+</ul>
+<p><a class="reference external" href="https://github.com/py-pdf/PyPDF2/compare/1.27.10...1.27.11">Full Changelog</a></p>
+</section>
+</section>
+<section id="version-1-27-10-2022-05-01">
+<h2>Version 1.27.10, 2022-05-01<a class="headerlink" href="#version-1-27-10-2022-05-01" title="Link to this heading">¶</a></h2>
+<section id="robustness-rob">
+<h3>Robustness (ROB)<a class="headerlink" href="#robustness-rob" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Handle missing destinations in reader (#840)</p></li>
+<li><p>warn-only in readStringFromStream (#837)</p></li>
+<li><p>Fix corruption in startxref or xref table (#788 and #830)</p></li>
+</ul>
+</section>
+<section id="id6">
+<h3>Documentation (DOC)<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Project Governance (#799)</p></li>
+<li><p>History of PyPDF2</p></li>
+<li><p>PDF feature/version support (#816)</p></li>
+<li><p>More details on text parsing issues (#815)</p></li>
+</ul>
+</section>
+<section id="developer-experience-dev">
+<h3>Developer Experience (DEV)<a class="headerlink" href="#developer-experience-dev" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add benchmark command to Makefile</p></li>
+<li><p>Ignore IronPython parts for code coverage (#826)</p></li>
+</ul>
+</section>
+<section id="id7">
+<h3>Maintenance (MAINT)<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Split pdf module (#836)</p></li>
+<li><p>Separated CCITTFax param parsing/decoding (#841)</p></li>
+<li><p>Update requirements files</p></li>
+</ul>
+</section>
+<section id="testing-tst">
+<h3>Testing (TST)<a class="headerlink" href="#testing-tst" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Use external repository for larger/more PDFs for testing (#820)</p></li>
+<li><p>Swap incorrect test names (#838)</p></li>
+<li><p>Add test for PdfFileReader and page properties (#835)</p></li>
+<li><p>Add tests for PyPDF2.generic (#831)</p></li>
+<li><p>Add tests for utils, form fields, PageRange (#827)</p></li>
+<li><p>Add test for ASCII85Decode (#825)</p></li>
+<li><p>Add test for FlateDecode (#823)</p></li>
+<li><p>Add test for filters.ASCIIHexDecode (#822)</p></li>
+</ul>
+</section>
+<section id="code-style-sty">
+<h3>Code Style (STY)<a class="headerlink" href="#code-style-sty" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Apply pre-commit (black, isort) + use snake_case variables (#832)</p></li>
+<li><p>Remove debug code (#828)</p></li>
+<li><p>Documentation, Variable names (#839)</p></li>
+</ul>
+<p><a class="reference external" href="https://github.com/py-pdf/PyPDF2/compare/1.27.9...1.27.10">Full Changelog</a></p>
+</section>
+</section>
+<section id="version-1-27-9-2022-04-24">
+<h2>Version 1.27.9, 2022-04-24<a class="headerlink" href="#version-1-27-9-2022-04-24" title="Link to this heading">¶</a></h2>
+<p>A change I would like to highlight is the performance improvement for
+large PDF files (#808) 🎉</p>
+<section id="new-features-enh">
+<h3>New Features (ENH)<a class="headerlink" href="#new-features-enh" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add papersizes (#800)</p></li>
+<li><p>Allow setting permission flags when encrypting (#803)</p></li>
+<li><p>Allow setting form field flags (#802)</p></li>
+</ul>
+</section>
+<section id="id8">
+<h3>Bug Fixes (BUG)<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>TypeError in xmp._converter_date (#813)</p></li>
+<li><p>Improve spacing for text extraction (#806)</p></li>
+<li><p>Fix PDFDocEncoding Character Set (#809)</p></li>
+</ul>
+</section>
+<section id="id9">
+<h3>Robustness (ROB)<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Use null ID when encrypted but no ID given (#812)</p></li>
+<li><p>Handle recursion error (#804)</p></li>
+</ul>
+</section>
+<section id="id10">
+<h3>Documentation (DOC)<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>CMaps (#811)</p></li>
+<li><p>The PDF Format + commit prefixes (#810)</p></li>
+<li><p>Add compression example (#792)</p></li>
+</ul>
+</section>
+<section id="id11">
+<h3>Developer Experience (DEV)<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add Benchmark for Performance Testing (#781)</p></li>
+</ul>
+</section>
+<section id="id12">
+<h3>Maintenance (MAINT)<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Validate PDF magic byte in strict mode (#814)</p></li>
+<li><p>Make PdfFileMerger.addBookmark() behave life PdfFileWriters' (#339)</p></li>
+<li><p>Quadratic runtime while parsing reduced to linear  (#808)</p></li>
+</ul>
+</section>
+<section id="id13">
+<h3>Testing (TST)<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Newlines in text extraction (#807)</p></li>
+</ul>
+<p><a class="reference external" href="https://github.com/py-pdf/PyPDF2/compare/1.27.8...1.27.9">Full Changelog</a></p>
+</section>
+</section>
+<section id="version-1-27-8-2022-04-21">
+<h2>Version 1.27.8, 2022-04-21<a class="headerlink" href="#version-1-27-8-2022-04-21" title="Link to this heading">¶</a></h2>
+<section id="id14">
+<h3>Bug Fixes (BUG)<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Use 1MB as offset for readNextEndLine (#321)</p></li>
+<li><p>'PdfFileWriter' object has no attribute 'stream' (#787)</p></li>
+</ul>
+</section>
+<section id="id15">
+<h3>Robustness (ROB)<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Invalid float object; use 0 as fallback (#782)</p></li>
+</ul>
+</section>
+<section id="id16">
+<h3>Documentation (DOC)<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Robustness (#785)</p></li>
+</ul>
+<p><a class="reference external" href="https://github.com/py-pdf/PyPDF2/compare/1.27.7...1.27.8">Full Changelog</a></p>
+</section>
+</section>
+<section id="version-1-27-7-2022-04-19">
+<h2>Version 1.27.7, 2022-04-19<a class="headerlink" href="#version-1-27-7-2022-04-19" title="Link to this heading">¶</a></h2>
+<section id="id17">
+<h3>Bug Fixes (BUG)<a class="headerlink" href="#id17" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Import exceptions from PyPDF2.errors in PyPDF2.utils (#780)</p></li>
+</ul>
+</section>
+<section id="id18">
+<h3>Code Style (STY)<a class="headerlink" href="#id18" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Naming in 'make_changelog.py'</p></li>
+</ul>
+</section>
+</section>
+<section id="version-1-27-6-2022-04-18">
+<h2>Version 1.27.6, 2022-04-18<a class="headerlink" href="#version-1-27-6-2022-04-18" title="Link to this heading">¶</a></h2>
+<section id="id19">
+<h3>Deprecations (DEP)<a class="headerlink" href="#id19" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Remove support for Python 2.6 and older (#776)</p></li>
+</ul>
+</section>
+<section id="id20">
+<h3>New Features (ENH)<a class="headerlink" href="#id20" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Extract document permissions (#320)</p></li>
+</ul>
+</section>
+<section id="id21">
+<h3>Bug Fixes (BUG)<a class="headerlink" href="#id21" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Clip by trimBox when merging pages, which would otherwise be ignored (#240)</p></li>
+<li><p>Add overwriteWarnings parameter PdfFileMerger (#243)</p></li>
+<li><p>IndexError for getPage() of decrypted file (#359)</p></li>
+<li><p>Handle cases where decodeParms is an ArrayObject (#405)</p></li>
+<li><p>Updated PDF fields don't show up when page is written (#412)</p></li>
+<li><p>Set Linked Form Value (#414)</p></li>
+<li><p>Fix zlib -5 error for corrupt files (#603)</p></li>
+<li><p>Fix reading more than last1K for EOF (#642)</p></li>
+<li><p>Accidental import</p></li>
+</ul>
+</section>
+<section id="id22">
+<h3>Robustness (ROB)<a class="headerlink" href="#id22" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Allow extra whitespace before &quot;obj&quot; in readObjectHeader (#567)</p></li>
+</ul>
+</section>
+<section id="id23">
+<h3>Documentation (DOC)<a class="headerlink" href="#id23" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Link to pdftoc in Sample_Code (#628)</p></li>
+<li><p>Working with annotations (#764)</p></li>
+<li><p>Structure history</p></li>
+</ul>
+</section>
+<section id="id24">
+<h3>Developer Experience (DEV)<a class="headerlink" href="#id24" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add issue templates (#765)</p></li>
+<li><p>Add tool to generate changelog</p></li>
+</ul>
+</section>
+<section id="id25">
+<h3>Maintenance (MAINT)<a class="headerlink" href="#id25" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Use grouped constants instead of string literals (#745)</p></li>
+<li><p>Add error module (#768)</p></li>
+<li><p>Use decorators for &#64;staticmethod (#775)</p></li>
+<li><p>Split long functions (#777)</p></li>
+</ul>
+</section>
+<section id="id26">
+<h3>Testing (TST)<a class="headerlink" href="#id26" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Run tests in CI once with -OO Flags (#770)</p></li>
+<li><p>Filling out forms (#771)</p></li>
+<li><p>Add tests for Writer (#772)</p></li>
+<li><p>Error cases (#773)</p></li>
+<li><p>Check Error messages (#769)</p></li>
+<li><p>Regression test for issue #88</p></li>
+<li><p>Regression test for issue #327</p></li>
+</ul>
+</section>
+<section id="id27">
+<h3>Code Style (STY)<a class="headerlink" href="#id27" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Make variable naming more consistent in tests</p></li>
+</ul>
+<p><a class="reference external" href="https://github.com/py-pdf/PyPDF2/compare/1.27.5...1.27.6">Full changelog</a></p>
+</section>
+</section>
+<section id="version-1-27-5-2022-04-15">
+<h2>Version 1.27.5, 2022-04-15<a class="headerlink" href="#version-1-27-5-2022-04-15" title="Link to this heading">¶</a></h2>
+<section id="security-sec">
+<h3>Security (SEC)<a class="headerlink" href="#security-sec" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>ContentStream_readInlineImage had potential infinite loop (#740)</p></li>
+</ul>
+</section>
+<section id="id28">
+<h3>Bug fixes (BUG)<a class="headerlink" href="#id28" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix merging encrypted files (#757)</p></li>
+<li><p>CCITTFaxDecode decodeParms can be an ArrayObject (#756)</p></li>
+</ul>
+</section>
+<section id="robustness-improvements-robust">
+<h3>Robustness improvements (ROBUST)<a class="headerlink" href="#robustness-improvements-robust" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>title sometimes None (#744)</p></li>
+</ul>
+</section>
+<section id="id29">
+<h3>Documentation (DOC)<a class="headerlink" href="#id29" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Adjust short description of the package</p></li>
+</ul>
+</section>
+<section id="tests-and-test-setup-tst">
+<h3>Tests and Test setup (TST)<a class="headerlink" href="#tests-and-test-setup-tst" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Rewrite JS tests from unittest to pytest (#746)</p></li>
+<li><p>Increase Test coverage, mainly with filters (#756)</p></li>
+<li><p>Add test for inline images (#758)</p></li>
+</ul>
+</section>
+<section id="developer-experience-improvements-dev">
+<h3>Developer Experience Improvements (DEV)<a class="headerlink" href="#developer-experience-improvements-dev" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Remove unused Travis-CI configuration (#747)</p></li>
+<li><p>Show code coverage (#754, #755)</p></li>
+<li><p>Add mutmut (#760)</p></li>
+</ul>
+</section>
+<section id="miscellaneous">
+<h3>Miscellaneous<a class="headerlink" href="#miscellaneous" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>STY: Closing file handles, explicit exports, ... (#743)</p></li>
+</ul>
+<p><a class="reference external" href="https://github.com/py-pdf/PyPDF2/compare/1.27.4...1.27.5">Full Changelog</a></p>
+</section>
+</section>
+<section id="version-1-27-4-2022-04-12">
+<h2>Version 1.27.4, 2022-04-12<a class="headerlink" href="#version-1-27-4-2022-04-12" title="Link to this heading">¶</a></h2>
+<section id="id30">
+<h3>Bug fixes (BUG)<a class="headerlink" href="#id30" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Guard formatting of <code class="docutils literal notranslate"><span class="pre">__init__.__doc__</span></code> string (#738)</p></li>
+</ul>
+</section>
+<section id="packaging-pkg">
+<h3>Packaging (PKG)<a class="headerlink" href="#packaging-pkg" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add more precise license field to setup (#733)</p></li>
+</ul>
+</section>
+<section id="id31">
+<h3>Testing (TST)<a class="headerlink" href="#id31" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add test for issue #297</p></li>
+</ul>
+</section>
+<section id="id32">
+<h3>Miscellaneous<a class="headerlink" href="#id32" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>DOC: Miscallenious ➔ Miscellaneous (Typo)</p></li>
+<li><p>TST: Fix CI triggering (master ➔ main) (#739)</p></li>
+<li><p>STY: Fix various style issues (#742)</p></li>
+</ul>
+<p><a class="reference external" href="https://github.com/py-pdf/PyPDF2/compare/1.27.3...1.27.4">Full Changelog</a></p>
+</section>
+</section>
+<section id="version-1-27-3-2022-04-10">
+<h2>Version 1.27.3, 2022-04-10<a class="headerlink" href="#version-1-27-3-2022-04-10" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>PKG: Make Tests not a subpackage (#728)</p></li>
+<li><p>BUG: Fix ASCII85Decode.decode assertion (#729)</p></li>
+<li><p>BUG: Error in Chinese character encoding (#463)</p></li>
+<li><p>BUG: Code duplication in Scripts/2-up.py</p></li>
+<li><p>ROBUST: Guard 'obj.writeToStream' with 'if obj is not None'</p></li>
+<li><p>ROBUST: Ignore a /Prev entry with the value 0 in the trailer</p></li>
+<li><p>MAINT: Remove Sample_Code (#726)</p></li>
+<li><p>TST: Close file handle in test_writer (#722)</p></li>
+<li><p>TST: Fix test_get_images (#730)</p></li>
+<li><p>DEV: Make tox use pytest and add more Python versions (#721)</p></li>
+<li><p>DOC: Many (#720, #723-725, #469)</p></li>
+</ul>
+<p><a class="reference external" href="https://github.com/py-pdf/PyPDF2/compare/1.27.2...1.27.3">Full Changelog</a></p>
+</section>
+<section id="version-1-27-2-2022-04-09">
+<h2>Version 1.27.2, 2022-04-09<a class="headerlink" href="#version-1-27-2-2022-04-09" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Add Scripts (including <code class="docutils literal notranslate"><span class="pre">pdfcat</span></code>), Resources, Tests, and Sample_Code back to
+PyPDF2. It was removed by accident in 1.27.0, but might get removed with 2.0.0
+See <a class="reference external" href="https://github.com/py-pdf/PyPDF2/discussions/718">discussions/718</a>.</p></li>
+</ul>
+<p><a class="reference external" href="https://github.com/py-pdf/PyPDF2/compare/1.27.1...1.27.2">Full Changelog</a></p>
+</section>
+<section id="version-1-27-1-2022-04-08">
+<h2>Version 1.27.1, 2022-04-08<a class="headerlink" href="#version-1-27-1-2022-04-08" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Fixed project links on PyPI page after migration from mstamy2
+to MartinThoma to the py-pdf organization on GitHub</p></li>
+<li><p>Documentation is now at <a class="reference external" href="https://pypdf2.readthedocs.io/en/latest/">pypdf2.readthedocs.io</a></p></li>
+</ul>
+<p><a class="reference external" href="https://github.com/py-pdf/PyPDF2/compare/1.27.0...1.27.1">Full Changelog</a></p>
+</section>
+<section id="version-1-27-0-2022-04-07">
+<h2>Version 1.27.0, 2022-04-07<a class="headerlink" href="#version-1-27-0-2022-04-07" title="Link to this heading">¶</a></h2>
+<p>Features:</p>
+<ul class="simple">
+<li><p>Add alpha channel support for png files in Script (#614)</p></li>
+</ul>
+<section id="id33">
+<h3>Bug fixes (BUG)<a class="headerlink" href="#id33" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix formatWarning for filename without slash (#612)</p></li>
+<li><p>Add whitespace between words for extractText() (#569, #334)</p></li>
+<li><p>&quot;invalid escape sequence&quot; SyntaxError (#522)</p></li>
+<li><p>Avoid error when printing warning in pythonw (#486)</p></li>
+<li><p>Stream operations can be List or Dict (#665)</p></li>
+</ul>
+</section>
+<section id="id34">
+<h3>Documentation (DOC)<a class="headerlink" href="#id34" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Added Scripts/pdf-image-extractor.py</p></li>
+<li><p>Documentation improvements (#550, #538, #324, #426, #394)</p></li>
+</ul>
+</section>
+<section id="id35">
+<h3>Tests and Test setup (TST)<a class="headerlink" href="#id35" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add Github Action which automatically run unit tests via pytest and
+static code analysis with Flake8 (#660)</p></li>
+<li><p>Add several unit tests (#661, #663)</p></li>
+<li><p>Add .coveragerc to create coverage reports</p></li>
+</ul>
+</section>
+<section id="id36">
+<h3>Developer Experience Improvements (DEV)<a class="headerlink" href="#id36" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Pre commit: Developers can now <code class="docutils literal notranslate"><span class="pre">pre-commit</span> <span class="pre">install</span></code> to avoid tiny issues
+like trailing whitespaces</p></li>
+</ul>
+</section>
+<section id="id37">
+<h3>Miscellaneous<a class="headerlink" href="#id37" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add the LICENSE file to the distributed packages (#288)</p></li>
+<li><p>Use setuptools instead of distutils (#599)</p></li>
+<li><p>Improvements for the PyPI page (#644)</p></li>
+<li><p>Python 3 changes (#504, #366)</p></li>
+</ul>
+<p><a class="reference external" href="https://github.com/py-pdf/PyPDF2/compare/1.26.0...1.27.0">Full Changelog</a></p>
+</section>
+</section>
+<section id="version-1-26-0-2016-05-18">
+<h2>Version 1.26.0, 2016-05-18<a class="headerlink" href="#version-1-26-0-2016-05-18" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>NOTE: Active maintenance on PyPDF2 is resuming after a hiatus</p></li>
+<li><p>Fixed a bug where image resources where incorrectly
+overwritten when merging pages</p></li>
+<li><p>Added dictionary for JavaScript actions to the root (louib)</p></li>
+<li><p>Added unit tests for the JS functionality (louib)</p></li>
+<li><p>Add more Python 3 compatibility when reading inline images (im2703
+and (VyacheslavHashov)</p></li>
+<li><p>Return NullObject instead of raising error when failing to resolve
+object (ctate)</p></li>
+<li><p>Don't output warning for non-zeroed xref table when strict=False
+(BenRussert)</p></li>
+<li><p>Remove extraneous zeroes from output formatting (speedplane)</p></li>
+<li><p>Fix bug where reading an inline image would cut off prematurely
+in certain cases (speedplane)</p></li>
+</ul>
+</section>
+<section id="version-1-25-1-2015-07-20">
+<h2>Version 1.25.1, 2015-07-20<a class="headerlink" href="#version-1-25-1-2015-07-20" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Fix bug when parsing inline images. Occurred when merging
+certain pages with inline images</p></li>
+<li><p>Fixed type error when creating outlines by utilizing the
+isString() test</p></li>
+</ul>
+</section>
+<section id="version-1-25-2015-07-07">
+<h2>Version 1.25, 2015-07-07<a class="headerlink" href="#version-1-25-2015-07-07" title="Link to this heading">¶</a></h2>
+<p>BUGFIXES:</p>
+<ul class="simple">
+<li><p>Added Python 3 algorithm for ASCII85Decode. Fixes issue when
+reading reportlab-generated files with Py 3 (jerickbixly)</p></li>
+<li><p>Recognize more escape sequence which would otherwise throw an
+exception (manuelzs, robertsoakes)</p></li>
+<li><p>Fixed overflow error in generic.py. Occurred
+when reading a too-large int in Python 2 (by Raja Jamwal)</p></li>
+<li><p>Allow access to files which were encrypted with an empty
+password. Previously threw a &quot;File has not been decrypted&quot;
+exception (Elena Williams)</p></li>
+<li><p>Do not attempt to decode an empty data stream. Previously
+would cause an error in decode algorithms (vladir)</p></li>
+<li><p>Fixed some type issues specific to Py 2 or Py 3</p></li>
+<li><p>Fix issue when stream data begins with whitespace (soloma83)</p></li>
+<li><p>Recognize abbreviated filter names (AlmightyOatmeal and
+Matthew Weiss)</p></li>
+<li><p>Copy decryption key from PdfFileReader to PdfFileMerger.
+Allows usage of PdfFileMerger with encrypted files (twolfson)</p></li>
+<li><p>Fixed bug which occurred when a NameObject is present at end
+of a file stream. Threw a &quot;Stream has ended unexpectedly&quot;
+exception (speedplane)</p></li>
+</ul>
+<p>FEATURES:</p>
+<ul class="simple">
+<li><p>Initial work on a test suite; to be expanded in future.
+Tests and Resources directory added, README updated (robertsoakes)</p></li>
+<li><p>Added document cloning methods to PdfFileWriter:
+appendPagesFromReader, cloneReaderDocumentRoot, and
+cloneDocumentFromReader. See official documentation (robertsoakes)</p></li>
+<li><p>Added method for writing to form fields: updatePageFormFieldValues.
+This will be enhanced in the future. See official documentation
+(robertsoakes)</p></li>
+<li><p>New addAttachment method. See documentation. Support for adding
+and extracting embedded files to be enhanced in the future
+(moshekaplan)</p></li>
+<li><p>Added methods to get page number of given PageObject or
+Destination: getPageNumber and getDestinationPageNumber.
+See documentation (mozbugbox)</p></li>
+</ul>
+<p>OTHER ENHANCEMENTS:</p>
+<ul class="simple">
+<li><p>Enhanced type handling (Brent Amrhein)</p></li>
+<li><p>Enhanced exception handling in NameObject (sbywater)</p></li>
+<li><p>Enhanced extractText method output (peircej)</p></li>
+<li><p>Better exception handling</p></li>
+<li><p>Enhanced regex usage in NameObject class (speedplane)</p></li>
+</ul>
+</section>
+<section id="version-1-24-2014-12-31">
+<h2>Version 1.24, 2014-12-31<a class="headerlink" href="#version-1-24-2014-12-31" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Bugfixes for reading files in Python 3 (by Anthony Tuininga and
+pqqp)</p></li>
+<li><p>Appropriate errors are now raised instead of infinite loops (by
+naure and Cyrus Vafadari)</p></li>
+<li><p>Bugfix for parsing number tokens with leading spaces (by Maxim
+Kamenkov)</p></li>
+<li><p>Don't crash on bad /Outlines reference (by eshellman)</p></li>
+<li><p>Conform tabs/spaces and blank lines to PEP 8 standards</p></li>
+<li><p>Utilize the readUntilRegex method when reading Number Objects
+(by Brendan Jurd)</p></li>
+<li><p>More bugfixes for Python 3 and clearer exception handling</p></li>
+<li><p>Fixed encoding issue in merger (with eshellman)</p></li>
+<li><p>Created separate folder for scripts</p></li>
+</ul>
+</section>
+<section id="version-1-23-2014-08-11">
+<h2>Version 1.23, 2014-08-11<a class="headerlink" href="#version-1-23-2014-08-11" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Documentation now available at pythonhosted.org</p></li>
+<li><p>Bugfix in pagerange.py for when <code class="docutils literal notranslate"><span class="pre">__init__.__doc__</span></code> has no value (by
+Vladir Cruz)</p></li>
+<li><p>Fix typos in OutlinesObject().add() (by shilluc)</p></li>
+<li><p>Re-added a missing return statement in a utils.py method</p></li>
+<li><p>Corrected viewing mode names (by Jason Scheirer)</p></li>
+<li><p>New PdfFileWriter method: addJS() (by vfigueiro)</p></li>
+<li><p>New bookmark features: color, boldness, italics, and page fit
+(by Joshua Arnott)</p></li>
+<li><p>New PdfFileReader method: getFields(). Used to extract field
+information from PDFs with interactive forms. See documentation
+for details</p></li>
+<li><p>Converted README file to markdown format (by Stephen Bussard)</p></li>
+<li><p>Several improvements to overall performance and efficiency
+(by mozbugbox)</p></li>
+<li><p>Fixed a bug where geospatial information was not scaling along with
+its page</p></li>
+<li><p>Fixed a type issue and a Python 3 issue in the decryption algorithms
+(with Francisco Vieira and koba-ninkigumi)</p></li>
+<li><p>Fixed a bug causing an infinite loop in the ASCII 85 decoding
+algorithm (by madmaardigan)</p></li>
+<li><p>Annotations (links, comment windows, etc.) are now preserved when
+pages are merged together</p></li>
+<li><p>Used the Destination class in addLink() and addBookmark() so that
+the page fit option could be properly customized</p></li>
+</ul>
+</section>
+<section id="version-1-22-2014-05-29">
+<h2>Version 1.22, 2014-05-29<a class="headerlink" href="#version-1-22-2014-05-29" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Added .DS_Store to .gitignore (for Mac users) (by Steve Witham)</p></li>
+<li><p>Removed <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> implementation in NameObject (by Steve Witham)</p></li>
+<li><p>Fixed bug (inf. loop) when merging pages in Python 3 (by commx)</p></li>
+<li><p>Corrected error when calculating height in scaleTo()</p></li>
+<li><p>Removed unnecessary code from DictionaryObject (by Georges Dubus)</p></li>
+<li><p>Fixed bug where an exception was thrown upon reading a NULL string
+(by speedplane)</p></li>
+<li><p>Allow string literals (non-unicode strings in Python 2) to be passed
+to PdfFileReader</p></li>
+<li><p>Allow ConvertFunctionsToVirtualList to be indexed with slices and
+longs (in Python 2) (by Matt Gilson)</p></li>
+<li><p>Major improvements and bugfixes to addLink() method (see documentation
+in source code) (by Henry Keiter)</p></li>
+<li><p>General code clean-up and improvements (with Steve Witham and Henry Keiter)</p></li>
+<li><p>Fixed bug that caused crash when comments are present at end of
+dictionary</p></li>
+</ul>
+</section>
+<section id="version-1-21-2014-04-21">
+<h2>Version 1.21, 2014-04-21<a class="headerlink" href="#version-1-21-2014-04-21" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Fix for when /Type isn't present in the Pages dictionary (by Rob1080)</p></li>
+<li><p>More tolerance for extra whitespace in Indirect Objects</p></li>
+<li><p>Improved Exception handling</p></li>
+<li><p>Fixed error in getHeight() method (by Simon Kaempflein)</p></li>
+<li><p>implement use of utils.string_type to resolve Py2-3 compatibility issues</p></li>
+<li><p>Prevent exception for multiple definitions in a dictionary (with carlosfunk)
+(only when strict = False)</p></li>
+<li><p>Fixed errors when parsing a slice using pdfcat on command line (by
+Steve Witham)</p></li>
+<li><p>Tolerance for EOF markers within 1024 bytes of the actual end of the
+file (with David Wolever)</p></li>
+<li><p>Added overwriteWarnings parameter to PdfFileReader constructor, if False
+PyPDF2 will NOT overwrite methods from Python's warnings.py module with
+a custom implementation.</p></li>
+<li><p>Fix NumberObject and NameObject constructors for compatibility with PyPy
+(Rüdiger Jungbeck, Xavier Dupré, shezadkhan137, Steven Witham)</p></li>
+<li><p>Utilize  utils.Str in pdf.py and pagerange.py to resolve type issues (by
+egbutter)</p></li>
+<li><p>Improvements in implementing StringIO for Python 2 and BytesIO for
+Python 3 (by Xavier Dupré)</p></li>
+<li><p>Added /x00 to Whitespaces, defined utils.WHITESPACES to clarify code (by
+Maxim Kamenkov)</p></li>
+<li><p>Bugfix for merging 3 or more resources with the same name (by lucky-user)</p></li>
+<li><p>Improvements to Xref parsing algorithm (by speedplane)</p></li>
+</ul>
+</section>
+<section id="version-1-20-2014-01-27">
+<h2>Version 1.20, 2014-01-27<a class="headerlink" href="#version-1-20-2014-01-27" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Official Python 3+ support (with contributions from TWAC and cgammans)
+Support for Python versions 2.6 and 2.7 will be maintained</p></li>
+<li><p>Command line concatenation (see pdfcat in sample code) (by Steve Witham)</p></li>
+<li><p>New FAQ; link included in README</p></li>
+<li><p>Allow more (although unnecessary) escape sequences</p></li>
+<li><p>Prevent exception when reading a null object in decoding parameters</p></li>
+<li><p>Corrected error in reading destination types (added a slash since they
+are name objects)</p></li>
+<li><p>Corrected TypeError in scaleTo() method</p></li>
+<li><p>addBookmark() method in PdfFileMerger now returns bookmark (so nested
+bookmarks can be created)</p></li>
+<li><p>Additions to Sample Code and Sample PDFs</p></li>
+<li><p>changes to allow 2up script to work (see sample code) (by Dylan McNamee)</p></li>
+<li><p>changes to metadata encoding (by Chris Hiestand)</p></li>
+<li><p>New methods for links: addLink() (by Enrico Lambertini) and removeLinks()</p></li>
+<li><p>Bugfix to handle nested bookmarks correctly (by Jamie Lentin)</p></li>
+<li><p>New methods removeImages() and removeText() available for PdfFileWriter
+(by Tien Haï)</p></li>
+<li><p>Exception handling for illegal characters in Name Objects</p></li>
+</ul>
+</section>
+<section id="version-1-19-2013-10-08">
+<h2>Version 1.19, 2013-10-08<a class="headerlink" href="#version-1-19-2013-10-08" title="Link to this heading">¶</a></h2>
+<p>BUGFIXES:</p>
+<ul class="simple">
+<li><p>Removed pop in sweepIndirectReferences to prevent infinite loop
+(provided by ian-su-sirca)</p></li>
+<li><p>Fixed bug caused by whitespace when parsing PDFs generated by AutoCad</p></li>
+<li><p>Fixed a bug caused by reading a 'null' ASCII value in a dictionary
+object (primarily in PDFs generated by AutoCad).</p></li>
+</ul>
+<p>FEATURES:</p>
+<ul class="simple">
+<li><p>Added new folders for PyPDF2 sample code and example PDFs; see README
+for each folder</p></li>
+<li><p>Added a method for debugging purposes to show current location while
+parsing</p></li>
+<li><p>Ability to create custom metadata (by jamma313)</p></li>
+<li><p>Ability to access and customize document layout and view mode
+(by Joshua Arnott)</p></li>
+</ul>
+<p>OTHER:</p>
+<ul class="simple">
+<li><p>Added and corrected some documentation</p></li>
+<li><p>Added some more warnings and exception messages</p></li>
+<li><p>Removed old test/debugging code</p></li>
+</ul>
+<p>UPCOMING:</p>
+<ul class="simple">
+<li><p>More bugfixes (We have received many problematic PDFs via email, we
+will work with them)</p></li>
+<li><p>Documentation - It's time for PyPDF2 to get its own documentation
+since it has grown much since the original pyPdf</p></li>
+<li><p>A FAQ to answer common questions</p></li>
+</ul>
+</section>
+<section id="version-1-18-2013-08-19">
+<h2>Version 1.18, 2013-08-19<a class="headerlink" href="#version-1-18-2013-08-19" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Fixed a bug where older versions of objects were incorrectly added to the
+cache, resulting in outdated or missing pages, images, and other objects
+(from speedplane)</p></li>
+<li><p>Fixed a bug in parsing the xref table where new xref values were
+overwritten; also cleaned up code (from speedplane)</p></li>
+<li><p>New method mergeRotatedAroundPointPage which merges a page while rotating
+it around a point (from speedplane)</p></li>
+<li><p>Updated Destination syntax to respect PDF 1.6 specifications (from
+jamma313)</p></li>
+<li><p>Prevented infinite loop when a PdfFileReader object was instantiated
+with an empty file (from Jerome Nexedi)</p></li>
+</ul>
+<p>Other Changes:</p>
+<ul class="simple">
+<li><p>Downloads now available via PyPI</p></li>
+<li><p>Installation through pip library is fixed</p></li>
+</ul>
+</section>
+<section id="version-1-17-2013-07-25">
+<h2>Version 1.17, 2013-07-25<a class="headerlink" href="#version-1-17-2013-07-25" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Removed one (from pdf.py) of the two Destination classes. Both
+classes had the same name, but were slightly different in content,
+causing some errors. (from Janne Vanhala)</p></li>
+<li><p>Corrected and Expanded README file to demonstrate PdfFileMerger</p></li>
+<li><p>Added filter for LZW encoded streams (from Michal Horejsek)</p></li>
+<li><p>PyPDF2 issue tracker enabled on Github to allow community
+discussion and collaboration</p></li>
+</ul>
+</section>
+<section id="versions-1-16-2013-06-30">
+<h2>Versions -1.16, -2013-06-30<a class="headerlink" href="#versions-1-16-2013-06-30" title="Link to this heading">¶</a></h2>
+<ul>
+<li><p>Note: This ChangeLog has not been kept up-to-date for a while.
+Hopefully we can keep better track of it from now on. Some of the
+changes listed here come from previous versions 1.14 and 1.15; they
+were only vaguely defined. With the new _version.py file we should
+have more structured and better documented versioning from now on.</p></li>
+<li><p>Defined <code class="docutils literal notranslate"><span class="pre">PyPDF2.__version__</span></code></p></li>
+<li><p>Fixed encrypt() method (from Martijn The)</p></li>
+<li><p>Improved error handling on PDFs with truncated streams (from cecilkorik)</p></li>
+<li><p>Python 3 support (from kushal-kumaran)</p></li>
+<li><p>Fixed example code in README (from Jeremy Bethmont)</p></li>
+<li><p>Fixed an bug caused by DecimalError Exception (from Adam Morris)</p></li>
+<li><p>Many other bug fixes and features by:</p>
+<p>jeansch
+Anton Vlasenko
+Joseph Walton
+Jan Oliver Oelerich
+Fabian Henze
+And any others I missed.
+Thanks for contributing!</p>
+</li>
+</ul>
+</section>
+<section id="version-1-13-2010-12-04">
+<h2>Version 1.13, 2010-12-04<a class="headerlink" href="#version-1-13-2010-12-04" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Fixed a typo in code for reading a &quot;\b&quot; escape character in strings.</p></li>
+<li><p>Improved <code class="docutils literal notranslate"><span class="pre">__repr__</span></code> in FloatObject.</p></li>
+<li><p>Fixed a bug in reading octal escape sequences in strings.</p></li>
+<li><p>Added getWidth and getHeight methods to the RectangleObject class.</p></li>
+<li><p>Fixed compatibility warnings with Python 2.4 and 2.5.</p></li>
+<li><p>Added addBlankPage and insertBlankPage methods on PdfFileWriter class.</p></li>
+<li><p>Fixed a bug with circular references in page's object trees (typically
+annotations) that prevented correctly writing out a copy of those pages.</p></li>
+<li><p>New merge page functions allow application of a transformation matrix.</p></li>
+<li><p>To all patch contributors: I did a poor job of keeping this ChangeLog
+up-to-date for this release, so I am missing attributions here for any
+changes you submitted.  Sorry!  I'll do better in the future.</p></li>
+</ul>
+</section>
+<section id="version-1-12-2008-09-02">
+<h2>Version 1.12, 2008-09-02<a class="headerlink" href="#version-1-12-2008-09-02" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Added support for XMP metadata.</p></li>
+<li><p>Fix reading files with xref streams with multiple /Index values.</p></li>
+<li><p>Fix extracting content streams that use graphics operators longer than 2
+characters.  Affects merging PDF files.</p></li>
+</ul>
+</section>
+<section id="version-1-11-2008-05-09">
+<h2>Version 1.11, 2008-05-09<a class="headerlink" href="#version-1-11-2008-05-09" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Patch from Hartmut Goebel to permit RectangleObjects to accept NumberObject
+or FloatObject values.</p></li>
+<li><p>PDF compatibility fixes.</p></li>
+<li><p>Fix to read object xref stream in correct order.</p></li>
+<li><p>Fix for comments inside content streams.</p></li>
+</ul>
+</section>
+<section id="version-1-10-2007-10-04">
+<h2>Version 1.10, 2007-10-04<a class="headerlink" href="#version-1-10-2007-10-04" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Text strings from PDF files are returned as Unicode string objects when
+pyPdf determines that they can be decoded (as UTF-16 strings, or as
+PDFDocEncoding strings).  Unicode objects are also written out when
+necessary.  This means that string objects in pyPdf can be either
+generic.ByteStringObject instances, or generic.TextStringObject instances.</p></li>
+<li><p>The extractText method now returns a unicode string object.</p></li>
+<li><p>All document information properties now return unicode string objects.  In
+the event that a document provides docinfo properties that are not decoded by
+pyPdf, the raw byte strings can be accessed with an &quot;_raw&quot; property (ie.
+title_raw rather than title)</p></li>
+<li><p>generic.DictionaryObject instances have been enhanced to be easier to use.
+Values coming out of dictionary objects will automatically be de-referenced
+(.getObject will be called on them), unless accessed by the new &quot;raw_get&quot;
+method.  DictionaryObjects can now only contain PdfObject instances (as keys
+and values), making it easier to debug where non-PdfObject values (which
+cannot be written out) are entering dictionaries.</p></li>
+<li><p>Support for reading named destinations and outlines in PDF files.  Original
+patch by Ashish Kulkarni.</p></li>
+<li><p>Stream compatibility reading enhancements for malformed PDF files.</p></li>
+<li><p>Cross reference table reading enhancements for malformed PDF files.</p></li>
+<li><p>Encryption documentation.</p></li>
+<li><p>Replace some &quot;assert&quot; statements with error raising.</p></li>
+<li><p>Minor optimizations to FlateDecode algorithm increase speed when using PNG
+predictors.</p></li>
+</ul>
+</section>
+<section id="version-1-9-2006-12-15">
+<h2>Version 1.9, 2006-12-15<a class="headerlink" href="#version-1-9-2006-12-15" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Fix several serious bugs introduced in version 1.8, caused by a failure to
+run through our PDF test suite before releasing that version.</p></li>
+<li><p>Fix bug in NullObject reading and writing.</p></li>
+</ul>
+</section>
+<section id="version-1-8-2006-12-14">
+<h2>Version 1.8, 2006-12-14<a class="headerlink" href="#version-1-8-2006-12-14" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Add support for decryption with the standard PDF security handler.  This
+allows for decrypting PDF files given the proper user or owner password.</p></li>
+<li><p>Add support for encryption with the standard PDF security handler.</p></li>
+<li><p>Add new pythondoc documentation.</p></li>
+<li><p>Fix bug in ASCII85 decode that occurs when whitespace exists inside the
+two terminating characters of the stream.</p></li>
+</ul>
+</section>
+<section id="version-1-7-2006-12-10">
+<h2>Version 1.7, 2006-12-10<a class="headerlink" href="#version-1-7-2006-12-10" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Fix a bug when using a single page object in two PdfFileWriter objects.</p></li>
+<li><p>Adjust PyPDF to be tolerant of whitespace characters that don't belong
+during a stream object.</p></li>
+<li><p>Add documentInfo property to PdfFileReader.</p></li>
+<li><p>Add numPages property to PdfFileReader.</p></li>
+<li><p>Add pages property to PdfFileReader.</p></li>
+<li><p>Add extractText function to PdfFileReader.</p></li>
+</ul>
+</section>
+<section id="version-1-6-2006-06-06">
+<h2>Version 1.6, 2006-06-06<a class="headerlink" href="#version-1-6-2006-06-06" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Add basic support for comments in PDF files.  This allows us to read some
+ReportLab PDFs that could not be read before.</p></li>
+<li><p>Add &quot;auto-repair&quot; for finding xref table at slightly bad locations.</p></li>
+<li><p>New StreamObject backend, cleaner and more powerful.  Allows the use of
+stream filters more easily, including compressed streams.</p></li>
+<li><p>Add a graphics state push/pop around page merges.  Improves quality of
+page merges when one page's content stream leaves the graphics
+in an abnormal state.</p></li>
+<li><p>Add PageObject.compressContentStreams function, which filters all content
+streams and compresses them.  This will reduce the size of PDF pages,
+especially after they could have been decompressed in a mergePage
+operation.</p></li>
+<li><p>Support inline images in PDF content streams.</p></li>
+<li><p>Add support for using .NET framework compression when zlib is not
+available.  This does not make pyPdf compatible with IronPython, but it
+is a first step.</p></li>
+<li><p>Add support for reading the document information dictionary, and extracting
+title, author, subject, producer and creator tags.</p></li>
+<li><p>Add patch to support NullObject and multiple xref streams, from Bradley
+Lawrence.</p></li>
+</ul>
+</section>
+<section id="version-1-5-2006-01-28">
+<h2>Version 1.5, 2006-01-28<a class="headerlink" href="#version-1-5-2006-01-28" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Fix a bug where merging pages did not work in &quot;no-rename&quot; cases when the
+second page has an array of content streams.</p></li>
+<li><p>Remove some debugging output that should not have been present.</p></li>
+</ul>
+</section>
+<section id="version-1-4-2006-01-27">
+<h2>Version 1.4, 2006-01-27<a class="headerlink" href="#version-1-4-2006-01-27" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Add capability to merge pages from multiple PDF files into a single page
+using the PageObject.mergePage function.  See example code (README or web
+site) for more information.</p></li>
+<li><p>Add ability to modify a page's MediaBox, CropBox, BleedBox, TrimBox, and
+ArtBox properties through PageObject.  See example code (README or web site)
+for more information.</p></li>
+<li><p>Refactor pdf.py into multiple files: generic.py (contains objects like
+NameObject, DictionaryObject), filters.py (contains filter code),
+utils.py (various).  This does not affect importing PdfFileReader
+or PdfFileWriter.</p></li>
+<li><p>Add new decoding functions for standard PDF filters ASCIIHexDecode and
+ASCII85Decode.</p></li>
+<li><p>Change url and download_url to refer to new pybrary.net web site.</p></li>
+</ul>
+</section>
+<section id="version-1-3-2006-01-23">
+<h2>Version 1.3, 2006-01-23<a class="headerlink" href="#version-1-3-2006-01-23" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Fix new bug introduced in 1.2 where PDF files with \r line endings did not
+work properly anymore.  A new test suite developed with various PDF files
+should prevent regression bugs from now on.</p></li>
+<li><p>Fix a bug where inheriting attributes from page nodes did not work.</p></li>
+</ul>
+</section>
+<section id="version-1-2-2006-01-23">
+<h2>Version 1.2, 2006-01-23<a class="headerlink" href="#version-1-2-2006-01-23" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Improved support for files with CRLF-based line endings, fixing a common
+reported problem stating &quot;assertion error: assert line == &quot;%%EOF&quot;&quot;.</p></li>
+<li><p>Software author/maintainer is now officially a proud married person, which
+is sure to result in better software... somehow.</p></li>
+</ul>
+</section>
+<section id="version-1-1-2006-01-18">
+<h2>Version 1.1, 2006-01-18<a class="headerlink" href="#version-1-1-2006-01-18" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Add capability to rotate pages.</p></li>
+<li><p>Improved PDF reading support to properly manage inherited attributes from
+/Type=/Pages nodes.  This means that page groups that are rotated or have
+different media boxes or whatever will now work properly.</p></li>
+<li><p>Added PDF 1.5 support.  Namely cross-reference streams and object streams.
+This release can mangle Adobe's PDFReference16.pdf successfully.</p></li>
+</ul>
+</section>
+<section id="version-1-0-2006-01-17">
+<h2>Version 1.0, 2006-01-17<a class="headerlink" href="#version-1-0-2006-01-17" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>First distutils-capable true public release.  Supports a wide variety of PDF
+files that I found sitting around on my system.</p></li>
+<li><p>Does not support some PDF 1.5 features, such as object streams,
+cross-reference streams.</p></li>
+</ul>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="project-governance.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">项目治理</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="CHANGELOG.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">更新日志</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2006 - 2024, Mathieu Fenniak and pypdf contributors
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Changelog of PyPDF2 1.X</a><ul>
+<li><a class="reference internal" href="#version-1-28-4-2022-05-29">Version 1.28.4, 2022-05-29</a></li>
+<li><a class="reference internal" href="#version-1-28-3-2022-05-28">Version 1.28.3, 2022-05-28</a><ul>
+<li><a class="reference internal" href="#deprecations-dep">Deprecations (DEP)</a></li>
+<li><a class="reference internal" href="#bug-fixes-bug">Bug Fixes (BUG)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#version-1-28-2-2022-05-23">Version 1.28.2, 2022-05-23</a><ul>
+<li><a class="reference internal" href="#id1">Bug Fixes (BUG)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#version-1-28-1-2022-05-22">Version 1.28.1, 2022-05-22</a><ul>
+<li><a class="reference internal" href="#id2">Bug Fixes (BUG)</a></li>
+<li><a class="reference internal" href="#maintenance-maint">Maintenance (MAINT)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#version-1-28-0-2022-05-22">Version 1.28.0, 2022-05-22</a><ul>
+<li><a class="reference internal" href="#id3">Deprecations (DEP)</a><ul>
+<li><a class="reference internal" href="#details">Details</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#version-1-27-12-2022-05-02">Version 1.27.12, 2022-05-02</a><ul>
+<li><a class="reference internal" href="#id4">Bug Fixes (BUG)</a></li>
+<li><a class="reference internal" href="#documentation-doc">Documentation (DOC)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#version-1-27-11-2022-05-02">Version 1.27.11, 2022-05-02</a><ul>
+<li><a class="reference internal" href="#id5">Bug Fixes (BUG)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#version-1-27-10-2022-05-01">Version 1.27.10, 2022-05-01</a><ul>
+<li><a class="reference internal" href="#robustness-rob">Robustness (ROB)</a></li>
+<li><a class="reference internal" href="#id6">Documentation (DOC)</a></li>
+<li><a class="reference internal" href="#developer-experience-dev">Developer Experience (DEV)</a></li>
+<li><a class="reference internal" href="#id7">Maintenance (MAINT)</a></li>
+<li><a class="reference internal" href="#testing-tst">Testing (TST)</a></li>
+<li><a class="reference internal" href="#code-style-sty">Code Style (STY)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#version-1-27-9-2022-04-24">Version 1.27.9, 2022-04-24</a><ul>
+<li><a class="reference internal" href="#new-features-enh">New Features (ENH)</a></li>
+<li><a class="reference internal" href="#id8">Bug Fixes (BUG)</a></li>
+<li><a class="reference internal" href="#id9">Robustness (ROB)</a></li>
+<li><a class="reference internal" href="#id10">Documentation (DOC)</a></li>
+<li><a class="reference internal" href="#id11">Developer Experience (DEV)</a></li>
+<li><a class="reference internal" href="#id12">Maintenance (MAINT)</a></li>
+<li><a class="reference internal" href="#id13">Testing (TST)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#version-1-27-8-2022-04-21">Version 1.27.8, 2022-04-21</a><ul>
+<li><a class="reference internal" href="#id14">Bug Fixes (BUG)</a></li>
+<li><a class="reference internal" href="#id15">Robustness (ROB)</a></li>
+<li><a class="reference internal" href="#id16">Documentation (DOC)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#version-1-27-7-2022-04-19">Version 1.27.7, 2022-04-19</a><ul>
+<li><a class="reference internal" href="#id17">Bug Fixes (BUG)</a></li>
+<li><a class="reference internal" href="#id18">Code Style (STY)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#version-1-27-6-2022-04-18">Version 1.27.6, 2022-04-18</a><ul>
+<li><a class="reference internal" href="#id19">Deprecations (DEP)</a></li>
+<li><a class="reference internal" href="#id20">New Features (ENH)</a></li>
+<li><a class="reference internal" href="#id21">Bug Fixes (BUG)</a></li>
+<li><a class="reference internal" href="#id22">Robustness (ROB)</a></li>
+<li><a class="reference internal" href="#id23">Documentation (DOC)</a></li>
+<li><a class="reference internal" href="#id24">Developer Experience (DEV)</a></li>
+<li><a class="reference internal" href="#id25">Maintenance (MAINT)</a></li>
+<li><a class="reference internal" href="#id26">Testing (TST)</a></li>
+<li><a class="reference internal" href="#id27">Code Style (STY)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#version-1-27-5-2022-04-15">Version 1.27.5, 2022-04-15</a><ul>
+<li><a class="reference internal" href="#security-sec">Security (SEC)</a></li>
+<li><a class="reference internal" href="#id28">Bug fixes (BUG)</a></li>
+<li><a class="reference internal" href="#robustness-improvements-robust">Robustness improvements (ROBUST)</a></li>
+<li><a class="reference internal" href="#id29">Documentation (DOC)</a></li>
+<li><a class="reference internal" href="#tests-and-test-setup-tst">Tests and Test setup (TST)</a></li>
+<li><a class="reference internal" href="#developer-experience-improvements-dev">Developer Experience Improvements (DEV)</a></li>
+<li><a class="reference internal" href="#miscellaneous">Miscellaneous</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#version-1-27-4-2022-04-12">Version 1.27.4, 2022-04-12</a><ul>
+<li><a class="reference internal" href="#id30">Bug fixes (BUG)</a></li>
+<li><a class="reference internal" href="#packaging-pkg">Packaging (PKG)</a></li>
+<li><a class="reference internal" href="#id31">Testing (TST)</a></li>
+<li><a class="reference internal" href="#id32">Miscellaneous</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#version-1-27-3-2022-04-10">Version 1.27.3, 2022-04-10</a></li>
+<li><a class="reference internal" href="#version-1-27-2-2022-04-09">Version 1.27.2, 2022-04-09</a></li>
+<li><a class="reference internal" href="#version-1-27-1-2022-04-08">Version 1.27.1, 2022-04-08</a></li>
+<li><a class="reference internal" href="#version-1-27-0-2022-04-07">Version 1.27.0, 2022-04-07</a><ul>
+<li><a class="reference internal" href="#id33">Bug fixes (BUG)</a></li>
+<li><a class="reference internal" href="#id34">Documentation (DOC)</a></li>
+<li><a class="reference internal" href="#id35">Tests and Test setup (TST)</a></li>
+<li><a class="reference internal" href="#id36">Developer Experience Improvements (DEV)</a></li>
+<li><a class="reference internal" href="#id37">Miscellaneous</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#version-1-26-0-2016-05-18">Version 1.26.0, 2016-05-18</a></li>
+<li><a class="reference internal" href="#version-1-25-1-2015-07-20">Version 1.25.1, 2015-07-20</a></li>
+<li><a class="reference internal" href="#version-1-25-2015-07-07">Version 1.25, 2015-07-07</a></li>
+<li><a class="reference internal" href="#version-1-24-2014-12-31">Version 1.24, 2014-12-31</a></li>
+<li><a class="reference internal" href="#version-1-23-2014-08-11">Version 1.23, 2014-08-11</a></li>
+<li><a class="reference internal" href="#version-1-22-2014-05-29">Version 1.22, 2014-05-29</a></li>
+<li><a class="reference internal" href="#version-1-21-2014-04-21">Version 1.21, 2014-04-21</a></li>
+<li><a class="reference internal" href="#version-1-20-2014-01-27">Version 1.20, 2014-01-27</a></li>
+<li><a class="reference internal" href="#version-1-19-2013-10-08">Version 1.19, 2013-10-08</a></li>
+<li><a class="reference internal" href="#version-1-18-2013-08-19">Version 1.18, 2013-08-19</a></li>
+<li><a class="reference internal" href="#version-1-17-2013-07-25">Version 1.17, 2013-07-25</a></li>
+<li><a class="reference internal" href="#versions-1-16-2013-06-30">Versions -1.16, -2013-06-30</a></li>
+<li><a class="reference internal" href="#version-1-13-2010-12-04">Version 1.13, 2010-12-04</a></li>
+<li><a class="reference internal" href="#version-1-12-2008-09-02">Version 1.12, 2008-09-02</a></li>
+<li><a class="reference internal" href="#version-1-11-2008-05-09">Version 1.11, 2008-05-09</a></li>
+<li><a class="reference internal" href="#version-1-10-2007-10-04">Version 1.10, 2007-10-04</a></li>
+<li><a class="reference internal" href="#version-1-9-2006-12-15">Version 1.9, 2006-12-15</a></li>
+<li><a class="reference internal" href="#version-1-8-2006-12-14">Version 1.8, 2006-12-14</a></li>
+<li><a class="reference internal" href="#version-1-7-2006-12-10">Version 1.7, 2006-12-10</a></li>
+<li><a class="reference internal" href="#version-1-6-2006-06-06">Version 1.6, 2006-06-06</a></li>
+<li><a class="reference internal" href="#version-1-5-2006-01-28">Version 1.5, 2006-01-28</a></li>
+<li><a class="reference internal" href="#version-1-4-2006-01-27">Version 1.4, 2006-01-27</a></li>
+<li><a class="reference internal" href="#version-1-3-2006-01-23">Version 1.3, 2006-01-23</a></li>
+<li><a class="reference internal" href="#version-1-2-2006-01-23">Version 1.2, 2006-01-23</a></li>
+<li><a class="reference internal" href="#version-1-1-2006-01-18">Version 1.1, 2006-01-18</a></li>
+<li><a class="reference internal" href="#version-1-0-2006-01-17">Version 1.0, 2006-01-17</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=8309bdae"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="../_static/translations.js?v=beaddf03"></script>
+    </body>
+</html>
